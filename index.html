@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>archi.cool — patrimoine architectural méconnu</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<style>
+  :root{
+    /* "Black" is Deep Slate Olive (C76 M60 Y80 K62) instead of true black — every former
+       #141414 (text, primary buttons, accents, borders, muted grays) is now this hue or a
+       tint of it, so contours/tags/secondary text all read as one family instead of neutral
+       gray sitting next to a colored ink. Panel/glass keeps the near-white sampled from the
+       basemap tiles (a separate, already-tuned decision) — only the "gray" utility tones
+       (line/inscrit/ink-soft) move into the olive family here. */
+    --ink:#172713; --ink-soft:#6f796d; --paper:#f2f2f0; --card:#ffffff;
+    --panel:#fbfaf7; --line:#dadcd9; --accent:#172713; --accent-soft:#fbfaf7;
+    --classe:#172713; --inscrit:#979e95;
+    /* Small chips (style/status tags, "Propriété privée" box) sat on --panel — nearly the
+       same near-white as the glass surface behind them, so they barely read as distinct
+       elements. A low-opacity olive wash gives them their own visible boundary instead. */
+    --chip-bg:rgba(23,39,19,.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;height:100%;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;color:var(--ink);background:var(--paper);}
+  #app{display:flex;flex-direction:column;height:100vh;}
+
+  /* Same glass "material" as the floating map overlays (pills, filters, detail sheet) — one
+     consistent translucent/blurred surface used everywhere in the app, rather than a solid
+     opaque bar just for the header. */
+  header{
+    padding:14px 24px;border-bottom:1px solid rgba(218,220,217,.7);
+    background:rgba(251,250,247,.52);backdrop-filter:blur(12px) saturate(1.35);-webkit-backdrop-filter:blur(12px) saturate(1.35);
+    display:flex;align-items:center;gap:14px;flex-wrap:wrap;position:relative;z-index:900;
+  }
+  .header-controls{display:flex;align-items:center;gap:10px;}
+  /* Lowercase bold wordmark, Rains-style ("RAINS" as a plain logotype, no tagline baked in) —
+     with a small square dot instead of a round period as the one distinguishing typographic
+     flourish. */
+  header h1{
+    font-size:18px;margin:0;font-weight:700;letter-spacing:-.2px;white-space:nowrap;color:var(--ink);
+    text-transform:lowercase;
+  }
+  /* Cream Yellow — same color as the Brutalisme pins. */
+  header h1 .brand-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#ffb852;margin:0 2px;vertical-align:middle;}
+  /* Negative bottom margin keeps the tagline out of h1's height for flex centering purposes —
+     without it, the header centers the wordmark+tagline as one block, which visually shoves
+     the wordmark itself above center (the actual "archi.cool" logotype users look at). This
+     way the wordmark alone centers against the row, tagline just overflows below it unclipped. */
+  header h1 .sub{display:block;font-size:11px;font-weight:400;color:var(--ink-soft);margin-top:3px;margin-bottom:-16px;text-transform:none;letter-spacing:0;}
+  .spacer{flex:1;}
+
+  #search-box{position:relative;width:220px;transition:width .15s ease;}
+  #search-box.expanded{width:300px;}
+  #search{
+    width:100%;height:36px;padding:0 14px 0 36px;border:1.5px solid var(--line);border-radius:999px;font-size:13px;
+    background:var(--panel);outline:none;font-family:inherit;color:var(--ink);transition:border-color .15s,background .15s;
+  }
+  #search::placeholder{color:var(--ink-soft);text-transform:uppercase;letter-spacing:.3px;font-size:12px;}
+  #search:focus{border-color:var(--accent);background:var(--card);}
+  .search-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--ink-soft);pointer-events:none;}
+
+  .icon-btn{
+    height:36px;padding:0 16px;border:1.5px solid var(--line);background:var(--card);border-radius:999px;
+    font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap;text-transform:uppercase;letter-spacing:.4px;
+    display:flex;align-items:center;gap:7px;color:var(--ink);transition:border-color .15s,background .15s,color .15s;
+  }
+  .icon-btn:hover{border-color:var(--accent);color:var(--accent);}
+  #locate-btn.active{background:var(--ink);border-color:var(--ink);color:#fff;}
+
+  /* --- Floating filter trigger: a single "Filtres" pill with a sliders icon (so it reads
+     unambiguously as filters, not tabs) that opens one consolidated panel with every
+     category — clearer than several look-alike pills, and only one popover to keep on
+     screen on mobile. --- */
+  #pills-row{
+    position:absolute;top:14px;left:354px;z-index:850;
+  }
+  .filter-group{position:relative;}
+  .pill{
+    flex-shrink:0;height:36px;padding:0 15px;border-radius:999px;border:1.5px solid rgba(218,220,217,.85);
+    background:rgba(251,250,247,.52);backdrop-filter:blur(12px) saturate(1.35);-webkit-backdrop-filter:blur(12px) saturate(1.35);
+    box-shadow:0 4px 14px rgba(20,20,20,.10);
+    font-size:11px;font-weight:700;cursor:pointer;user-select:none;color:var(--ink);text-transform:uppercase;letter-spacing:.4px;
+    display:flex;align-items:center;gap:7px;transition:border-color .15s,background .15s,color .15s;
+  }
+  .pill:hover{border-color:var(--accent);}
+  .pill.open{border-color:var(--ink);background:rgba(255,255,255,.96);}
+  .pill-icon{flex-shrink:0;}
+  .filter-count{
+    background:var(--accent);color:#fff;border-radius:50%;width:16px;height:16px;font-size:9.5px;
+    display:none;align-items:center;justify-content:center;font-weight:700;
+  }
+  .filter-count.show{display:flex;}
+
+  #filters-panel{
+    position:absolute;top:calc(100% + 8px);left:0;width:280px;
+    background:rgba(251,250,247,.52);backdrop-filter:blur(12px) saturate(1.35);-webkit-backdrop-filter:blur(12px) saturate(1.35);
+    border:1px solid rgba(218,220,217,.7);border-radius:16px;box-shadow:0 14px 34px rgba(20,20,20,.18);
+    z-index:1300;display:none;max-height:70vh;overflow:hidden;flex-direction:column;
+  }
+  #filters-panel.open{display:flex;}
+  .fp-header{
+    flex-shrink:0;display:flex;align-items:center;justify-content:space-between;
+    padding:10px 12px;border-bottom:1px solid var(--line);
+  }
+  .fp-header-title{font-size:12.5px;font-weight:700;color:var(--ink);}
+  .fp-icon-btn{
+    width:28px;height:28px;border-radius:50%;border:none;background:var(--panel);color:var(--ink);
+    font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    transition:background .15s,color .15s;flex-shrink:0;padding:0;
+  }
+  .fp-icon-btn:hover{background:var(--ink);color:#fff;}
+  .fp-scroll{overflow-y:auto;flex:1;min-height:0;}
+  .fp-section{padding:14px 16px;border-bottom:1px solid var(--line);}
+  .fp-section:last-of-type{border-bottom:none;}
+  .fp-title{font-size:10.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px;}
+  .fp-footer{
+    flex-shrink:0;display:flex;gap:8px;padding:12px 14px;border-top:1px solid rgba(218,220,217,.7);
+  }
+  .fp-btn{
+    flex:1;padding:11px;border-radius:999px;border:none;font-size:11px;font-weight:700;cursor:pointer;
+    text-align:center;transition:background .15s,color .15s,opacity .15s;text-transform:uppercase;letter-spacing:.4px;
+  }
+  .fp-btn-ghost{background:var(--panel);color:var(--ink);}
+  .fp-btn-ghost:hover:not(:disabled){background:var(--accent-soft);color:var(--accent);}
+  .fp-btn-primary{background:var(--ink);color:#fff;}
+  .fp-btn-primary:hover:not(:disabled){background:var(--accent);}
+  .fp-btn:disabled{opacity:.4;cursor:not-allowed;}
+  .fd-option{
+    display:flex;align-items:center;gap:9px;padding:9px 8px;border-radius:10px;cursor:pointer;
+    font-size:12.5px;font-weight:600;color:var(--ink);
+  }
+  .fd-option:hover{background:var(--panel);}
+  .fd-option input[type=checkbox]{width:15px;height:15px;accent-color:var(--accent);cursor:pointer;flex-shrink:0;}
+  .fd-option .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+  .fd-option .count{margin-left:auto;opacity:.5;font-weight:500;font-size:11px;}
+  .fd-note{font-size:11px;color:var(--ink-soft);line-height:1.5;margin:6px 6px 2px;padding-top:10px;border-top:1px solid var(--line);}
+
+  #main{flex:1;display:flex;overflow:hidden;position:relative;}
+  #sidebar{
+    width:340px;min-width:340px;overflow-y:auto;border-right:1px solid rgba(218,220,217,.7);
+    background:rgba(251,250,247,.52);backdrop-filter:blur(12px) saturate(1.35);-webkit-backdrop-filter:blur(12px) saturate(1.35);
+  }
+  #results-meta{padding:14px 18px 6px;font-size:10.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--ink-soft);}
+  .place-item{
+    padding:14px 18px;border-bottom:1px solid var(--line);cursor:pointer;transition:background .12s;
+  }
+  .place-item:hover{background:var(--panel);}
+  .place-item.selected{background:var(--ink);color:#fff;}
+  .place-item.selected .place-sub{color:#cfccc4;}
+  .place-item.selected .tag-style{background:rgba(255,255,255,.15);color:#fff;}
+  .place-name{font-size:14px;font-weight:700;margin:0 0 3px;letter-spacing:.1px;}
+  .place-sub{font-size:11.5px;color:var(--ink-soft);margin:0 0 8px;}
+  .place-tags{display:flex;gap:6px;flex-wrap:wrap;align-items:center;}
+  .badge{
+    font-size:9.5px;font-weight:700;padding:4px 9px;border-radius:999px;background:var(--chip-bg);color:currentColor;
+    letter-spacing:.3px;
+  }
+  .badge.classe{color:var(--classe);}
+  .badge.inscrit{color:var(--inscrit);}
+  .place-item.selected .badge{color:#fff;background:rgba(255,255,255,.15);}
+  .tag-style{font-size:9.5px;background:var(--chip-bg);padding:4px 9px;border-radius:999px;color:var(--ink);letter-spacing:.2px;font-weight:600;}
+  .dist{font-size:10.5px;color:var(--accent);font-weight:700;margin-left:auto;}
+  .place-item.selected .dist{color:#cfccc4;}
+
+  /* Shows through briefly during zoom while new tiles load — kept in the same warm family as
+     the (sepia-filtered) tiles themselves so that gap reads as a blend, not a color flash. */
+  #map{flex:1;background:#ece5d3;}
+  /* TEMP — CSS filter on the raster tile layer only (not markers/popups), tinting the cool
+     gray CartoDB basemap warmer to sit closer to the new palette. Global filter, so it shifts
+     every tile color together rather than water/land/roads independently. */
+  .leaflet-tile-pane{filter:sepia(.22) saturate(.92) hue-rotate(-8deg) brightness(1.01);}
+
+  /* Single block again (not a stack of separate cards) — but with a heavily blurred,
+     translucent background instead of solid white: enough blur that the map behind reads
+     only as a soft wash of colour, never as legible shapes competing with the text, while
+     still being visibly "see-through" rather than opaque. */
+  #detail-panel{
+    position:absolute;top:14px;right:14px;bottom:14px;width:380px;max-width:90vw;
+    background:rgba(251,250,247,.52);backdrop-filter:blur(14px) saturate(1.35);-webkit-backdrop-filter:blur(14px) saturate(1.35);
+    border:1px solid rgba(218,220,217,.7);border-radius:20px;
+    box-shadow:0 20px 48px rgba(20,20,20,.18);
+    transform:translateX(calc(100% + 14px));transition:transform .22s ease;
+    z-index:1000;display:flex;flex-direction:column;overflow:hidden;
+  }
+  #detail-panel.open{transform:translateX(0);}
+  #dp-scroll-wrap{position:relative;flex:1;min-height:0;}
+  #dp-scroll{height:100%;overflow-y:auto;overflow-x:hidden;padding:26px 26px 10px;}
+  #dp-content{display:block;}
+  /* Google-Maps-style preview banner: full-bleed at the very top of the sheet (negative
+     margin cancels #dp-scroll's own padding), rounded to match the panel's own corners since
+     overflow:hidden on #detail-panel would otherwise square them off mid-scroll. */
+  .dp-hero{margin:-26px -26px 20px;}
+  .dp-hero img{display:block;width:100%;height:180px;object-fit:cover;border-radius:20px 20px 0 0;}
+  #dp-fade{
+    position:absolute;left:0;right:0;bottom:0;height:44px;pointer-events:none;
+    background:linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,.92));
+    opacity:1;transition:opacity .15s ease;
+  }
+  #dp-fade.hidden{opacity:0;}
+  #dp-close{
+    position:absolute;top:18px;right:18px;background:rgba(255,255,255,.9);border:none;border-radius:50%;font-size:14px;cursor:pointer;color:var(--ink);
+    width:30px;height:30px;line-height:30px;text-align:center;z-index:5;transition:background .15s,color .15s;
+  }
+  #dp-close:hover{background:var(--ink);color:#fff;}
+  .dp-eyebrow{font-size:10.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--ink-soft);margin:4px 30px 8px 0;}
+  #detail-panel h2{font-size:21px;margin:0 30px 8px 0;font-weight:700;line-height:1.25;letter-spacing:-.1px;}
+
+  /* --- Badges attached right under the title: style (the one attribute worth repeating —
+     it's the quickest visual identifier) and a compact MH status with an info icon instead
+     of a full explanatory paragraph. --- */
+  .dp-badges{display:flex;flex-wrap:wrap;gap:7px;margin:0 30px 14px 0;}
+  .dp-fact{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:var(--chip-bg);font-size:11.5px;font-weight:600;color:var(--ink);}
+  .dp-fact .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+  .mh-badge{position:relative;display:inline-flex;align-items:center;gap:6px;padding:6px 8px 6px 12px;border-radius:999px;background:var(--chip-bg);font-size:11.5px;font-weight:600;color:var(--ink);}
+  .mh-info-btn{
+    width:16px;height:16px;border-radius:50%;border:1px solid var(--ink-soft);background:transparent;
+    color:var(--ink-soft);font-size:9.5px;font-style:italic;font-family:Georgia,'Times New Roman',serif;
+    line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;flex-shrink:0;
+  }
+  .mh-info-btn:hover{border-color:var(--accent);color:var(--accent);}
+  .mh-tooltip{
+    position:absolute;top:calc(100% + 8px);right:0;width:230px;background:var(--card);border:1px solid var(--line);
+    border-radius:12px;box-shadow:0 12px 28px rgba(43,42,39,.18);padding:12px 14px;font-size:11.5px;font-weight:400;
+    line-height:1.55;color:var(--ink-soft);z-index:20;opacity:0;visibility:hidden;transform:translateY(-4px);
+    transition:opacity .15s,transform .15s;pointer-events:none;
+  }
+  @media (hover:hover){
+    .mh-badge:hover .mh-tooltip{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto;}
+  }
+  .mh-tooltip.open{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto;}
+
+  .dp-visit-highlight{display:flex;align-items:center;gap:9px;font-size:12.5px;font-weight:700;padding:11px 14px;border-radius:12px;margin-bottom:16px;}
+  .dp-visit-highlight .vi-icon{font-size:15px;line-height:1;}
+  /* Green is the one deliberate exception to the monochrome palette — same logic as Rains'
+     own single green "en stock" dot: one semantic colour reserved for "you can actually go
+     here", everything else (including the "probably can't" state) stays neutral grayscale. */
+  .tone-open{background:#e8ede4;color:#3f5c34;}
+  .tone-closed{background:var(--chip-bg);color:var(--ink);}
+  .tone-neutral{background:var(--chip-bg);color:var(--ink-soft);}
+
+  .dp-row{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--line);}
+  .dp-row:last-of-type{border-bottom:none;}
+  /* Bolder, uppercase, full-ink labels — closer to the weight of Rains' own section titles
+     than the earlier lighter/grayer eyebrow treatment. */
+  .dp-label{font-size:11px;text-transform:uppercase;letter-spacing:.7px;color:var(--ink);margin-bottom:5px;font-weight:800;}
+  .dp-value{font-size:13.5px;line-height:1.45;}
+  /* Two related attributes side by side instead of stacked — cuts the sheet's scroll length
+     roughly in half without hiding anything. */
+  .dp-row-pair{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--line);}
+  .dp-row-pair:last-of-type{border-bottom:none;}
+  .visit-note{font-size:11.5px;color:var(--ink-soft);line-height:1.55;margin-top:6px;font-style:italic;}
+
+
+  /* --- "Intérêt": a short sourced excerpt from the official Mérimée historical note, shown
+     right under Architecte(s) — gives one concrete reason to care about the place beyond its
+     bare attributes. Truncated by default with a toggle for the (often much longer) full text;
+     omitted entirely when the source has no historique text, rather than inventing one. --- */
+  .dp-interet{margin-top:12px;padding-top:12px;border-top:1px solid var(--line);}
+  .dp-interet-label{font-size:11px;text-transform:uppercase;letter-spacing:.7px;color:var(--ink);margin-bottom:5px;font-weight:800;}
+  .dp-interet-text{font-size:12.5px;line-height:1.6;color:var(--ink);}
+  .dp-interet-full{display:none;}
+  .dp-interet.expanded .dp-interet-short{display:none;}
+  .dp-interet.expanded .dp-interet-full{display:inline;}
+  .dp-interet-toggle{margin-top:6px;background:none;border:none;padding:0;font-size:11.5px;font-weight:700;color:var(--accent);cursor:pointer;font-family:inherit;}
+  .dp-interet-toggle:hover{text-decoration:underline;}
+
+  /* No background of its own — same glass as the rest of the panel, so the fiche and the CTA
+     zone read as one continuous block. Only a hairline top border marks where the fixed
+     footer starts and the scrolling content ends. */
+  #dp-footer{
+    flex-shrink:0;padding:14px 26px 18px;border-top:1px solid rgba(20,20,20,.12);
+    display:flex;flex-direction:column;gap:8px;
+  }
+  .dp-link{
+    display:block;text-align:center;padding:13px;font-size:11.5px;font-weight:700;border-radius:999px;
+    text-decoration:none;border:1.5px solid var(--line);color:var(--ink);transition:background .15s,border-color .15s,color .15s;
+    text-transform:uppercase;letter-spacing:.5px;
+  }
+  /* Opaque white instead of just an outline on the glass — without it, this button read as a
+     ghost/non-button next to the solid black primary CTA. Still clearly secondary (white vs.
+     ink), but it now actually looks tappable. */
+  .dp-link:not(.primary){background:var(--card);}
+  .dp-link.primary{background:var(--ink);border-color:var(--ink);color:#fff;}
+  .dp-link.primary:hover{background:var(--accent);border-color:var(--accent);}
+  .dp-link:not(.primary):hover{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);}
+
+  /* --- Custom thematic pins: colored badge + small icon per style, on a soft drop shadow --- */
+  /* Single teardrop silhouette (not the old separate circle+tail) — the same mark reused as
+     the brand-dot in the wordmark, so the map pins and the logo read as one identity. */
+  .map-pin{display:block;filter:drop-shadow(0 3px 5px rgba(43,42,39,.4));}
+
+  /* --- Zoom control restyled to match the floating "bubble" language instead of Leaflet's
+     default square button, and moved to bottom-left so it never sits under the filter bar. --- */
+  .leaflet-control-zoom{
+    border:1px solid rgba(218,220,217,.85) !important;border-radius:999px !important;
+    overflow:hidden;background:rgba(251,250,247,.52) !important;
+    backdrop-filter:blur(12px) saturate(1.35);-webkit-backdrop-filter:blur(12px) saturate(1.35);
+    box-shadow:0 4px 14px rgba(20,20,20,.10) !important;
+  }
+  .leaflet-bar{border:none !important;}
+  .leaflet-control-zoom a{
+    width:34px !important;height:34px !important;line-height:34px !important;
+    color:var(--ink) !important;font-size:17px !important;font-weight:600;
+    background:transparent !important;border:none !important;
+  }
+  .leaflet-control-zoom a:first-child{border-bottom:1px solid rgba(218,220,217,.9) !important;}
+  .leaflet-control-zoom a:hover{background:rgba(251,250,247,.85) !important;color:var(--accent) !important;}
+
+  #empty-state{padding:36px 18px;color:var(--ink-soft);font-size:12.5px;text-align:center;line-height:1.6;}
+
+  @media (max-width:720px){
+    header{padding:12px 14px;gap:10px;}
+    /* Full-width wordmark, centered and enlarged — reads as a proper logo/masthead on a
+       narrow screen instead of a small left-aligned label. */
+    header h1{font-size:24px;width:100%;text-align:center;}
+    header h1 .brand-dot{width:9px;height:9px;}
+    header h1 .sub{display:none;}
+    .spacer{flex-basis:100%;height:0;order:1;}
+    .header-controls{width:100%;order:2;gap:8px;}
+    #search-box, #search-box.expanded{flex:1;width:auto;min-width:0;}
+    .icon-btn{padding:10px 13px;font-size:11px;}
+    #pills-row{left:14px;top:10px;}
+    /* Filtres and the place sheet both compete for the same bottom-of-screen real estate on
+       a phone (the filter panel is itself a fixed bottom sheet) — showing Filtres while a
+       sheet is open would let one fixed sheet cover the other. Simplest fix: hide the trigger
+       entirely while a place is open, it reappears once the sheet closes. */
+    #app.detail-open #pills-row{display:none;}
+    /* A panel anchored under its pill can run off a narrow screen. Detach it from the pill
+       and pin it to the viewport instead, as a small floating sheet near the bottom —
+       always fully on-screen. */
+    #filters-panel{
+      position:fixed !important;left:14px;right:14px;top:auto;bottom:14px;
+      width:auto;max-width:none;max-height:55vh;
+    }
+
+    /* The place-list sidebar is a desktop concept — on a phone the map itself, plus tapping
+       a pin for details, is enough; no burger menu needed to reach a hidden list. */
+    #sidebar{display:none;}
+    #main{position:relative;}
+
+    #detail-panel{
+      top:auto;bottom:0;left:0;right:0;width:100%;max-width:100%;
+      height:70vh;
+      border-left:none;border-right:none;border-bottom:none;border-top:1px solid rgba(231,225,211,.85);
+      border-radius:20px 20px 0 0;
+      transform:translateY(100%);
+    }
+    #detail-panel.open{transform:translateY(0);}
+  }
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <h1>archi<span class="brand-dot"></span>cool<span class="sub">Architecture moderne, brutaliste, Art Déco &amp; industrielle</span></h1>
+    <div class="spacer"></div>
+    <div class="header-controls">
+      <div id="search-box">
+        <span class="search-icon">⌕</span>
+        <input id="search" type="text" placeholder="Ville, lieu, architecte…" />
+      </div>
+      <button id="locate-btn" class="icon-btn">Autour de moi</button>
+    </div>
+  </header>
+
+  <div id="main">
+    <div id="pills-row">
+      <div class="filter-group">
+        <button id="filters-btn" class="pill">
+          <svg class="pill-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="4" y1="6" x2="20" y2="6"/><circle cx="9" cy="6" r="2.2" fill="currentColor" stroke="none"/>
+            <line x1="4" y1="12" x2="20" y2="12"/><circle cx="15" cy="12" r="2.2" fill="currentColor" stroke="none"/>
+            <line x1="4" y1="18" x2="20" y2="18"/><circle cx="11" cy="18" r="2.2" fill="currentColor" stroke="none"/>
+          </svg>
+          Filtres <span id="filter-count-total" class="filter-count">0</span>
+        </button>
+        <div id="filters-panel">
+          <div class="fp-header">
+            <span class="fp-header-title">Filtres</span>
+            <button id="filters-close" class="fp-icon-btn" type="button" aria-label="Fermer">✕</button>
+          </div>
+          <div class="fp-scroll">
+            <div class="fp-section">
+              <div class="fp-title">Style</div>
+              <div id="fd-style-options"></div>
+            </div>
+            <div class="fp-section">
+              <div class="fp-title">Genre</div>
+              <div id="fd-genre-options"></div>
+            </div>
+            <div class="fp-section">
+              <div class="fp-title">Année</div>
+              <div id="fd-periode-options"></div>
+            </div>
+            <div class="fp-section">
+              <div class="fp-title">Propriété</div>
+              <div id="fd-propriete-options"></div>
+              <div class="fd-note">Propriété privée : la visite n'est généralement pas garantie sans autorisation — vérifie avant de t'y rendre.</div>
+            </div>
+          </div>
+          <div class="fp-footer">
+            <button id="reset-filters" class="fp-btn fp-btn-ghost" type="button" disabled>Réinitialiser</button>
+            <button id="filters-apply" class="fp-btn fp-btn-primary" type="button" disabled>Voir les résultats</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="sidebar">
+      <div id="results-meta"></div>
+      <div id="list"></div>
+    </div>
+    <div id="map"></div>
+    <div id="detail-panel">
+      <button id="dp-close">✕</button>
+      <div id="dp-scroll-wrap">
+        <div id="dp-scroll">
+          <div id="dp-content"></div>
+        </div>
+        <div id="dp-fade"></div>
+      </div>
+      <div id="dp-footer">
+        <a class="dp-link primary" id="dp-link-gmaps" target="_blank" href="#">Voir sur Google Maps</a>
+        <a class="dp-link" id="dp-link-pop" target="_blank" href="#">Voir la fiche officielle</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+let DATA = [];
+
+// The UI chrome is monochrome, but the map pins keep their colour — the one deliberate spot
+// of colour in an otherwise black/white/gray app, since it's the fastest way to tell the four
+// styles apart at a glance across a wide, mostly-gray map.
+// Pantone-named brand palette for the 4 styles — Dark Citrine goes to the style with the most
+// places (also echoed in the header wordmark's dot) and Cream Yellow to the one with the fewest,
+// so pin color frequency roughly tracks visual weight on the map.
+const STYLE_COLORS = {
+  "Mouvement moderne": "#7e8743",
+  "Architecture industrielle et rationaliste": "#681916",
+  "Art Déco": "#0e8c83",
+  "Brutalisme": "#ffb852",
+};
+const GENRES = ["Architecture", "Décoration intérieure"];
+
+// zoomControl/attributionControl:false because Leaflet's built-in controls default to
+// English text ("Zoom in"/"Zoom out", the "Leaflet" credit tooltip) — both are re-added
+// just below with French labels / no English tooltip.
+const map = L.map('map', {zoomControl:false, attributionControl:false}).setView([46.6, 2.3], 6);
+// bottomleft: topleft used to sit directly under the floating filter pills and overlap them.
+L.control.zoom({position:'bottomleft', zoomInTitle:'Zoomer avant', zoomOutTitle:'Zoomer arrière'}).addTo(map);
+L.control.attribution({prefix:false}).addTo(map);
+// CartoDB Positron: a light, minimal basemap — muted greys, restrained labels, no dense
+// colored land-use fill — so the map stays calm at a wide zoom and only reveals street-level
+// detail as you zoom in, rather than dumping every road and POI label on screen at once.
+// Place names/labels come straight from OSM data, already in French for French places.
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+  maxZoom: 19,
+  subdomains: 'abcd',
+  attribution: '&copy; contributeurs <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions" target="_blank">CARTO</a>'
+}).addTo(map);
+
+let userLoc = null;
+let mapCenterRef = null;
+let activeStyles = new Set();
+let activeGenres = new Set();
+let activePeriods = new Set();
+let activeProprietes = new Set();
+let searchTerm = "";
+let selectedRef = null;
+let isProgrammaticMove = false;
+const markers = {};
+
+// The brand mark: one teardrop silhouette with a punched-out white circle (see PIN_PATH) —
+// colored per style, replacing the old two-piece circle-badge-plus-CSS-triangle pin. A thin
+// white outline (like the old badge's white border) keeps the pin legible against map colors
+// close to its own, right down to the tip.
+const PIN_PATH = "M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z";
+function makeIcon(style){
+  const color = STYLE_COLORS[style] || '#746f67';
+  return L.divIcon({
+    className: '',
+    html: `<svg class="map-pin" width="32" height="32" viewBox="0 0 24 24"><path d="${PIN_PATH}" fill="${color}" stroke="#fff" stroke-width="0.8"/><circle cx="12" cy="9" r="3.2" fill="#fff"/></svg>`,
+    iconSize:[32,32], iconAnchor:[16,29]
+  });
+}
+
+function haversine(lat1, lon1, lat2, lon2){
+  const R = 6371;
+  const dLat = (lat2-lat1)*Math.PI/180, dLon=(lon2-lon1)*Math.PI/180;
+  const a = Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLon/2)**2;
+  return R * 2*Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+}
+
+function setBadge(id, n){
+  const el = document.getElementById(id);
+  el.textContent = n;
+  el.classList.toggle('show', n > 0);
+}
+function updateFilterCounts(){
+  const total = activeStyles.size + activeGenres.size + activePeriods.size + activeProprietes.size;
+  setBadge('filter-count-total', total);
+  // Both footer CTAs are disabled until at least one filter is picked — nothing to reset,
+  // and "voir les résultats" (already live-updated behind the panel) is just how you leave.
+  const resetBtn = document.getElementById('reset-filters');
+  const applyBtn = document.getElementById('filters-apply');
+  resetBtn.disabled = total === 0;
+  applyBtn.disabled = total === 0;
+  applyBtn.textContent = total === 0 ? 'Voir les résultats' : `Voir les résultats (${getBaseFiltered().length})`;
+}
+function onFilterChange(){
+  updateFilterCounts();
+  render();
+}
+
+// Each filter category is a floating pill that expands its own checkbox dropdown (rather than
+// a single value toggling directly on the pill) — lets several values of the same category
+// (e.g. two styles, two decades) be combined, "Genre / Année / Style / Propriété" style.
+function buildCheckOptions(containerId, options, activeSet){
+  const el = document.getElementById(containerId);
+  el.innerHTML = "";
+  options.forEach(opt => {
+    const row = document.createElement('label');
+    row.className = 'fd-option';
+    const dotHtml = opt.dot ? `<span class="dot" style="background:${opt.dot}"></span>` : '';
+    row.innerHTML = `<input type="checkbox" ${activeSet.has(opt.value) ? 'checked' : ''}>${dotHtml}${opt.label}<span class="count">${opt.count}</span>`;
+    row.querySelector('input').addEventListener('change', (e) => {
+      if(e.target.checked) activeSet.add(opt.value); else activeSet.delete(opt.value);
+      onFilterChange();
+    });
+    el.appendChild(row);
+  });
+}
+
+function buildStyleOptions(){
+  const counts = {};
+  DATA.forEach(d => d.styles.forEach(s => counts[s]=(counts[s]||0)+1));
+  buildCheckOptions('fd-style-options', Object.keys(STYLE_COLORS).map(s =>
+    ({value:s, label:s, dot:STYLE_COLORS[s], count:counts[s]||0})), activeStyles);
+}
+function buildGenreOptions(){
+  const counts = {};
+  DATA.forEach(d => d.genres.forEach(g => counts[g]=(counts[g]||0)+1));
+  buildCheckOptions('fd-genre-options', GENRES.map(g => ({value:g, label:g, count:counts[g]||0})), activeGenres);
+}
+function buildPeriodeOptions(){
+  const counts = {};
+  DATA.forEach(d => counts[d.decennie]=(counts[d.decennie]||0)+1);
+  const decades = Object.keys(counts).filter(d => d !== "Non renseignée").sort();
+  buildCheckOptions('fd-periode-options', decades.map(dec => ({value:dec, label:dec, count:counts[dec]})), activePeriods);
+}
+// New: filter by public/private ownership, since that's the biggest hint for whether a place
+// is actually visitable — surfaced as its own category rather than buried in the detail sheet.
+const PROPRIETE_LABELS = {publique:'Propriété publique', privee:'Propriété privée', inconnue:'Non renseignée'};
+function buildProprieteOptions(){
+  const counts = {publique:0, privee:0, inconnue:0};
+  DATA.forEach(d => counts[proprieteCategorie(d.proprietaire)]++);
+  buildCheckOptions('fd-propriete-options', ['publique','privee','inconnue'].map(k =>
+    ({value:k, label:PROPRIETE_LABELS[k], count:counts[k]})), activeProprietes);
+}
+
+function closeFiltersPanel(){
+  document.getElementById('filters-panel').classList.remove('open');
+  document.getElementById('filters-btn').classList.remove('open');
+}
+document.getElementById('filters-btn').addEventListener('click', (e) => {
+  e.stopPropagation();
+  // Filtres and the place sheet are two different modes (browse vs. inspect one point) —
+  // opening one closes the other, same as clicking the map already does.
+  closeDetailIfOpen();
+  const panel = document.getElementById('filters-panel');
+  if(panel.classList.contains('open')){ closeFiltersPanel(); }
+  else{ panel.classList.add('open'); document.getElementById('filters-btn').classList.add('open'); }
+});
+document.addEventListener('click', (e) => {
+  if(!e.target.closest('.filter-group')) closeFiltersPanel();
+});
+document.getElementById('filters-close').onclick = closeFiltersPanel;
+// Filtering is already live as checkboxes are ticked; "Voir les résultats" just confirms
+// and closes, showing how many matches the current selection has.
+document.getElementById('filters-apply').onclick = closeFiltersPanel;
+document.getElementById('reset-filters').onclick = () => {
+  activeStyles.clear(); activeGenres.clear(); activePeriods.clear(); activeProprietes.clear();
+  document.querySelectorAll('#filters-panel input[type=checkbox]').forEach(cb => cb.checked = false);
+  updateFilterCounts();
+  render();
+};
+
+document.getElementById('search-box').addEventListener('focusin', () => {
+  document.getElementById('search-box').classList.add('expanded');
+});
+document.getElementById('search-box').addEventListener('focusout', () => {
+  if(!document.getElementById('search').value) document.getElementById('search-box').classList.remove('expanded');
+});
+
+// Style/genre/period/search filters only — independent of where the map is currently
+// looking. Used to tell apart "nothing matches your filters" from "matches exist, just
+// not in the visible area right now".
+function getBaseFiltered(){
+  let arr = DATA.filter(d => {
+    if(activeStyles.size && !d.styles.some(s => activeStyles.has(s))) return false;
+    if(activeGenres.size && !d.genres.some(g => activeGenres.has(g))) return false;
+    if(activePeriods.size && !activePeriods.has(d.decennie)) return false;
+    if(activeProprietes.size && !activeProprietes.has(proprieteCategorie(d.proprietaire))) return false;
+    if(searchTerm){
+      const hay = `${d.nom} ${d.commune} ${d.architecte||""} ${d.dept}`.toLowerCase();
+      if(!hay.includes(searchTerm)) return false;
+    }
+    return true;
+  });
+  const ref = userLoc || mapCenterRef;
+  if(ref){
+    arr.forEach(d => d._dist = haversine(ref.lat, ref.lng, d.lat, d.lon));
+    arr.sort((a,b) => a._dist - b._dist);
+  } else {
+    arr.sort((a,b) => a.nom.localeCompare(b.nom));
+  }
+  return arr;
+}
+
+// Only show what's actually visible on screen right now — otherwise the list keeps
+// listing places far outside the current view and it's not obvious why clicking one
+// jumps the map away. A small buffer avoids markers popping in/out right at the edge.
+function getFiltered(){
+  const base = getBaseFiltered();
+  const bounds = map.getBounds().pad(0.15);
+  return base.filter(d => bounds.contains([d.lat, d.lon]));
+}
+
+function statutBadge(statut){
+  const isClasse = /classé/i.test(statut);
+  const cls = isClasse ? 'classe' : 'inscrit';
+  const label = isClasse ? 'Classé MH' : 'Inscrit MH';
+  return `<span class="badge ${cls}">${label}</span>`;
+}
+
+// Mérimée stores protection dates as "AAAA/MM/JJ : classé MH" (ISO-ish, year first) — reformat
+// each date to the French DD/MM/AAAA convention. Entries with only a year (no month/day, e.g.
+// very old classements) are left as a bare year since there's nothing to reorder.
+function formatProtectionFR(raw){
+  if(!raw) return raw;
+  return raw.split(';').map(seg => {
+    seg = seg.trim();
+    const m = seg.match(/^(\d{4})(?:\/(\d{2})\/(\d{2}))?\s*:\s*(.+)$/);
+    if(!m) return seg;
+    const [, year, month, day, label] = m;
+    const dateStr = (month && day) ? `${day}/${month}/${year}` : year;
+    return `${dateStr} : ${label}`;
+  }).join(' ; ');
+}
+
+function protectionExplain(statut){
+  if(/classé/i.test(statut)){
+    return "Classé Monument Historique : le plus haut niveau de protection du patrimoine français. Toute intervention sur l'édifice est très encadrée par l'État.";
+  }
+  return "Inscrit Monument Historique : une reconnaissance officielle du patrimoine, avec une protection réglementaire au niveau régional (DRAC).";
+}
+
+function visitNote(proprietaire){
+  const cat = proprieteCategorie(proprietaire);
+  if(cat === 'privee'){
+    return `Propriété privée (${proprietaire}). Probablement non ouvert au public sans autorisation — vérifier avant de s'y rendre.`;
+  }
+  if(cat === 'publique'){
+    return `${cap(proprietaire)}. Souvent (mais pas toujours) un signe de possible visite — à confirmer au cas par cas.`;
+  }
+  if(!proprietaire) return "Statut de propriété non renseigné dans la base officielle — impossible de dire si le lieu se visite.";
+  return `${cap(proprietaire)}. Se renseigner avant de s'y rendre.`;
+}
+function cap(s){ return s ? s.charAt(0).toUpperCase()+s.slice(1) : s; }
+
+// The official Mérimée data stores names "Nom Prénom" (surname first, admin-register style).
+// Reorder to "Prénom Nom" for display — but only for entries that actually look like a single
+// person's name; institutions, firms ("X et Y"), roles ("peintre"), pseudonyms (Le Corbusier)
+// and ambiguous particle-led surnames ("De Galéa", "Cotte Robert de") are left untouched rather
+// than risk mangling them with a naive word-swap.
+const NAME_PARTICLES = new Set(['de','du','des','la','le','les','van','von','der','di','da']);
+const NON_PERSON_HINTS = ['commune','communaut','association','architecte','peintre','société','societe',
+  'frères','freres','bâtiments','batiments','monuments historiques','diocésaine','diocesaine',
+  'dominicains','sculpteur','ingénieur','ingenieur','décorateur','decorateur','ensemblier'];
+function formatArchitecteName(token){
+  token = token.trim();
+  if(!token || token === 'Le Corbusier') return token;
+  const words = token.split(/\s+/);
+  if(words.length < 2) return token;
+  const lower = token.toLowerCase();
+  if(NON_PERSON_HINTS.some(h => lower.includes(h))) return token;
+  if(words.some(w => w.toLowerCase() === 'et')) return token; // "Gentil et Bourdet" = a firm, not a person
+  const first = words[0].toLowerCase(), last = words[words.length-1].toLowerCase();
+  if(NAME_PARTICLES.has(first) || NAME_PARTICLES.has(last)) return token;
+  const firstname = words[words.length-1];
+  const surname = words.slice(0, -1).join(' ');
+  return `${firstname} ${surname}`;
+}
+function formatArchitecte(raw){
+  if(!raw) return raw;
+  return raw.split(',').map(formatArchitecteName).join(', ');
+}
+
+// Shared classification used both by the "Propriété" filter and the detail-sheet verdict below,
+// so the two always agree on what counts as public vs. private ownership.
+function proprieteCategorie(proprietaire){
+  if(!proprietaire) return 'inconnue';
+  const p = proprietaire.toLowerCase();
+  if(p.includes('privée') && !p.includes('association') && !p.includes('établissement public')) return 'privee';
+  if(p.includes('commune') || p.includes('etat') || p.includes('état') || p.includes('département') || p.includes('établissement public')) return 'publique';
+  return 'inconnue';
+}
+
+// Quick glanceable answer to "can I actually go there?" — shown prominently near the top
+// of the sheet, ahead of the detailed paragraph (visitNote) which explains the nuance.
+function visitVerdict(proprietaire){
+  const cat = proprieteCategorie(proprietaire);
+  if(cat === 'privee') return {icon:'🔒', label:'Propriété privée — probablement non visitable', tone:'tone-closed'};
+  if(cat === 'publique') return {icon:'🔓', label:'Souvent visitable — à confirmer', tone:'tone-open'};
+  return {icon:'❔', label: proprietaire ? 'Visite à vérifier au cas par cas' : 'Visite : statut inconnu', tone:'tone-neutral'};
+}
+
+function escapeHtml(s){
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// Short sourced excerpt from the official Mérimée "historique" text (real curatorial prose,
+// not generated) — truncated at a word boundary with a "Lire la suite" toggle when long.
+// Returns "" when the source has nothing for this place, so the block is simply omitted.
+function buildInteretHtml(historique){
+  if(!historique) return '';
+  const TRUNC = 220;
+  const isLong = historique.length > TRUNC;
+  const short = isLong ? historique.slice(0, TRUNC).replace(/\s+\S*$/, '') + '…' : historique;
+  return `
+    <div class="dp-interet">
+      <div class="dp-interet-label">Histoire</div>
+      <div class="dp-interet-text">
+        <span class="dp-interet-short">${escapeHtml(short)}</span><span class="dp-interet-full">${escapeHtml(historique)}</span>
+      </div>
+      ${isLong ? `<button class="dp-interet-toggle" type="button">Lire la suite</button>` : ''}
+    </div>`;
+}
+
+function render(){
+  const filtered = getFiltered();
+  document.getElementById('results-meta').textContent =
+    `${filtered.length} LIEU${filtered.length>1?'X':''} DANS CETTE ZONE`;
+  const list = document.getElementById('list');
+  list.innerHTML = "";
+  if(!filtered.length){
+    const baseCount = getBaseFiltered().length;
+    if(searchTerm && baseCount === 0){
+      const rawQuery = document.getElementById('search').value.trim();
+      list.innerHTML = `<div id="empty-state">
+        Aucun lieu ne s'appelle « ${rawQuery} ».
+        <button id="search-here-btn" class="dp-link" style="margin-top:12px;display:inline-block;width:auto;padding:10px 16px;">Chercher autour de « ${rawQuery} »</button>
+      </div>`;
+      document.getElementById('search-here-btn').onclick = () => geocodeAndCenter(rawQuery);
+    } else if(baseCount === 0){
+      list.innerHTML = `<div id="empty-state">Aucun lieu ne correspond à tes filtres.</div>`;
+    } else {
+      list.innerHTML = `<div id="empty-state">
+        Aucun lieu visible dans cette zone de la carte.<br>Dézoome ou déplace-toi pour en découvrir d'autres
+        ${baseCount ? `(${baseCount} au total avec ces filtres).` : '.'}
+      </div>`;
+    }
+  }
+  filtered.forEach(d => {
+    const item = document.createElement('div');
+    item.className = 'place-item' + (d.ref===selectedRef ? ' selected' : '');
+    const distStr = d._dist!=null ? `<span class="dist">${d._dist.toFixed(0)} KM</span>` : '';
+    item.innerHTML = `
+      <p class="place-name">${d.nom}</p>
+      <p class="place-sub">${d.commune} · ${d.dept}${d.architecte ? ' · '+formatArchitecte(d.architecte) : ''}</p>
+      <div class="place-tags">
+        ${statutBadge(d.statut)}
+        <span class="tag-style">${d.styles[0]}</span>
+        ${distStr}
+      </div>`;
+    item.onclick = () => selectPlace(d, true);
+    list.appendChild(item);
+  });
+
+  Object.values(markers).forEach(m => map.removeLayer(m));
+  Object.keys(markers).forEach(k => delete markers[k]);
+  filtered.forEach(d => {
+    const marker = L.marker([d.lat, d.lon], {icon: makeIcon(d.styles[0])}).addTo(map);
+    marker.on('click', () => selectPlace(d, true));
+    markers[d.ref] = marker;
+  });
+}
+
+function selectPlace(d, flyToPlace){
+  selectedRef = d.ref;
+  render();
+  if(flyToPlace){
+    isProgrammaticMove = true;
+    // Center the point in whatever map area stays visible once the detail sheet opens:
+    // a right-hand panel on desktop, a bottom sheet on mobile.
+    const isMobile = window.innerWidth <= 720;
+    const padBottomRight = isMobile ? [0, window.innerHeight * 0.7] : [380, 0];
+    map.flyToBounds(L.latLngBounds([[d.lat, d.lon]]), {
+      paddingTopLeft: [0, 0],
+      paddingBottomRight: padBottomRight,
+      maxZoom: 14,
+      duration: 0.6
+    });
+  }
+  const gmapsQuery = encodeURIComponent(`${d.nom}, ${d.commune}, France`);
+  document.getElementById('dp-link-pop').href = d.lien_pop;
+  document.getElementById('dp-link-gmaps').href = `https://www.google.com/maps/search/?api=1&query=${gmapsQuery}`;
+
+  const verdict = visitVerdict(d.proprietaire);
+  const architecteFmt = formatArchitecte(d.architecte);
+  const architecteCount = d.architecte ? d.architecte.split(',').filter(s => s.trim()).length : 0;
+  const architecteLabel = architecteCount > 1 ? 'Architectes' : 'Architecte';
+  const isClasse = /classé/i.test(d.statut);
+  // Spelled out instead of the "MH" abbreviation — the full words make people curious enough
+  // to tap the info icon next to them, whereas an acronym reads as already-explained.
+  const mhLabel = isClasse ? 'Classé Monument Historique' : 'Inscrit Monument Historique';
+
+  // Each attribute now appears once, in whichever spot is most useful — except style, which
+  // is worth repeating right next to the title as a quick visual identifier. The MH status
+  // used to be a full paragraph in a colored box; it's now a compact badge with an info
+  // icon (hover on desktop, tap on mobile) so the sheet stays short by default.
+  const dp = document.getElementById('dp-content');
+  dp.innerHTML = `
+    ${d.image ? `<div class="dp-hero" style="background:${STYLE_COLORS[d.styles[0]]||'#746f67'}"><img src="${d.image}" alt="${escapeHtml(d.nom)}"></div>` : ''}
+    <div class="dp-eyebrow">${d.dept} — ${d.region}</div>
+    <h2>${d.nom}</h2>
+    <div class="dp-badges">
+      <span class="dp-fact"><span class="dot" style="background:${STYLE_COLORS[d.styles[0]]||'#746f67'}"></span>${d.styles[0]}</span>
+      <span class="mh-badge">
+        ${mhLabel}
+        <button class="mh-info-btn" type="button" aria-label="En savoir plus sur ce statut">i</button>
+        <span class="mh-tooltip">${protectionExplain(d.statut)}</span>
+      </span>
+    </div>
+    <div class="dp-visit-highlight ${verdict.tone}">
+      <span class="vi-icon">${verdict.icon}</span>${verdict.label}
+    </div>
+    <div class="dp-row">
+      <div class="dp-label">${architecteLabel}</div>
+      <div class="dp-value">${architecteFmt || 'Non renseigné'}</div>
+      ${buildInteretHtml(d.historique)}
+    </div>
+    <div class="dp-row-pair">
+      <div class="dp-col">
+        <div class="dp-label">Genre</div>
+        <div class="dp-value">${d.genres.join(', ')}</div>
+      </div>
+      <div class="dp-col">
+        <div class="dp-label">Époque</div>
+        <div class="dp-value">${d.decennie}</div>
+      </div>
+    </div>
+    <div class="dp-row">
+      <div class="dp-label">Protection</div>
+      <div class="dp-value">${formatProtectionFR(d.protection)}</div>
+    </div>
+    <div class="dp-row">
+      <div class="dp-label">Accès / propriété — le détail</div>
+      <div class="visit-note">${visitNote(d.proprietaire)}</div>
+    </div>
+    ${d.precision_coord === 'approx_commune' ? '<div class="dp-row"><div class="dp-label">⚠️ Localisation</div><div class="dp-value">Position approximative (au niveau de la commune) — coordonnées précises non encore disponibles dans la base officielle.</div></div>' : ''}
+  `;
+  document.getElementById('detail-panel').classList.add('open');
+  document.getElementById('app').classList.add('detail-open');
+  const scrollEl = document.getElementById('dp-scroll');
+  scrollEl.scrollTop = 0;
+  updateScrollFade();
+}
+
+function updateScrollFade(){
+  const scrollEl = document.getElementById('dp-scroll');
+  const fade = document.getElementById('dp-fade');
+  const scrollable = scrollEl.scrollHeight > scrollEl.clientHeight + 4;
+  const atBottom = scrollEl.scrollTop + scrollEl.clientHeight >= scrollEl.scrollHeight - 4;
+  fade.classList.toggle('hidden', !scrollable || atBottom);
+}
+document.getElementById('dp-scroll').addEventListener('scroll', updateScrollFade);
+window.addEventListener('resize', updateScrollFade);
+
+// MH status tooltip: hover works on desktop via CSS alone (see @media (hover:hover)), but
+// touch devices need an explicit tap-to-toggle. Delegated on the scroll container since
+// dp-content is rebuilt on every selectPlace() call.
+document.getElementById('dp-scroll').addEventListener('click', (e) => {
+  const btn = e.target.closest('.mh-info-btn');
+  if(btn){
+    e.stopPropagation();
+    const tip = btn.nextElementSibling;
+    const wasOpen = tip.classList.contains('open');
+    document.querySelectorAll('.mh-tooltip.open').forEach(t => t.classList.remove('open'));
+    if(!wasOpen) tip.classList.add('open');
+    return;
+  }
+  const interetToggle = e.target.closest('.dp-interet-toggle');
+  if(interetToggle){
+    const block = interetToggle.closest('.dp-interet');
+    const expanded = block.classList.toggle('expanded');
+    interetToggle.textContent = expanded ? 'Réduire' : 'Lire la suite';
+    return;
+  }
+  document.querySelectorAll('.mh-tooltip.open').forEach(t => t.classList.remove('open'));
+});
+
+document.getElementById('dp-close').onclick = () => {
+  document.getElementById('detail-panel').classList.remove('open');
+  document.getElementById('app').classList.remove('detail-open');
+  selectedRef = null;
+  render();
+};
+
+document.getElementById('search').addEventListener('input', (e) => {
+  searchTerm = e.target.value.trim().toLowerCase();
+  render();
+});
+
+// If the typed query doesn't match any place by name, treat it as a place to travel to:
+// geocode it (French national address API, free/no key) and re-center the list around it,
+// like "autour de moi" but anchored on the searched city instead of GPS.
+async function geocodeAndCenter(query){
+  const input = document.getElementById('search');
+  const originalPlaceholder = input.placeholder;
+  input.placeholder = "Recherche de « " + query + " »…";
+  try{
+    const res = await fetch("https://api-adresse.data.gouv.fr/search/?q=" + encodeURIComponent(query) + "&limit=1");
+    const data = await res.json();
+    const feature = data.features && data.features[0];
+    if(!feature){
+      input.placeholder = "Aucun lieu trouvé pour « " + query + " »";
+      setTimeout(() => { input.placeholder = originalPlaceholder; }, 2500);
+      return;
+    }
+    const [lon, lat] = feature.geometry.coordinates;
+    userLoc = null;
+    mapCenterRef = {lat, lng: lon};
+    searchTerm = "";
+    input.value = "";
+    isProgrammaticMove = true;
+    map.flyTo([lat, lon], 11, {duration:0.7});
+    render();
+  }catch(err){
+    input.placeholder = "Recherche indisponible, réessaie";
+    setTimeout(() => { input.placeholder = originalPlaceholder; }, 2500);
+  }
+}
+
+document.getElementById('search').addEventListener('keydown', (e) => {
+  if(e.key !== 'Enter') return;
+  const q = e.target.value.trim();
+  if(!q) return;
+  const stillMatches = getFiltered().length > 0;
+  if(!stillMatches){
+    geocodeAndCenter(q);
+  }
+});
+
+document.getElementById('locate-btn').onclick = () => {
+  const btn = document.getElementById('locate-btn');
+  if(!navigator.geolocation){ alert("La géolocalisation n'est pas disponible sur ce navigateur."); return; }
+  btn.textContent = "Localisation…";
+  navigator.geolocation.getCurrentPosition(pos => {
+    userLoc = {lat: pos.coords.latitude, lng: pos.coords.longitude};
+    btn.textContent = "Autour de moi ✓";
+    btn.classList.add('active');
+    isProgrammaticMove = true;
+    map.setView([userLoc.lat, userLoc.lng], 10);
+    render();
+  }, err => {
+    btn.textContent = "Autour de moi";
+    alert("Impossible de te géolocaliser : " + err.message);
+  });
+};
+
+// Re-render on every view change, programmatic or not: the sidebar always needs to match
+// whatever is currently visible on screen. We still only overwrite the distance-sort
+// anchor (mapCenterRef) for user-driven moves — after a programmatic flyTo/setView the
+// anchor was already set explicitly (selected place, geocoded city, or GPS fix).
+map.on('moveend', () => {
+  if(!isProgrammaticMove){
+    const c = map.getCenter();
+    mapCenterRef = {lat: c.lat, lng: c.lng};
+  }
+  isProgrammaticMove = false;
+  render();
+});
+
+// Dragging the map already closed the open sheet; a plain tap/click on the map (no drag,
+// e.g. tapping empty space to get back to the map on mobile) now does the same.
+function closeDetailIfOpen(){
+  if(selectedRef){
+    document.getElementById('detail-panel').classList.remove('open');
+    document.getElementById('app').classList.remove('detail-open');
+    selectedRef = null;
+    render();
+  }
+}
+map.on('dragstart', closeDetailIfOpen);
+map.on('click', closeDetailIfOpen);
+
+fetch('./data.json')
+  .then(r => r.json())
+  .then(data => {
+    DATA = data;
+    buildStyleOptions();
+    buildGenreOptions();
+    buildPeriodeOptions();
+    buildProprieteOptions();
+    updateFilterCounts();
+    render();
+  })
+  .catch(err => {
+    console.error('Erreur de chargement de data.json', err);
+    document.getElementById('list').innerHTML = '<div id="empty-state">Erreur de chargement des données.</div>';
+  });
+</script>
+</body>
+</html>
