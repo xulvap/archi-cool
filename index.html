@@ -625,7 +625,6 @@ let activeStyles = new Set();
 let activePeriods = new Set();
 let activeProprietes = new Set();
 let activeVisite = new Set();
-let searchTerm = "";
 let selectedRef = null;
 let isProgrammaticMove = false;
 const markers = {};
@@ -796,10 +795,6 @@ function getBaseFiltered(){
     if(activePeriods.size && !activePeriods.has(d.decennie)) return false;
     if(activeProprietes.size && !activeProprietes.has(proprieteCategorie(d.proprietaire))) return false;
     if(activeVisite.size && !activeVisite.has(visiteCategorie(d))) return false;
-    if(searchTerm){
-      const hay = `${d.nom} ${d.commune} ${d.architecte||""} ${d.dept}`.toLowerCase();
-      if(!hay.includes(searchTerm)) return false;
-    }
     return true;
   });
   const ref = userLoc || mapCenterRef;
@@ -1018,14 +1013,7 @@ function render(){
   list.innerHTML = "";
   if(!filtered.length){
     const baseCount = getBaseFiltered().length;
-    if(searchTerm && baseCount === 0){
-      const rawQuery = document.getElementById('search').value.trim();
-      list.innerHTML = `<div id="empty-state">
-        Aucun lieu ne s'appelle « ${rawQuery} ».
-        <button id="search-here-btn" class="dp-link" style="margin-top:12px;display:inline-block;width:auto;padding:10px 16px;">Chercher autour de « ${rawQuery} »</button>
-      </div>`;
-      document.getElementById('search-here-btn').onclick = () => geocodeAndCenter(rawQuery);
-    } else if(baseCount === 0){
+    if(baseCount === 0){
       list.innerHTML = `<div id="empty-state">Aucun lieu ne correspond à tes filtres.</div>`;
     } else {
       list.innerHTML = `<div id="empty-state">
@@ -1201,23 +1189,32 @@ document.getElementById('dp-close').onclick = () => {
 };
 
 document.getElementById('search').addEventListener('input', (e) => {
-  searchTerm = e.target.value.trim().toLowerCase();
   document.getElementById('search-box').classList.toggle('has-value', e.target.value.length > 0);
-  render();
 });
 
 document.getElementById('search-clear').addEventListener('click', () => {
   const input = document.getElementById('search');
   input.value = "";
-  searchTerm = "";
   document.getElementById('search-box').classList.remove('has-value');
   input.focus();
-  render();
 });
 
-// If the typed query doesn't match any place by name, treat it as a place to travel to:
-// geocode it (French national address API, free/no key) and re-center the list around it,
-// like "autour de moi" but anchored on the searched city instead of GPS.
+// Search never filters the map/list while typing — pins stay put. Validating (Enter) is
+// what "goes" somewhere: a matching place by name opens straight on its sheet, otherwise
+// the query is treated as a place to travel to (geocoded like "autour de moi" but anchored
+// on the searched city instead of GPS).
+function goToSearch(query){
+  const q = query.toLowerCase();
+  const place = DATA.find(d => d.nom.toLowerCase().includes(q));
+  if(place){
+    document.getElementById('search').value = "";
+    document.getElementById('search-box').classList.remove('has-value');
+    selectPlace(place, true);
+    return;
+  }
+  geocodeAndCenter(query);
+}
+
 async function geocodeAndCenter(query){
   const input = document.getElementById('search');
   const originalPlaceholder = input.placeholder;
@@ -1237,7 +1234,6 @@ async function geocodeAndCenter(query){
     const [lon, lat] = feature.geometry.coordinates;
     userLoc = null;
     mapCenterRef = {lat, lng: lon};
-    searchTerm = "";
     input.value = "";
     input.placeholder = originalPlaceholder;
     document.getElementById('search-box').classList.remove('has-value');
@@ -1254,10 +1250,7 @@ document.getElementById('search').addEventListener('keydown', (e) => {
   if(e.key !== 'Enter') return;
   const q = e.target.value.trim();
   if(!q) return;
-  const stillMatches = getFiltered().length > 0;
-  if(!stillMatches){
-    geocodeAndCenter(q);
-  }
+  goToSearch(q);
 });
 
 document.getElementById('locate-btn').onclick = () => {
