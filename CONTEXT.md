@@ -6,9 +6,9 @@ Ce document résume l'historique complet des décisions de design/produit prises
 
 ## Qu'est-ce que cette app
 
-Carte interactive publique du patrimoine architectural français méconnu : mouvement moderne, brutalisme, Art Déco, architecture industrielle et rationaliste. 256 lieux réels, données officielles Mérimée/POP (Ministère de la Culture) — y compris un champ `historique` avec du texte curatorial officiel sourcé (jamais inventé). Public : grand public curieux, pas des experts. Ton éditorial/culturel, pas touristique-kitsch.
+Carte interactive publique du patrimoine architectural français méconnu : mouvement moderne, brutalisme, Art Déco, architecture industrielle et rationaliste. 241 lieux réels, données officielles Mérimée/POP (Ministère de la Culture) — y compris un champ `historique` avec du texte curatorial officiel sourcé (jamais inventé). Public : grand public curieux, pas des experts. Ton éditorial/culturel, pas touristique-kitsch.
 
-Site 100% statique, aucun backend, aucune dépendance à installer. `index.html` (structure/style/logique) + `data.json` (les 256 lieux), chargé via `fetch()`.
+Site 100% statique, aucun backend, aucune dépendance à installer. `index.html` (structure/style/logique) + `data.json` (les 241 lieux), chargé via `fetch()`.
 
 ## Historique chronologique des décisions
 
@@ -23,7 +23,7 @@ Site 100% statique, aucun backend, aucune dépendance à installer. `index.html`
 - Statut MH : le libellé complet ("Classé Monument Historique" / "Inscrit Monument Historique") est affiché à côté d'un bouton "i" qui ouvre une info-bulle explicative — **décision volontaire** : le mot complet donne envie de cliquer sur le "i", contrairement à l'abréviation "MH".
 - CTA de fiche : Google Maps toujours en premier/primaire (libellé sans mention "Street View" car pas toujours disponible), lien POP relabellisé en langage clair ("Voir la fiche officielle" plutôt que "POP").
 - Genre affiché en texte simple (`dp-value`), sans bulle/pill — aligné visuellement sur le style d'Époque, pour rester homogène.
-- Champ **"Histoire"** (anciennement appelé "Intérêt" — renommé sur demande) : sous Architecte(s), extrait sourcé du champ `historique` officiel Mérimée, tronqué à 220 caractères avec bouton "Lire la suite" si plus long, **absent** si la base n'a pas de texte pour ce lieu (jamais de contenu inventé — vérifié : 250/256 lieux ont un historique renseigné, 6 nuls gérés proprement).
+- Champ **"Histoire"** (anciennement appelé "Intérêt" — renommé sur demande) : sous Architecte(s), extrait sourcé du champ `historique` officiel Mérimée, tronqué à 220 caractères avec bouton "Lire la suite" si plus long, **absent** si la base n'a pas de texte pour ce lieu (jamais de contenu inventé — vérifié : 235/241 lieux ont un historique renseigné, 6 nuls gérés proprement).
 - **Structure de la fiche : essayé puis annulé un système de "cartes" séparées empilées** (une carte par section, façon vignettes Rains) — Paul a explicitely demandé de revenir à **un seul bloc continu** avec des sections séparées par de simples lignes de séparation (`dp-row` / `border-bottom`), pas des cartes distinctes.
 - **Essayé puis annulé un système d'accordéon** (titres de section cliquables avec icône +/-, replié par défaut sauf Architecte(s)) inspiré de la page produit détaillée de Rains (Description/Livraison/Guide des tailles). Paul a demandé de tout remettre ouvert en permanence et de revenir à la structure plate d'origine (labels `Architecte(s)` / `Genre` / `Époque` / `Protection` / `Accès / propriété`), car l'accordéon créait un doublon de titres. **Ne pas réintroduire l'accordéon sans demande explicite.**
 - Les labels de champ (`dp-label`) sont volontairement **gras et en capitales, en encre pleine** (`font-weight:800`, `color:var(--ink)`, pas `--ink-soft`) — plus appuyés que la version initiale, sur demande explicite de Paul ("un peu plus bold").

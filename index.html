@@ -58,7 +58,7 @@
   }
   #search::placeholder{color:var(--ink-soft);text-transform:uppercase;letter-spacing:.3px;font-size:12px;}
   #search:focus{border-color:var(--accent);background:var(--card);}
-  .search-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--ink-soft);pointer-events:none;}
+  .search-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);display:flex;color:var(--ink-soft);pointer-events:none;}
 
   .icon-btn{
     height:36px;padding:0 16px;border:1.5px solid var(--line);background:var(--card);border-radius:999px;
@@ -74,6 +74,7 @@
      screen on mobile. --- */
   #pills-row{
     position:absolute;top:14px;left:354px;z-index:850;
+    display:flex;gap:8px;align-items:flex-start;
   }
   .filter-group{position:relative;}
   .pill{
@@ -113,7 +114,17 @@
   .fp-scroll{overflow-y:auto;flex:1;min-height:0;}
   .fp-section{padding:14px 16px;border-bottom:1px solid var(--line);}
   .fp-section:last-of-type{border-bottom:none;}
-  .fp-title{font-size:10.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px;}
+  .fp-title{font-size:10.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--ink-soft);}
+  /* Each category collapses into an accordion — only Style starts open — so a panel with five
+     categories doesn't dump every option on screen at once and force a long scroll to find one. */
+  .fp-accordion-toggle{
+    width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;
+    background:none;border:none;padding:0;margin:0 0 8px;cursor:pointer;color:inherit;font:inherit;text-align:left;
+  }
+  .fp-chevron{flex-shrink:0;color:var(--ink-soft);transition:transform .2s ease;}
+  .fp-section.open .fp-chevron{transform:rotate(180deg);}
+  .fp-accordion-body{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+  .fp-section.open .fp-accordion-body{max-height:640px;}
   .fp-footer{
     flex-shrink:0;display:flex;gap:8px;padding:12px 14px;border-top:1px solid rgba(218,220,217,.7);
   }
@@ -191,7 +202,10 @@
      margin cancels #dp-scroll's own padding), rounded to match the panel's own corners since
      overflow:hidden on #detail-panel would otherwise square them off mid-scroll. */
   .dp-hero{margin:-26px -26px 20px;}
-  .dp-hero img{display:block;width:100%;height:180px;object-fit:cover;border-radius:20px 20px 0 0;}
+  /* contain, not cover — a wide/low elevation (Maison Lods) and a tall/narrow one shouldn't
+     zoom to different degrees; every building sits fully in frame at the same scale logic,
+     letterboxed in the style color rather than cropped unpredictably. */
+  .dp-hero img{display:block;width:100%;height:180px;object-fit:contain;border-radius:20px 20px 0 0;}
   #dp-fade{
     position:absolute;left:0;right:0;bottom:0;height:44px;pointer-events:none;
     background:linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,.92));
@@ -212,25 +226,32 @@
   .dp-badges{display:flex;flex-wrap:wrap;gap:7px;margin:0 30px 14px 0;}
   .dp-fact{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:var(--chip-bg);font-size:11.5px;font-weight:600;color:var(--ink);}
   .dp-fact .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
-  .mh-badge{position:relative;display:inline-flex;align-items:center;gap:6px;padding:6px 8px 6px 12px;border-radius:999px;background:var(--chip-bg);font-size:11.5px;font-weight:600;color:var(--ink);}
+  /* The MH status now lives as an inline info-trigger next to the "Monument protégé" label,
+     not as its own separate pill up in the badges row (one less tag competing for attention
+     next to the style badge). */
+  .dp-label-info{position:relative;display:inline-flex;align-items:center;gap:6px;}
   .mh-info-btn{
     width:16px;height:16px;border-radius:50%;border:1px solid var(--ink-soft);background:transparent;
     color:var(--ink-soft);font-size:9.5px;font-style:italic;font-family:Georgia,'Times New Roman',serif;
     line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;flex-shrink:0;
+    text-transform:none;
   }
   .mh-info-btn:hover{border-color:var(--accent);color:var(--accent);}
   .mh-tooltip{
-    position:absolute;top:calc(100% + 8px);right:0;width:230px;background:var(--card);border:1px solid var(--line);
+    position:absolute;top:calc(100% + 8px);left:0;width:230px;background:var(--card);border:1px solid var(--line);
     border-radius:12px;box-shadow:0 12px 28px rgba(43,42,39,.18);padding:12px 14px;font-size:11.5px;font-weight:400;
     line-height:1.55;color:var(--ink-soft);z-index:20;opacity:0;visibility:hidden;transform:translateY(-4px);
-    transition:opacity .15s,transform .15s;pointer-events:none;
+    transition:opacity .15s,transform .15s;pointer-events:none;text-transform:none;letter-spacing:normal;
   }
   @media (hover:hover){
-    .mh-badge:hover .mh-tooltip{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto;}
+    .dp-label-info:hover .mh-tooltip{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto;}
   }
   .mh-tooltip.open{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto;}
 
-  .dp-visit-highlight{display:flex;align-items:center;gap:9px;font-size:12.5px;font-weight:700;padding:11px 14px;border-radius:12px;margin-bottom:16px;}
+  /* Same pill radius as the style/status tags right above it (999px, not a boxy 12px rounded
+     rect) — it's visually a bigger, full-width tag making the same kind of statement, so it
+     should read as part of that family instead of a different shape. */
+  .dp-visit-highlight{display:flex;align-items:center;gap:9px;font-size:12.5px;font-weight:700;padding:11px 16px;border-radius:999px;margin-bottom:16px;}
   .dp-visit-highlight .vi-icon{font-size:15px;line-height:1;}
   /* Green is the one deliberate exception to the monochrome palette — same logic as Rains'
      own single green "en stock" dot: one semantic colour reserved for "you can actually go
@@ -245,10 +266,6 @@
      than the earlier lighter/grayer eyebrow treatment. */
   .dp-label{font-size:11px;text-transform:uppercase;letter-spacing:.7px;color:var(--ink);margin-bottom:5px;font-weight:800;}
   .dp-value{font-size:13.5px;line-height:1.45;}
-  /* Two related attributes side by side instead of stacked — cuts the sheet's scroll length
-     roughly in half without hiding anything. */
-  .dp-row-pair{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--line);}
-  .dp-row-pair:last-of-type{border-bottom:none;}
   .visit-note{font-size:11.5px;color:var(--ink-soft);line-height:1.55;margin-top:6px;font-style:italic;}
 
 
@@ -347,6 +364,10 @@
       transform:translateY(100%);
     }
     #detail-panel.open{transform:translateY(0);}
+
+    /* Pinch-to-zoom is the expected gesture on a phone — on-screen +/- buttons aren't part of
+       normal mobile map usage, so drop them there and keep them for desktop/mouse users. */
+    .leaflet-control-zoom{display:none;}
   }
 </style>
 </head>
@@ -357,7 +378,7 @@
     <div class="spacer"></div>
     <div class="header-controls">
       <div id="search-box">
-        <span class="search-icon">⌕</span>
+        <span class="search-icon"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="16.2" y1="16.2" x2="21" y2="21"/></svg></span>
         <input id="search" type="text" placeholder="Ville, lieu, architecte…" />
       </div>
       <button id="locate-btn" class="icon-btn">Autour de moi</button>
@@ -381,22 +402,36 @@
             <button id="filters-close" class="fp-icon-btn" type="button" aria-label="Fermer">✕</button>
           </div>
           <div class="fp-scroll">
-            <div class="fp-section">
-              <div class="fp-title">Style</div>
-              <div id="fd-style-options"></div>
+            <div class="fp-section open">
+              <button class="fp-accordion-toggle" type="button" aria-expanded="true">
+                <span class="fp-title">Style</span>
+                <svg class="fp-chevron" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div class="fp-accordion-body"><div id="fd-style-options"></div></div>
             </div>
             <div class="fp-section">
-              <div class="fp-title">Genre</div>
-              <div id="fd-genre-options"></div>
+              <button class="fp-accordion-toggle" type="button" aria-expanded="false">
+                <span class="fp-title">Époque</span>
+                <svg class="fp-chevron" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div class="fp-accordion-body"><div id="fd-periode-options"></div></div>
             </div>
             <div class="fp-section">
-              <div class="fp-title">Année</div>
-              <div id="fd-periode-options"></div>
+              <button class="fp-accordion-toggle" type="button" aria-expanded="false">
+                <span class="fp-title">Accessibilité visite</span>
+                <svg class="fp-chevron" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div class="fp-accordion-body"><div id="fd-visite-options"></div></div>
             </div>
             <div class="fp-section">
-              <div class="fp-title">Propriété</div>
-              <div id="fd-propriete-options"></div>
-              <div class="fd-note">Propriété privée : la visite n'est généralement pas garantie sans autorisation — vérifie avant de t'y rendre.</div>
+              <button class="fp-accordion-toggle" type="button" aria-expanded="false">
+                <span class="fp-title">Type de propriété</span>
+                <svg class="fp-chevron" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div class="fp-accordion-body">
+                <div id="fd-propriete-options"></div>
+                <div class="fd-note">Propriété privée : la visite n'est généralement pas garantie sans autorisation — vérifie avant de t'y rendre.</div>
+              </div>
             </div>
           </div>
           <div class="fp-footer">
@@ -438,12 +473,11 @@ let DATA = [];
 // places (also echoed in the header wordmark's dot) and Cream Yellow to the one with the fewest,
 // so pin color frequency roughly tracks visual weight on the map.
 const STYLE_COLORS = {
-  "Mouvement moderne": "#7e8743",
-  "Architecture industrielle et rationaliste": "#681916",
+  "Modernisme": "#7e8743",
+  "Industriel et rationaliste": "#681916",
   "Art Déco": "#0e8c83",
   "Brutalisme": "#ffb852",
 };
-const GENRES = ["Architecture", "Décoration intérieure"];
 
 // zoomControl/attributionControl:false because Leaflet's built-in controls default to
 // English text ("Zoom in"/"Zoom out", the "Leaflet" credit tooltip) — both are re-added
@@ -465,9 +499,9 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
 let userLoc = null;
 let mapCenterRef = null;
 let activeStyles = new Set();
-let activeGenres = new Set();
 let activePeriods = new Set();
 let activeProprietes = new Set();
+let activeVisite = new Set();
 let searchTerm = "";
 let selectedRef = null;
 let isProgrammaticMove = false;
@@ -500,7 +534,7 @@ function setBadge(id, n){
   el.classList.toggle('show', n > 0);
 }
 function updateFilterCounts(){
-  const total = activeStyles.size + activeGenres.size + activePeriods.size + activeProprietes.size;
+  const total = activeStyles.size + activePeriods.size + activeProprietes.size + activeVisite.size;
   setBadge('filter-count-total', total);
   // Both footer CTAs are disabled until at least one filter is picked — nothing to reset,
   // and "voir les résultats" (already live-updated behind the panel) is just how you leave.
@@ -517,7 +551,7 @@ function onFilterChange(){
 
 // Each filter category is a floating pill that expands its own checkbox dropdown (rather than
 // a single value toggling directly on the pill) — lets several values of the same category
-// (e.g. two styles, two decades) be combined, "Genre / Année / Style / Propriété" style.
+// (e.g. two styles, two decades) be combined, "Époque / Style / Propriété" style.
 function buildCheckOptions(containerId, options, activeSet){
   const el = document.getElementById(containerId);
   el.innerHTML = "";
@@ -540,11 +574,6 @@ function buildStyleOptions(){
   buildCheckOptions('fd-style-options', Object.keys(STYLE_COLORS).map(s =>
     ({value:s, label:s, dot:STYLE_COLORS[s], count:counts[s]||0})), activeStyles);
 }
-function buildGenreOptions(){
-  const counts = {};
-  DATA.forEach(d => d.genres.forEach(g => counts[g]=(counts[g]||0)+1));
-  buildCheckOptions('fd-genre-options', GENRES.map(g => ({value:g, label:g, count:counts[g]||0})), activeGenres);
-}
 function buildPeriodeOptions(){
   const counts = {};
   DATA.forEach(d => counts[d.decennie]=(counts[d.decennie]||0)+1);
@@ -559,6 +588,23 @@ function buildProprieteOptions(){
   DATA.forEach(d => counts[proprieteCategorie(d.proprietaire)]++);
   buildCheckOptions('fd-propriete-options', ['publique','privee','inconnue'].map(k =>
     ({value:k, label:PROPRIETE_LABELS[k], count:counts[k]})), activeProprietes);
+}
+// Hand-researched visit status (see CONTEXT.md) — a much more reliable answer to "can I go
+// there?" than the ownership guess above, but only covers the places actually looked into so
+// far; the rest fall into "Non vérifié" rather than being guessed at.
+function visiteCategorie(d){ return d.visite_statut || 'non_verifie'; }
+const VISITE_FILTER_LABELS = {
+  visitable: 'Visitable',
+  ponctuel: 'Visite ponctuelle / sur réservation',
+  limite: "Visible de l'extérieur",
+  ferme: 'Fermé au public',
+  non_verifie: 'Non vérifié',
+};
+function buildVisiteOptions(){
+  const counts = {visitable:0, ponctuel:0, limite:0, ferme:0, non_verifie:0};
+  DATA.forEach(d => counts[visiteCategorie(d)]++);
+  buildCheckOptions('fd-visite-options', ['visitable','ponctuel','limite','ferme','non_verifie'].map(k =>
+    ({value:k, label:VISITE_FILTER_LABELS[k], count:counts[k]})), activeVisite);
 }
 
 function closeFiltersPanel(){
@@ -582,11 +628,22 @@ document.getElementById('filters-close').onclick = closeFiltersPanel;
 // and closes, showing how many matches the current selection has.
 document.getElementById('filters-apply').onclick = closeFiltersPanel;
 document.getElementById('reset-filters').onclick = () => {
-  activeStyles.clear(); activeGenres.clear(); activePeriods.clear(); activeProprietes.clear();
+  activeStyles.clear(); activePeriods.clear(); activeProprietes.clear(); activeVisite.clear();
   document.querySelectorAll('#filters-panel input[type=checkbox]').forEach(cb => cb.checked = false);
   updateFilterCounts();
   render();
 };
+
+// Accordion: each category collapses independently: clicking a header toggles just its own
+// section, so several can be open at once if the user wants — only Style starts pre-opened
+// (set directly in the markup) to keep the panel short on first view.
+document.querySelectorAll('.fp-accordion-toggle').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const section = btn.closest('.fp-section');
+    const isOpen = section.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+});
 
 document.getElementById('search-box').addEventListener('focusin', () => {
   document.getElementById('search-box').classList.add('expanded');
@@ -595,15 +652,15 @@ document.getElementById('search-box').addEventListener('focusout', () => {
   if(!document.getElementById('search').value) document.getElementById('search-box').classList.remove('expanded');
 });
 
-// Style/genre/period/search filters only — independent of where the map is currently
+// Style/period/search filters only — independent of where the map is currently
 // looking. Used to tell apart "nothing matches your filters" from "matches exist, just
 // not in the visible area right now".
 function getBaseFiltered(){
   let arr = DATA.filter(d => {
     if(activeStyles.size && !d.styles.some(s => activeStyles.has(s))) return false;
-    if(activeGenres.size && !d.genres.some(g => activeGenres.has(g))) return false;
     if(activePeriods.size && !activePeriods.has(d.decennie)) return false;
     if(activeProprietes.size && !activeProprietes.has(proprieteCategorie(d.proprietaire))) return false;
+    if(activeVisite.size && !activeVisite.has(visiteCategorie(d))) return false;
     if(searchTerm){
       const hay = `${d.nom} ${d.commune} ${d.architecte||""} ${d.dept}`.toLowerCase();
       if(!hay.includes(searchTerm)) return false;
@@ -636,19 +693,41 @@ function statutBadge(statut){
   return `<span class="badge ${cls}">${label}</span>`;
 }
 
-// Mérimée stores protection dates as "AAAA/MM/JJ : classé MH" (ISO-ish, year first) — reformat
-// each date to the French DD/MM/AAAA convention. Entries with only a year (no month/day, e.g.
-// very old classements) are left as a bare year since there's nothing to reorder.
+// Mérimée stores protection dates as "AAAA/MM/JJ : classé MH" (ISO-ish, year first, abbreviated
+// status), often with several decrees on one entry — e.g. an initial "inscrit" upgraded to
+// "classé" later, or the same status granted again for an extended perimeter (36 of the 256
+// places have 2+ dates). Reformatted as a plain sentence, spelling the status out in full (same
+// reason as elsewhere: an abbreviation reads as already-explained, the full words are what the
+// "i" tooltip attaches to) — and consecutive dates that share the same status are grouped under
+// it ("Classé Monument Historique le 1996 et le 2021") instead of repeating the full label for
+// each date, which used to read like a duplicate/glitch rather than two distinct decrees.
 function formatProtectionFR(raw){
   if(!raw) return raw;
-  return raw.split(';').map(seg => {
+  const parsed = raw.split(';').map(seg => {
     seg = seg.trim();
-    const m = seg.match(/^(\d{4})(?:\/(\d{2})\/(\d{2}))?\s*:\s*(.+)$/);
-    if(!m) return seg;
-    const [, year, month, day, label] = m;
-    const dateStr = (month && day) ? `${day}/${month}/${year}` : year;
-    return `${dateStr} : ${label}`;
-  }).join(' ; ');
+    const m = seg.match(/^(\d{4})(?:\/(\d{2})\/(\d{2}))?\s*:\s*(classé|inscrit)\s*MH\s*(.*)$/i);
+    if(!m) return null;
+    const [, year, month, day, statusWord, rest] = m;
+    const hasFullDate = !!(month && day);
+    const dateStr = hasFullDate ? `${day}/${month}/${year}` : year;
+    const connector = hasFullDate ? 'le' : 'en';
+    const full = (/classé/i.test(statusWord) ? 'Classé' : 'Inscrit') + ' Monument Historique' + (rest ? ' '+rest : '');
+    return {full, connector, dateStr};
+  });
+  if(parsed.some(p => !p)) return raw; // unparseable segment — fall back rather than guess
+
+  const groups = [];
+  for(const {full, connector, dateStr} of parsed){
+    const lastGroup = groups[groups.length-1];
+    if(lastGroup && lastGroup.full === full) lastGroup.dates.push({connector, dateStr});
+    else groups.push({full, dates:[{connector, dateStr}]});
+  }
+  const joinDates = dates => {
+    const tokens = dates.map(({connector, dateStr}) => `${connector} ${dateStr}`);
+    if(tokens.length === 1) return tokens[0];
+    return tokens.slice(0,-1).join(', ') + ' et ' + tokens[tokens.length-1];
+  };
+  return groups.map(({full, dates}) => `${full} ${joinDates(dates)}`).join(', puis ');
 }
 
 function protectionExplain(statut){
@@ -658,16 +737,25 @@ function protectionExplain(statut){
   return "Inscrit Monument Historique : une reconnaissance officielle du patrimoine, avec une protection réglementaire au niveau régional (DRAC).";
 }
 
-function visitNote(proprietaire){
+function visitNote(d){
+  const proprietaire = d.proprietaire;
   const cat = proprieteCategorie(proprietaire);
+  // A handful of places carry a specific caveat researched by hand (e.g. partly demolished,
+  // threatened, mid-renovation) that a generic ownership-based sentence can't capture — shown
+  // ahead of the usual note rather than replacing it, since the ownership context still matters.
+  const flag = d.visite_note ? `⚠️ ${d.visite_note} ` : '';
   if(cat === 'privee'){
-    return `Propriété privée (${proprietaire}). Probablement non ouvert au public sans autorisation — vérifier avant de s'y rendre.`;
+    // Most raw values are literally just "propriété privée" — only show the parenthetical
+    // when it actually adds something (e.g. joint ownership with a commune), instead of
+    // echoing the same words back ("Propriété privée (propriété privée)").
+    const detail = proprietaire && proprietaire.trim().toLowerCase() !== 'propriété privée' ? ` (${proprietaire})` : '';
+    return `${flag}Propriété privée${detail}. Probablement non ouvert au public sans autorisation — vérifier avant de s'y rendre.`;
   }
   if(cat === 'publique'){
-    return `${cap(proprietaire)}. Souvent (mais pas toujours) un signe de possible visite — à confirmer au cas par cas.`;
+    return `${flag}${cap(proprietaire)}. Souvent (mais pas toujours) un signe de possible visite — à confirmer au cas par cas.`;
   }
-  if(!proprietaire) return "Statut de propriété non renseigné dans la base officielle — impossible de dire si le lieu se visite.";
-  return `${cap(proprietaire)}. Se renseigner avant de s'y rendre.`;
+  if(!proprietaire) return `${flag}Statut de propriété non renseigné dans la base officielle — impossible de dire si le lieu se visite.`;
+  return `${flag}${cap(proprietaire)}. Se renseigner avant de s'y rendre.`;
 }
 function cap(s){ return s ? s.charAt(0).toUpperCase()+s.slice(1) : s; }
 
@@ -680,16 +768,25 @@ const NAME_PARTICLES = new Set(['de','du','des','la','le','les','van','von','der
 const NON_PERSON_HINTS = ['commune','communaut','association','architecte','peintre','société','societe',
   'frères','freres','bâtiments','batiments','monuments historiques','diocésaine','diocesaine',
   'dominicains','sculpteur','ingénieur','ingenieur','décorateur','decorateur','ensemblier'];
+// Some Mérimée entries give the surname (sometimes the whole name) in ALL CAPS — "PERRET Auguste",
+// "MALLET-STEVENS Robert" — which reads as shouting next to every other card's plain "Jean Prouvé"
+// style. Re-case any all-caps word to a single leading capital; already mixed-case words (real
+// names, particles, initials like "L.") are left untouched so nothing gets re-cased twice or
+// mangled.
+function normalizeCaseWord(word){
+  if(word.length < 2 || word !== word.toUpperCase() || word === word.toLowerCase()) return word;
+  return word.split('-').map(part => part.charAt(0) + part.slice(1).toLowerCase()).join('-');
+}
 function formatArchitecteName(token){
   token = token.trim();
   if(!token || token === 'Le Corbusier') return token;
-  const words = token.split(/\s+/);
-  if(words.length < 2) return token;
+  const words = token.split(/\s+/).map(normalizeCaseWord);
+  if(words.length < 2) return words.join(' ');
   const lower = token.toLowerCase();
-  if(NON_PERSON_HINTS.some(h => lower.includes(h))) return token;
-  if(words.some(w => w.toLowerCase() === 'et')) return token; // "Gentil et Bourdet" = a firm, not a person
+  if(NON_PERSON_HINTS.some(h => lower.includes(h))) return words.join(' ');
+  if(words.some(w => w.toLowerCase() === 'et')) return words.join(' '); // "Gentil et Bourdet" = a firm, not a person
   const first = words[0].toLowerCase(), last = words[words.length-1].toLowerCase();
-  if(NAME_PARTICLES.has(first) || NAME_PARTICLES.has(last)) return token;
+  if(NAME_PARTICLES.has(first) || NAME_PARTICLES.has(last)) return words.join(' ');
   const firstname = words[words.length-1];
   const surname = words.slice(0, -1).join(' ');
   return `${firstname} ${surname}`;
@@ -705,13 +802,26 @@ function proprieteCategorie(proprietaire){
   if(!proprietaire) return 'inconnue';
   const p = proprietaire.toLowerCase();
   if(p.includes('privée') && !p.includes('association') && !p.includes('établissement public')) return 'privee';
-  if(p.includes('commune') || p.includes('etat') || p.includes('état') || p.includes('département') || p.includes('établissement public')) return 'publique';
+  if(p.includes('commune') || p.includes('etat') || p.includes('état') || p.includes('département') || p.includes('établissement public') || p.includes('publique')) return 'publique';
   return 'inconnue';
 }
 
+// Researched, place-by-place visit status (see CONTEXT.md) — overrides the ownership-based
+// guess below wherever we've actually verified it, since public/private ownership is only a
+// rough proxy for whether somewhere is actually open (a state-owned school isn't a museum,
+// a "propriété privée" house can still be a paid Fondation Le Corbusier site).
+const VISITE_STATUTS = {
+  visitable: {icon:'🔓', label:'Visitable', tone:'tone-open'},
+  ponctuel: {icon:'🗓️', label:'Visite ponctuelle ou sur réservation', tone:'tone-neutral'},
+  limite: {icon:'🔒', label:"Visible de l'extérieur", tone:'tone-closed'},
+  ferme: {icon:'🔒', label:'Fermé au public', tone:'tone-closed'},
+};
+
 // Quick glanceable answer to "can I actually go there?" — shown prominently near the top
 // of the sheet, ahead of the detailed paragraph (visitNote) which explains the nuance.
-function visitVerdict(proprietaire){
+function visitVerdict(d){
+  if(d.visite_statut && VISITE_STATUTS[d.visite_statut]) return VISITE_STATUTS[d.visite_statut];
+  const proprietaire = d.proprietaire;
   const cat = proprieteCategorie(proprietaire);
   if(cat === 'privee') return {icon:'🔒', label:'Propriété privée — probablement non visitable', tone:'tone-closed'};
   if(cat === 'publique') return {icon:'🔓', label:'Souvent visitable — à confirmer', tone:'tone-open'};
@@ -720,6 +830,24 @@ function visitVerdict(proprietaire){
 
 function escapeHtml(s){
   return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// "avenue" -> "Av." to keep the address line short — whole-word match so it doesn't touch
+// unrelated text (e.g. a street actually named "avenue des..." stays intact past the word itself).
+// The Mérimée source lowercases the leading street-type word ("rue", "place"…) — capitalize it
+// since it starts the line here, unlike mid-sentence in the source text.
+function abbreviateAddress(s){
+  const abbreviated = s.replace(/\bavenue\b/gi, 'Av.');
+  return abbreviated.charAt(0).toUpperCase() + abbreviated.slice(1);
+}
+
+// Paris/Lyon store the arrondissement inside the commune field itself ("Paris 13e Arrondissement",
+// "Lyon 09") — redundant once the postal code (75013, 69009) already appears right next to it on
+// the address line, so drop it there only (the sidebar/list still show the full commune name).
+function communeForAddress(commune){
+  return commune
+    .replace(/\s+\d{1,2}(er|e)\s+arrondissement\b/i, '')
+    .replace(/^(Lyon|Marseille)\s+\d{1,2}$/i, '$1');
 }
 
 // Short sourced excerpt from the official Mérimée "historique" text (real curatorial prose,
@@ -780,12 +908,24 @@ function render(){
     list.appendChild(item);
   });
 
-  Object.values(markers).forEach(m => map.removeLayer(m));
-  Object.keys(markers).forEach(k => delete markers[k]);
+  // Diff against the markers already on the map instead of tearing every pin down and
+  // rebuilding it on every render — render() runs on every map move (including the flyTo
+  // triggered by selecting a place), so a full rebuild made already-visible pins flicker
+  // (destroy + recreate, drop-shadow filter and all) each time, most noticeably when flying
+  // between two nearby places that both stay in view the whole time.
+  const nextRefs = new Set(filtered.map(d => d.ref));
+  Object.keys(markers).forEach(ref => {
+    if(!nextRefs.has(ref)){
+      map.removeLayer(markers[ref]);
+      delete markers[ref];
+    }
+  });
   filtered.forEach(d => {
-    const marker = L.marker([d.lat, d.lon], {icon: makeIcon(d.styles[0])}).addTo(map);
-    marker.on('click', () => selectPlace(d, true));
-    markers[d.ref] = marker;
+    if(!markers[d.ref]){
+      const marker = L.marker([d.lat, d.lon], {icon: makeIcon(d.styles[0])}).addTo(map);
+      marker.on('click', () => selectPlace(d, true));
+      markers[d.ref] = marker;
+    }
   });
 }
 
@@ -809,19 +949,15 @@ function selectPlace(d, flyToPlace){
   document.getElementById('dp-link-pop').href = d.lien_pop;
   document.getElementById('dp-link-gmaps').href = `https://www.google.com/maps/search/?api=1&query=${gmapsQuery}`;
 
-  const verdict = visitVerdict(d.proprietaire);
+  const verdict = visitVerdict(d);
   const architecteFmt = formatArchitecte(d.architecte);
   const architecteCount = d.architecte ? d.architecte.split(',').filter(s => s.trim()).length : 0;
   const architecteLabel = architecteCount > 1 ? 'Architectes' : 'Architecte';
-  const isClasse = /classé/i.test(d.statut);
-  // Spelled out instead of the "MH" abbreviation — the full words make people curious enough
-  // to tap the info icon next to them, whereas an acronym reads as already-explained.
-  const mhLabel = isClasse ? 'Classé Monument Historique' : 'Inscrit Monument Historique';
-
   // Each attribute now appears once, in whichever spot is most useful — except style, which
   // is worth repeating right next to the title as a quick visual identifier. The MH status
-  // used to be a full paragraph in a colored box; it's now a compact badge with an info
-  // icon (hover on desktop, tap on mobile) so the sheet stays short by default.
+  // used to have its own pill up next to the style badge; it's now folded into the
+  // "Monument protégé" row below (the date is right there, and the info icon still explains
+  // classé vs. inscrit on hover/tap) instead of competing for space at the top.
   const dp = document.getElementById('dp-content');
   dp.innerHTML = `
     ${d.image ? `<div class="dp-hero" style="background:${STYLE_COLORS[d.styles[0]]||'#746f67'}"><img src="${d.image}" alt="${escapeHtml(d.nom)}"></div>` : ''}
@@ -829,11 +965,6 @@ function selectPlace(d, flyToPlace){
     <h2>${d.nom}</h2>
     <div class="dp-badges">
       <span class="dp-fact"><span class="dot" style="background:${STYLE_COLORS[d.styles[0]]||'#746f67'}"></span>${d.styles[0]}</span>
-      <span class="mh-badge">
-        ${mhLabel}
-        <button class="mh-info-btn" type="button" aria-label="En savoir plus sur ce statut">i</button>
-        <span class="mh-tooltip">${protectionExplain(d.statut)}</span>
-      </span>
     </div>
     <div class="dp-visit-highlight ${verdict.tone}">
       <span class="vi-icon">${verdict.icon}</span>${verdict.label}
@@ -843,25 +974,24 @@ function selectPlace(d, flyToPlace){
       <div class="dp-value">${architecteFmt || 'Non renseigné'}</div>
       ${buildInteretHtml(d.historique)}
     </div>
-    <div class="dp-row-pair">
-      <div class="dp-col">
-        <div class="dp-label">Genre</div>
-        <div class="dp-value">${d.genres.join(', ')}</div>
-      </div>
-      <div class="dp-col">
-        <div class="dp-label">Époque</div>
-        <div class="dp-value">${d.decennie}</div>
-      </div>
+    <div class="dp-row">
+      <div class="dp-label">Époque</div>
+      <div class="dp-value">${d.decennie}</div>
     </div>
     <div class="dp-row">
-      <div class="dp-label">Protection</div>
+      <div class="dp-label dp-label-info">
+        Monument protégé
+        <button class="mh-info-btn" type="button" aria-label="En savoir plus sur ce statut">i</button>
+        <span class="mh-tooltip">${protectionExplain(d.statut)}</span>
+      </div>
       <div class="dp-value">${formatProtectionFR(d.protection)}</div>
     </div>
     <div class="dp-row">
-      <div class="dp-label">Accès / propriété — le détail</div>
-      <div class="visit-note">${visitNote(d.proprietaire)}</div>
+      <div class="dp-label">Type de propriété</div>
+      <div class="visit-note">${visitNote(d)}</div>
     </div>
-    ${d.precision_coord === 'approx_commune' ? '<div class="dp-row"><div class="dp-label">⚠️ Localisation</div><div class="dp-value">Position approximative (au niveau de la commune) — coordonnées précises non encore disponibles dans la base officielle.</div></div>' : ''}
+    ${d.precision_coord === 'approx_commune' ? '<div class="dp-row"><div class="dp-label">⚠️ Localisation</div><div class="dp-value">Position approximative (au niveau de la commune) — coordonnées précises pas encore disponibles dans la base officielle.</div></div>' : ''}
+    ${d.adresse ? `<div class="dp-row"><div class="dp-label">Adresse</div><div class="dp-value">${escapeHtml(abbreviateAddress(d.adresse))}, ${d.code_postal ? d.code_postal+' ' : ''}${escapeHtml(d.code_postal ? communeForAddress(d.commune) : d.commune)}</div></div>` : ''}
   `;
   document.getElementById('detail-panel').classList.add('open');
   document.getElementById('app').classList.add('detail-open');
@@ -998,14 +1128,17 @@ function closeDetailIfOpen(){
 map.on('dragstart', closeDetailIfOpen);
 map.on('click', closeDetailIfOpen);
 
-fetch('./data.json')
+// no-cache: always revalidate with the server instead of trusting a stale disk-cached copy —
+// the static host sends no Cache-Control/ETag on data.json, so browsers can otherwise serve
+// last visit's data (missing newly-added fields like place images) until a hard refresh.
+fetch('./data.json', {cache: 'no-cache'})
   .then(r => r.json())
   .then(data => {
     DATA = data;
     buildStyleOptions();
-    buildGenreOptions();
     buildPeriodeOptions();
     buildProprieteOptions();
+    buildVisiteOptions();
     updateFilterCounts();
     render();
   })
