@@ -23,8 +23,17 @@
     --chip-bg:rgba(23,39,19,.08);
   }
   *{box-sizing:border-box;}
-  html,body{margin:0;height:100%;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;color:var(--ink);background:var(--paper);}
-  #app{display:flex;flex-direction:column;height:100vh;}
+  /* overflow:hidden here because this app is a single fixed-viewport screen — every scrollable
+     area (sidebar, filters panel, place sheet) already manages its own internal scroll — the
+     page itself was never meant to scroll. Without this, the 100vh mismatch below (see #app)
+     made the whole body scrollable on iOS Safari, letting a stray scroll drag the header
+     off-screen and leave floating pills stranded under the status bar. */
+  html,body{margin:0;height:100%;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;color:var(--ink);background:var(--paper);}
+  /* 100vh on iOS Safari is the height with the address bar hidden — taller than what's actually
+     visible when it's showing, which is what pushed content (and the whole page) taller than
+     the real viewport. 100dvh tracks the true visible viewport instead; vh stays first as a
+     fallback for browsers that don't support dvh yet. */
+  #app{display:flex;flex-direction:column;height:100vh;height:100dvh;}
 
   /* Same glass "material" as the floating map overlays (pills, filters, detail sheet) — one
      consistent translucent/blurred surface used everywhere in the app, rather than a solid
