@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="ac-locked">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
 <title>archi.cool — patrimoine architectural méconnu</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
 <style>
@@ -369,9 +370,81 @@
        normal mobile map usage, so drop them there and keep them for desktop/mouse users. */
     .leaflet-control-zoom{display:none;}
   }
+
+  /* Access gate: a lightweight client-side password screen for the pre-launch/testing period
+     (friends & family only, not a public release yet). This is NOT real security — the page
+     source and data.json are still fully readable to anyone who gets past it — it's just meant
+     to keep the URL from being casually stumbled on before launch. html.ac-locked hides
+     everything except the gate itself until the right password is entered (or was already
+     entered this session), checked via a tiny inline script at the top of <body> so it runs
+     before the rest of the page. */
+  /* visibility (not display:none): keeps #app at its real layout size while hidden, so Leaflet
+     — which sizes its tile grid off the container's dimensions at init — doesn't initialize
+     against a collapsed 0x0 box and end up with broken/blank tiles once the gate lifts. */
+  html.ac-locked body > *:not(#access-gate){visibility:hidden !important;pointer-events:none !important;}
+  #access-gate{
+    position:fixed;inset:0;z-index:99999;background:var(--paper);
+    display:flex;align-items:center;justify-content:center;padding:20px;
+  }
+  .gate-card{
+    width:100%;max-width:340px;background:var(--card);border:1px solid var(--line);
+    border-radius:20px;padding:32px 28px;box-shadow:0 20px 48px rgba(20,20,20,.12);text-align:center;
+  }
+  .gate-title{font-size:22px;font-weight:800;letter-spacing:-.02px;color:var(--ink);margin-bottom:4px;}
+  .gate-title .brand-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#ffb852;margin:0 2px 2px;}
+  .gate-sub{font-size:12.5px;color:var(--ink-soft);margin-bottom:22px;}
+  .gate-input{
+    width:100%;height:44px;border-radius:999px;border:1.5px solid var(--line);background:var(--panel);
+    padding:0 18px;font-size:14px;color:var(--ink);text-align:center;margin-bottom:12px;
+  }
+  .gate-input:focus{outline:none;border-color:var(--accent);}
+  .gate-submit{
+    width:100%;height:44px;border-radius:999px;border:none;background:var(--ink);color:#fff;
+    font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;cursor:pointer;
+  }
+  .gate-submit:hover{background:var(--accent);}
+  .gate-error{font-size:11.5px;color:#a33;margin-top:12px;min-height:14px;}
 </style>
 </head>
 <body>
+<div id="access-gate">
+  <div class="gate-card">
+    <div class="gate-title">archi<span class="brand-dot"></span>cool</div>
+    <div class="gate-sub">Accès privé — version de test</div>
+    <input type="password" id="gate-input" class="gate-input" placeholder="Mot de passe" autocomplete="off" autocapitalize="off" spellcheck="false">
+    <button id="gate-submit" class="gate-submit" type="button">Entrer</button>
+    <div id="gate-error" class="gate-error"></div>
+  </div>
+</div>
+<script>
+// Lightweight client-side gate — see the CSS comment above .ac-locked for what this is and
+// isn't. Kept as a tiny, dependency-free inline script so it runs immediately, before the
+// Leaflet CDN script or the main app script even start loading.
+(function(){
+  var PASSWORD = "archicool2026";
+  var html = document.documentElement;
+  function unlock(){
+    html.classList.remove('ac-locked');
+    document.getElementById('access-gate').remove();
+  }
+  if (sessionStorage.getItem('ac_unlocked') === '1') { unlock(); return; }
+  function tryUnlock(){
+    var input = document.getElementById('gate-input');
+    if (input.value === PASSWORD) {
+      sessionStorage.setItem('ac_unlocked', '1');
+      unlock();
+    } else {
+      document.getElementById('gate-error').textContent = "Mot de passe incorrect";
+      input.value = '';
+      input.focus();
+    }
+  }
+  document.getElementById('gate-submit').addEventListener('click', tryUnlock);
+  document.getElementById('gate-input').addEventListener('keydown', function(e){
+    if (e.key === 'Enter') tryUnlock();
+  });
+})();
+</script>
 <div id="app">
   <header>
     <h1>archi<span class="brand-dot"></span>cool<span class="sub">Architecture moderne, brutaliste, Art Déco &amp; industrielle</span></h1>
