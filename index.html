@@ -1199,22 +1199,9 @@ document.getElementById('search-clear').addEventListener('click', () => {
   input.focus();
 });
 
-// Search never filters the map/list while typing — pins stay put. Validating (Enter) is
-// what "goes" somewhere: a matching place by name opens straight on its sheet, otherwise
-// the query is treated as a place to travel to (geocoded like "autour de moi" but anchored
-// on the searched city instead of GPS).
-function goToSearch(query){
-  const q = query.toLowerCase();
-  const place = DATA.find(d => d.nom.toLowerCase().includes(q));
-  if(place){
-    document.getElementById('search').value = "";
-    document.getElementById('search-box').classList.remove('has-value');
-    selectPlace(place, true);
-    return;
-  }
-  geocodeAndCenter(query);
-}
-
+// Search never filters the map/list while typing — pins stay put. Validating (Enter) always
+// travels to the searched place (geocoded like "autour de moi" but anchored on the searched
+// city instead of GPS) and just recenters the map — it never opens a place's sheet.
 async function geocodeAndCenter(query){
   const input = document.getElementById('search');
   const originalPlaceholder = input.placeholder;
@@ -1250,7 +1237,7 @@ document.getElementById('search').addEventListener('keydown', (e) => {
   if(e.key !== 'Enter') return;
   const q = e.target.value.trim();
   if(!q) return;
-  goToSearch(q);
+  geocodeAndCenter(q);
 });
 
 document.getElementById('locate-btn').onclick = () => {
