@@ -63,7 +63,7 @@
   #search-box{position:relative;width:220px;transition:width .15s ease;}
   #search-box.expanded{width:300px;}
   #search{
-    width:100%;height:36px;padding:0 14px 0 36px;border:1.5px solid var(--line);border-radius:999px;
+    width:100%;height:36px;padding:0 32px 0 36px;border:1.5px solid var(--line);border-radius:999px;
     /* 16px, not the pill's usual ~13px — under 16px, iOS Safari zooms the whole page in on
        focus (a well-known quirk), which read as "the site isn't responsive" on a real iPhone. */
     font-size:16px;
@@ -72,6 +72,12 @@
   #search::placeholder{color:var(--ink-soft);text-transform:uppercase;letter-spacing:.3px;font-size:12px;}
   #search:focus{border-color:var(--accent);background:var(--card);}
   .search-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);display:flex;color:var(--ink-soft);pointer-events:none;}
+  .search-clear{
+    position:absolute;right:5px;top:50%;transform:translateY(-50%);display:none;align-items:center;justify-content:center;
+    width:26px;height:26px;border:none;border-radius:50%;background:transparent;color:var(--ink-soft);cursor:pointer;padding:0;
+  }
+  .search-clear:hover{background:var(--line);color:var(--ink);}
+  #search-box.has-value .search-clear{display:flex;}
 
   .icon-btn{
     height:36px;padding:0 16px;border:1.5px solid var(--line);background:var(--card);border-radius:999px;
@@ -493,6 +499,9 @@
       <div id="search-box">
         <span class="search-icon"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="16.2" y1="16.2" x2="21" y2="21"/></svg></span>
         <input id="search" type="text" placeholder="Ville, lieu, architecte…" />
+        <button id="search-clear" class="search-clear" type="button" aria-label="Effacer la recherche">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
+        </button>
       </div>
       <button id="locate-btn" class="icon-btn">Autour de moi</button>
     </div>
@@ -1193,6 +1202,16 @@ document.getElementById('dp-close').onclick = () => {
 
 document.getElementById('search').addEventListener('input', (e) => {
   searchTerm = e.target.value.trim().toLowerCase();
+  document.getElementById('search-box').classList.toggle('has-value', e.target.value.length > 0);
+  render();
+});
+
+document.getElementById('search-clear').addEventListener('click', () => {
+  const input = document.getElementById('search');
+  input.value = "";
+  searchTerm = "";
+  document.getElementById('search-box').classList.remove('has-value');
+  input.focus();
   render();
 });
 
@@ -1204,7 +1223,10 @@ async function geocodeAndCenter(query){
   const originalPlaceholder = input.placeholder;
   input.placeholder = "Recherche de « " + query + " »…";
   try{
-    const res = await fetch("https://api-adresse.data.gouv.fr/search/?q=" + encodeURIComponent(query) + "&limit=1");
+    // type=municipality biases toward towns/cities: without it, a query like "Avignon" can
+    // match a street of the same name in an unrelated small commune (e.g. "rue Avignon" in
+    // Combourg, Bretagne) and rank above the actual city of Avignon.
+    const res = await fetch("https://api-adresse.data.gouv.fr/search/?q=" + encodeURIComponent(query) + "&type=municipality&limit=1");
     const data = await res.json();
     const feature = data.features && data.features[0];
     if(!feature){
@@ -1217,6 +1239,8 @@ async function geocodeAndCenter(query){
     mapCenterRef = {lat, lng: lon};
     searchTerm = "";
     input.value = "";
+    input.placeholder = originalPlaceholder;
+    document.getElementById('search-box').classList.remove('has-value');
     isProgrammaticMove = true;
     map.flyTo([lat, lon], 11, {duration:0.7});
     render();
