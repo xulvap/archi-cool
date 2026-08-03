@@ -1055,10 +1055,20 @@ function selectPlace(d, flyToPlace){
     // the very pins you were trying to tell apart and pick between next.
     const isMobile = window.innerWidth <= 720;
     const padBottomRight = L.point(isMobile ? [0, window.innerHeight * 0.7] : [380, 0]);
-    const targetZoom = Math.max(map.getZoom(), 14);
+    const currentZoom = map.getZoom();
+    const targetZoom = Math.max(currentZoom, 14);
     const centerPoint = map.project([d.lat, d.lon], targetZoom).add(padBottomRight.divideBy(2));
     const center = map.unproject(centerPoint, targetZoom);
-    map.flyTo(center, targetZoom, {duration: 0.6});
+    // flyTo's cinematic curve dips the zoom out mid-flight to "fly across" even when the
+    // start and end zoom are identical — barely visible zoomed out, but a real wobble between
+    // two nearby places in a dense cluster (Pessac, central Bordeaux) at a close zoom. Use a
+    // plain linear pan whenever no real zoom change is needed, and save the cinematic flyTo
+    // for when we're actually zooming in from a wider view.
+    if(Math.abs(targetZoom - currentZoom) < 0.1){
+      map.panTo(center, {duration: 0.6});
+    } else {
+      map.flyTo(center, targetZoom, {duration: 0.6});
+    }
   }
   const gmapsQuery = encodeURIComponent(`${d.nom}, ${d.commune}, France`);
   document.getElementById('dp-link-pop').href = d.lien_pop;
