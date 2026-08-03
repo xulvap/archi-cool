@@ -633,6 +633,18 @@ function makeIcon(style){
     iconSize:[32,32], iconAnchor:[16,29]
   });
 }
+// A handful of places carry two styles (e.g. Villa Majorelle: Modernisme + Art Déco). Pins
+// always defaulted to styles[0], so checking just "Art Déco" in the filter could still show a
+// green (Modernisme) pin for one of these — technically a correct match, but reads as "two
+// colours for one filter". Once a style filter is active, colour the pin with whichever of the
+// place's styles is actually checked, falling back to styles[0] the rest of the time.
+function pinStyleFor(d){
+  if(activeStyles.size){
+    const match = d.styles.find(s => activeStyles.has(s));
+    if(match) return match;
+  }
+  return d.styles[0];
+}
 
 function haversine(lat1, lon1, lat2, lon2){
   const R = 6371;
@@ -1014,7 +1026,7 @@ function render(){
       <p class="place-sub">${d.commune} · ${d.dept}${d.architecte ? ' · '+formatArchitecte(d.architecte) : ''}</p>
       <div class="place-tags">
         ${statutBadge(d.statut)}
-        <span class="tag-style">${d.styles[0]}</span>
+        <span class="tag-style">${d.styles.join(', ')}</span>
         ${distStr}
       </div>`;
     item.onclick = () => selectPlace(d, true);
@@ -1034,10 +1046,16 @@ function render(){
     }
   });
   filtered.forEach(d => {
+    const style = pinStyleFor(d);
     if(!markers[d.ref]){
-      const marker = L.marker([d.lat, d.lon], {icon: makeIcon(d.styles[0])}).addTo(map);
+      const marker = L.marker([d.lat, d.lon], {icon: makeIcon(style)}).addTo(map);
       marker.on('click', () => selectPlace(d, true));
       markers[d.ref] = marker;
+    } else {
+      // Existing markers are otherwise left untouched (see comment above) — but a marker that
+      // survives a filter change still needs its colour re-checked, in case pinStyleFor's
+      // answer for it just changed (e.g. a second style got checked/unchecked).
+      markers[d.ref].setIcon(makeIcon(style));
     }
   });
 }
@@ -1089,7 +1107,7 @@ function selectPlace(d, flyToPlace){
     <div class="dp-eyebrow">${d.dept} — ${d.region}</div>
     <h2>${d.nom}</h2>
     <div class="dp-badges">
-      <span class="dp-fact"><span class="dot" style="background:${STYLE_COLORS[d.styles[0]]||'#746f67'}"></span>${d.styles[0]}</span>
+      ${d.styles.map(s => `<span class="dp-fact"><span class="dot" style="background:${STYLE_COLORS[s]||'#746f67'}"></span>${s}</span>`).join('')}
     </div>
     <div class="dp-visit-highlight ${verdict.tone}">
       <span class="vi-icon">${verdict.icon}</span>${verdict.label}
