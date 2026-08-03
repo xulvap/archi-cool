@@ -1048,15 +1048,17 @@ function selectPlace(d, flyToPlace){
   if(flyToPlace){
     isProgrammaticMove = true;
     // Center the point in whatever map area stays visible once the detail sheet opens:
-    // a right-hand panel on desktop, a bottom sheet on mobile.
+    // a right-hand panel on desktop, a bottom sheet on mobile. Zoom only ever goes up to at
+    // least 14, never down — flyToBounds's own maxZoom used to recompute a fixed zoom on
+    // every selection, which meant clicking a place while already zoomed in past 14 (easy to
+    // be, in a dense cluster like Pessac or central Bordeaux) would zoom back OUT, scattering
+    // the very pins you were trying to tell apart and pick between next.
     const isMobile = window.innerWidth <= 720;
-    const padBottomRight = isMobile ? [0, window.innerHeight * 0.7] : [380, 0];
-    map.flyToBounds(L.latLngBounds([[d.lat, d.lon]]), {
-      paddingTopLeft: [0, 0],
-      paddingBottomRight: padBottomRight,
-      maxZoom: 14,
-      duration: 0.6
-    });
+    const padBottomRight = L.point(isMobile ? [0, window.innerHeight * 0.7] : [380, 0]);
+    const targetZoom = Math.max(map.getZoom(), 14);
+    const centerPoint = map.project([d.lat, d.lon], targetZoom).add(padBottomRight.divideBy(2));
+    const center = map.unproject(centerPoint, targetZoom);
+    map.flyTo(center, targetZoom, {duration: 0.6});
   }
   const gmapsQuery = encodeURIComponent(`${d.nom}, ${d.commune}, France`);
   document.getElementById('dp-link-pop').href = d.lien_pop;
