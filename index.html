@@ -320,6 +320,22 @@
      the brand-dot in the wordmark, so the map pins and the logo read as one identity. */
   .map-pin{display:block;filter:drop-shadow(0 3px 5px rgba(43,42,39,.4));}
 
+  /* --- "You are here" dot, Google-Maps style: a soft pulsing halo behind a solid blue dot,
+     distinct from the style-colored place pins so it always reads as "me", not a place. --- */
+  .user-dot-wrap{width:22px;height:22px;position:relative;}
+  .user-dot-halo{
+    position:absolute;inset:0;margin:auto;width:22px;height:22px;border-radius:50%;
+    background:rgba(66,133,244,.25);animation:user-dot-pulse 2.2s ease-out infinite;
+  }
+  .user-dot{
+    position:absolute;inset:0;margin:auto;width:14px;height:14px;border-radius:50%;
+    background:#4285F4;border:2.5px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.4);
+  }
+  @keyframes user-dot-pulse{
+    0%{transform:scale(.4);opacity:.8;}
+    100%{transform:scale(1);opacity:0;}
+  }
+
   /* --- Zoom control restyled to match the floating "bubble" language instead of Leaflet's
      default square button, and moved to bottom-left so it never sits under the filter bar. --- */
   .leaflet-control-zoom{
@@ -582,6 +598,7 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
 }).addTo(map);
 
 let userLoc = null;
+let userLocMarker = null;
 let mapCenterRef = null;
 let activeStyles = new Set();
 let activePeriods = new Set();
@@ -1180,6 +1197,13 @@ document.getElementById('locate-btn').onclick = () => {
     btn.classList.add('active');
     isProgrammaticMove = true;
     map.setView([userLoc.lat, userLoc.lng], 10);
+    const dotIcon = L.divIcon({
+      className: '',
+      html: '<div class="user-dot-wrap"><div class="user-dot-halo"></div><div class="user-dot"></div></div>',
+      iconSize: [22, 22], iconAnchor: [11, 11]
+    });
+    if (userLocMarker) { userLocMarker.setLatLng([userLoc.lat, userLoc.lng]); }
+    else { userLocMarker = L.marker([userLoc.lat, userLoc.lng], {icon: dotIcon, interactive: false, zIndexOffset: -1000}).addTo(map); }
     render();
   }, err => {
     btn.textContent = "Autour de moi";
