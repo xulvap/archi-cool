@@ -1196,7 +1196,17 @@ document.getElementById('locate-btn').onclick = () => {
     btn.textContent = "Autour de moi ✓";
     btn.classList.add('active');
     isProgrammaticMove = true;
-    map.setView([userLoc.lat, userLoc.lng], 10);
+    // Fit the user's position together with the nearest few places instead of a single fixed
+    // zoom level — tight when there's a cluster right nearby, automatically wider when the
+    // closest ones are far away, so "around me" is never either too zoomed out to be useful
+    // or zoomed into empty ground with nothing to see.
+    const nearest = DATA
+      .map(d => [d.lat, d.lon, haversine(userLoc.lat, userLoc.lng, d.lat, d.lon)])
+      .sort((a, b) => a[2] - b[2])
+      .slice(0, 5)
+      .map(x => [x[0], x[1]]);
+    const bounds = L.latLngBounds([[userLoc.lat, userLoc.lng], ...nearest]);
+    map.flyToBounds(bounds, {padding: [60, 60], maxZoom: 13, duration: 0.8});
     const dotIcon = L.divIcon({
       className: '',
       html: '<div class="user-dot-wrap"><div class="user-dot-halo"></div><div class="user-dot"></div></div>',
