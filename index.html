@@ -266,6 +266,7 @@
      should read as part of that family instead of a different shape. */
   .dp-visit-highlight{display:flex;align-items:center;gap:9px;font-size:12.5px;font-weight:700;padding:11px 16px;border-radius:999px;margin-bottom:16px;}
   .dp-visit-highlight .vi-icon{font-size:15px;line-height:1;}
+  .dp-visit-highlight .vi-icon svg{display:block;width:15px;height:15px;}
   /* Green is the one deliberate exception to the monochrome palette — same logic as Rains'
      own single green "en stock" dot: one semantic colour reserved for "you can actually go
      here", everything else (including the "probably can't" state) stays neutral grayscale. */
@@ -935,11 +936,18 @@ function proprieteCategorie(proprietaire){
 // guess below wherever we've actually verified it, since public/private ownership is only a
 // rough proxy for whether somewhere is actually open (a state-owned school isn't a museum,
 // a "propriété privée" house can still be a paid Fondation Le Corbusier site).
+// Emoji locks (🔓/🔒) render ambiguously in some fonts — the "open" glyph can look closed at
+// small sizes. Inline SVGs (lucide lock / lock-open shapes) render identically everywhere.
+const ICON_LOCK_OPEN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>';
+const ICON_LOCK_CLOSED = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>';
+const ICON_CALENDAR = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>';
+const ICON_UNKNOWN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>';
+
 const VISITE_STATUTS = {
-  visitable: {icon:'🔓', label:'Visitable', tone:'tone-open'},
-  ponctuel: {icon:'🗓️', label:'Visite ponctuelle ou sur réservation', tone:'tone-neutral'},
-  limite: {icon:'🔒', label:"Visible de l'extérieur", tone:'tone-closed'},
-  ferme: {icon:'🔒', label:'Fermé au public', tone:'tone-closed'},
+  visitable: {icon:ICON_LOCK_OPEN, label:'Visitable', tone:'tone-open'},
+  ponctuel: {icon:ICON_CALENDAR, label:'Visite ponctuelle ou sur réservation', tone:'tone-neutral'},
+  limite: {icon:ICON_LOCK_CLOSED, label:"Visible de l'extérieur", tone:'tone-closed'},
+  ferme: {icon:ICON_LOCK_CLOSED, label:'Fermé au public', tone:'tone-closed'},
 };
 
 // Quick glanceable answer to "can I actually go there?" — shown prominently near the top
@@ -948,9 +956,9 @@ function visitVerdict(d){
   if(d.visite_statut && VISITE_STATUTS[d.visite_statut]) return VISITE_STATUTS[d.visite_statut];
   const proprietaire = d.proprietaire;
   const cat = proprieteCategorie(proprietaire);
-  if(cat === 'privee') return {icon:'🔒', label:'Propriété privée — probablement non visitable', tone:'tone-closed'};
-  if(cat === 'publique') return {icon:'🔓', label:'Souvent visitable — à confirmer', tone:'tone-open'};
-  return {icon:'❔', label: proprietaire ? 'Visite à vérifier au cas par cas' : 'Visite : statut inconnu', tone:'tone-neutral'};
+  if(cat === 'privee') return {icon:ICON_LOCK_CLOSED, label:'Propriété privée — probablement non visitable', tone:'tone-closed'};
+  if(cat === 'publique') return {icon:ICON_LOCK_OPEN, label:'Souvent visitable — à confirmer', tone:'tone-open'};
+  return {icon:ICON_UNKNOWN, label: proprietaire ? 'Visite à vérifier au cas par cas' : 'Visite : statut inconnu', tone:'tone-neutral'};
 }
 
 function escapeHtml(s){
