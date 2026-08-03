@@ -315,10 +315,14 @@
   .dp-link.primary:hover{background:var(--accent);border-color:var(--accent);}
   .dp-link:not(.primary):hover{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);}
 
-  /* --- Custom thematic pins: colored badge + small icon per style, on a soft drop shadow --- */
+  /* --- Custom thematic pins: colored badge + small icon per style --- */
   /* Single teardrop silhouette (not the old separate circle+tail) — the same mark reused as
-     the brand-dot in the wordmark, so the map pins and the logo read as one identity. */
-  .map-pin{display:block;filter:drop-shadow(0 3px 5px rgba(43,42,39,.4));}
+     the brand-dot in the wordmark, so the map pins and the logo read as one identity.
+     No drop-shadow: filter shadows don't merge between overlapping elements, so a dense
+     cluster (e.g. the 20-house Pessac estate) stacked each pin's shadow into one solid dark
+     blob instead of a shared soft lift. The white stroke already baked into each pin's SVG
+     gives it enough definition against the map without needing an external shadow. */
+  .map-pin{display:block;}
 
   /* --- "You are here" dot, Google-Maps style: a soft pulsing halo behind a solid blue dot,
      distinct from the style-colored place pins so it always reads as "me", not a place. --- */
@@ -330,10 +334,17 @@
   .user-dot{
     position:absolute;inset:0;margin:auto;width:14px;height:14px;border-radius:50%;
     background:#4285F4;border:2.5px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.4);
+    /* A slower, separate cycle from the halo's — blinking in sync with it would just read as
+       one effect; the offset timing makes the dot itself unmistakably "alive". */
+    animation:user-dot-blink 1.6s ease-in-out infinite;
   }
   @keyframes user-dot-pulse{
     0%{transform:scale(.4);opacity:.8;}
     100%{transform:scale(1);opacity:0;}
+  }
+  @keyframes user-dot-blink{
+    0%,100%{opacity:1;}
+    50%{opacity:.5;}
   }
 
   /* --- Zoom control restyled to match the floating "bubble" language instead of Leaflet's
