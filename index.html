@@ -1235,6 +1235,7 @@ async function geocodeAndCenter(query){
 
 document.getElementById('search').addEventListener('keydown', (e) => {
   if(e.key !== 'Enter') return;
+  e.target.blur(); // dismiss the mobile keyboard on validate
   const q = e.target.value.trim();
   if(!q) return;
   geocodeAndCenter(q);
