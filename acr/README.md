@@ -43,14 +43,50 @@ lien_source, historique, image, adresse, code_postal, visite_statut`.
   fonctionnel sur des refs ACR.
 - Aucun chevauchement de `ref` avec `data.json` (vérifié).
 
+## Classification des styles — en cours
+
+**5e style ajouté : "Post-modernisme"** (décision prise le 2026-08-04, à
+valider avec Paul). La taxonomie à 4 styles a été construite pour les 241 MH,
+dont le plus tardif date de 1991 et reste stylistiquement "moderniste" au
+sens large (Niemeyer, Le Corbusier tardif). L'ACR va beaucoup plus loin dans
+le temps (177 lieux entre 1980 et 2020, ~10 % du jeu) et couvre une vraie
+rupture esthétique documentée — réaction historicisante/ludique/colorée au
+mouvement moderne, ~1975-1995, figures de proue Ricardo Bofill (Les Espaces
+d'Abraxas, Noisy-le-Grand 1982 ; les Arcades du Lac, Saint-Quentin-en-Yvelines
+1982) et Christian de Portzamparc en France. Sans ce 5e style, chaque bâtiment
+postmoderne de l'ACR serait soit classé "Modernisme" à tort, soit laissé de
+côté par défaut. Voir `classify_styles.py` pour les critères de détection.
+
+**Cas limites rencontrés, à trancher avec Paul** (pas classés pour l'instant) :
+- **Jean Nouvel** (Palais des Congrès de Tours, 1989-93 ; Maison Dick, 1975) —
+  très daté "postmoderne" par la période, mais son vocabulaire est plus
+  "high-tech critique" que le postmodernisme historicisant de Bofill. Rentre
+  mal dans la définition retenue ci-dessus.
+- **Claude Vasconi** (Hôtel de ville, Bourges 1983-92) — même famille de
+  génération que Bofill mais idiome différent (verre/métal monumental plutôt
+  qu'historicisant).
+- **Andrault & Parat** ("immeubles à gradins" GR1/GR2, Dreux 1977) — duo connu
+  pour ses ensembles de logements en gradins/ziggourats, entre Brutalisme
+  sculptural et esthétique proche de Bofill. Ambigu entre les deux.
+- **Pascal Häusermann** ("architecture bulle"/organique, ex. Maison Pasquini
+  1967) — un mouvement à part entière (habitat "bulle", coques en béton
+  projeté, avec Antti Lovag), qui ne rentre dans aucun des 5 styles actuels.
+  À voir si ça vaut un 6e style si plusieurs autres lieux de ce type
+  apparaissent dans le reste du jeu.
+
 ## Ce qui reste à faire avant fusion (le vrai travail)
 
-1. **`styles` (le plus gros chantier)** — vide partout pour l'instant. La
-   source n'a aucun champ de style ; comme pour les 241 lieux actuels, chaque
-   bâtiment doit être classé dans Modernisme / Brutalisme / Art Déco /
-   Industriel et rationaliste (un ou deux styles) à partir de la description,
-   de l'architecte et de la date — jugement éditorial, pas mécanisable
-   simplement. À faire par lots plutôt que d'un coup vu le volume (1824 vs 241).
+1. **`styles` (le plus gros chantier, en cours)** — méthode : un script
+   (`acr/classify_styles.py`) classe automatiquement les cas à signal fort
+   (architecte déjà classé dans `data.json`, vocabulaire explicite type "art
+   déco"/"brutaliste" dans la notice) ; le reste passe par une relecture
+   manuelle lieu par lieu (architecte, date, description, parfois recherche
+   web ponctuelle pour des architectes/mouvements spécifiques — pas une
+   recherche par lieu, ingérable à ce volume). État au 2026-08-04 : **285/1824
+   classés**, 239 hors-sujet (urbanisme/aménagement, pas des bâtiments), ~1300
+   encore à relire. Ce n'est pas mécanisable à 100 % — un mauvais style est
+   pire qu'un lieu pas encore sur la carte, donc on laisse `styles: []` plutôt
+   que deviner quand le signal est faible.
 2. **`nom`** — copie brute de `nom_officiel` pour l'instant. Dans `data.json`,
    `nom` est souvent une version raccourcie/désambiguïsée à la main (ex.
    `PA33000142` : nom officiel "Maison de type gratte-ciel" → nom affiché
@@ -74,6 +110,7 @@ lien_source, historique, image, adresse, code_postal, visite_statut`.
 
 ## Statut
 
-Squelette de données prêt (1824 entrées, champs mécaniques peuplés). Rien
-n'est encore branché sur `index.html`/la carte — c'est volontaire, à la
-demande de Paul.
+Squelette de données prêt (1824 entrées, champs mécaniques peuplés).
+Classification des styles en cours (285/1824, voir ci-dessus). Rien n'est
+encore branché sur `index.html`/la carte — c'est volontaire, à la demande de
+Paul.

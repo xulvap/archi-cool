@@ -1,0 +1,1305 @@
+# ACR — lieux restant à classer manuellement
+
+1300 lieux (hors urbanisme/aménagement, considéré hors-sujet). Voir acr/README.md pour la méthode et les cas limites déjà rencontrés.
+
+- `ACR0000002` **Hôtel de ville** — Valserhône (1932) — Kohn Roger, Chanel Louis, Lavergne Max
+- `ACR0000019` **Église paroissiale Notre-Dame-de-Lourdes** — Romans-sur-Isère (1937) — Salomon Georges
+- `ACR0000016` **ferme dite Les Aubaneaux** — La Chapelle-en-Vercors (1949) — Descottes-Genon Marcel, Sabatou Jean-Pierre
+- `ACR0000003` **Église paroissiale Saint-Pierre-Chanel** — Bourg-en-Bresse (1966) — Pinsard Pierre
+- `ACR0000033` **Immeuble d'habitation, dit "La Résidence** — Annecy (1950) — Jacquet Paul
+- `ACR0000008` **Église Notre-Dame de la Route Blanche** — Segny (1952) — Pinsard Pierre, Bertholle Jean, Barrilet Jean, Condevaux, Mossière, Baux, Beraty, Pujallon, Stahly François, Atelier Les quatre Potiers
+- `ACR0000026` **Préfecture** — Valence (1962) — Biny Maurice, Traversier
+- `ACR0000037` **tribunes du public du parc des sports** — Annecy (1962) — Raisin G., Ferrero, Europe-Études Architectes
+- `ACR0000041` **immeuble Le Concorde** — Bonneville (1973) — Plottier Richard
+- `ACR0000005` **Centre nautique** — Lagnieu (1966) — Perrin-Fayolle, Blatrix
+- `ACR0000013` **Église paroissiale Sainte-Madeleine-du-Pouzin** — Le Pouzin (1955) — Biny Maurice, ChapuisDelueol, Kaeppelin
+- `ACR0000023` **immeuble de bureaux, siège social du Crédit Agricole** — Valence (1974) — Cointe Marcel
+- `ACR0000049` **Chapelle des Prisonniers, sanctuaire du souvenir** — Morzine (1958) — Faublée René, Pichard Jeannie
+- `ACR0000060` **maison d'architecte dite, la "Tour Moynat", actuellement immeuble** — Thonon-les-Bains (1933) — Moynat Louis
+- `ACR0000029` **centre commercial des Galeries Lafayette et parking** — Annecy (1968) — Dory Antoine
+- `ACR0000032` **ensemble de trois immeubles, dit Résidence La Forclaz** — Annecy (1963) — Cottard Robert, Charlier Robert, Fournier Marcel
+- `ACR0000007` **Église paroissiale Notre-Dame-de-la-Plaine** — Oyonnax (1965) — Pinsard Pierre
+- `ACR0000062` **Église dite centre œcuménique** — Chamrousse (1968) — Jomain Pierre, Pirot Jean-Marie, Szekely Pierre
+- `ACR0000036` **maison forestière** — Annecy (1951) — Faublée René
+- `ACR0000048` **maison dite chalet "Le Grizzly** — Megève (1932) — Le Même Henry Jacques
+- `ACR0000063` **salle des fêtes, salle d'animation du caravaneige** — Chamrousse (1968) — Jomain Pierre
+- `ACR0000083` **Externat Sainte-Marie** — La Verpillère (1976) — Adilon Georges
+- `ACR0000047` **maison dite chalet "La Croix-des-Perchets** — Megève (1928) — Le Même Henry Jacques
+- `ACR0000045` **Immeuble Le Salève** — Gaillard (1964) — Sibille Charles
+- `ACR0000064` **bibliothèque** — Grenoble (1960) — Benoît Jean
+- `ACR0000079` **pensionnat, logements d'étudiants dits "Maison des Etudiants** — Grenoble (1933) — Benoît Jean
+- `ACR0000086` **Église dite Église Saint-Hugues** — Pontcharra (1974) — Pinsard Pierre
+- `ACR0000106` **hôtel de ville** — Unieux (1963) — Ferraz Alfred, Seignol Lucien
+- `ACR0000070` **conservatoire à rayonnement régional ""la Saulaie** — Grenoble (1968) — Duboin Jean-Constant
+- `ACR0000092` **hôpital général Lucien-Hussel** — Vienne (1934) — Grange Germain, Pin Albert
+- `ACR0000046` **maison dite chalet "Le Cairn** — Megève (1942) — Le Même Henry Jacques, Charlemagne Paul
+- `ACR0000050` **hôtel de voyageurs dit "Parador de Saint-Alban** — Morzine (1950) — Brocandel Robert
+- `ACR0000089` **bibliothèque scientifique dite bibliothèque du campus universitaire de Saint-Martin-d'Hères** — Saint-Martin-d'Hères (1964) — Bovet G., Cacoub Olivier-Clément
+- `ACR0000091` **cimetière de la Falaise** — Sassenage (1970) — Blanc Maurice
+- `ACR0000090` **édifice sportif, tremplin olympique** — Saint-Nizier-de-Moucherotte (1967) — Dalloz Pierre, O'Callaghan Gilles, Vallée Francis de
+- `ACR0000121` **immeuble et salle des spectacles Saint-Genès** — Clermont-Ferrand (1934) — Bosser Jean, Dussour Louis
+- `ACR0000122` **poste Delille** — Clermont-Ferrand (1908) — Méridier Jacques-Honoré, Ponchon Laurent, Papillard André, Gourgouillon Émile, Lejeune Louis-Aimé, Labro Georges
+- `ACR0000109` **Maison Carpentier-Beyvin** — Chanat-la-Mouteyre (1965) — Carpentier Fernand
+- `ACR0000110` **chapelle privée du pensionnat Godefroy-de-Bouillon** — Clermont-Ferrand (1935) — Mitton Adrien (architecte, Mitton Michel, Vaury Maurice, Dussour Louis, Chaussegros
+- `ACR0000114` **Faculté des Sciences et des Lettres** — Clermont-Ferrand (1930) — Depailler Marcel, Bernardin Georges, Deluol André
+- `ACR0000117` **immeuble Grangier** — Clermont-Ferrand (1933) — Perrier François
+- `ACR0000098` **maison dite ""villa Dugelay** — Roanne (1967) — Bernard Maurice Jean, Chollet Francis
+- `ACR0000129` **tribune du public de l'ancien hippodrome** — La Tour-de-Salvagny (1931) — Deschavannes Eugène
+- `ACR0000158` **chambre de commerce** — Villefranche-sur-Saône (1931) — Verrier Pierre, Chomel Antonin, Linossier Claudius
+- `ACR0000145` **palais des sports** — Lyon 7e Arrondissement;Métropole de Lyon (1961) — Weckerlin Louis
+- `ACR0000150` **Église Notre-Dame-de-l'Annonciation** — Lyon 9e Arrondissement, Métropole de Lyon (1955) — Bouget Jacques, Koch Paul Érasme
+- `ACR0000138` **couvent, aujourd'hui groupe scolaire, dit externat Sainte-Marie** — Lyon 5e Arrondissement, Métropole de Lyon (1966) — Adilon Georges
+- `ACR0000141` **immeuble, dit Palais de Flore** — Lyon 6e Arrondissement;Métropole de Lyon (1930) — Laval Clément
+- `ACR0000143` **groupe scolaire Aristide-Briand** — Lyon 7e Arrondissement;Métropole de Lyon (1932) — Robert Auguste, Chollat Émile-Auguste, Devaux
+- `ACR0000134` **immeuble à logements dit immeuble de l'ancien Garage Atlas** — Lyon 3e Arrondissement;Métropole de Lyon (1929) — Trévoux Georges
+- `ACR0000165` **aquarium** — Aix-les-Bains (1933) — Pétriaux Roger
+- `ACR0000124` **Chapelle de la Giraudière** — Brussieu (1952) — Cottin François Régis, Mayoussier René, Guédel Gabriel
+- `ACR0000155` **chapelle de Semaine de l'église de l'Epiphanie** — Vénissieux (1969) — Grimal Franck
+- `ACR0000181` **gare** — Modane (1952) — Warnery James
+- `ACR0000184` **Téléphérique dit gare des Mentens ou d'Aix-le-Revard** — Mouxy (1935) — Pierron Charles, Pierron Laurent, Rebuffel André
+- `ACR0000192` **Groupe scolaire de la Maladière** — Dijon (1928) — Parisot Georges
+- `ACR0000148` **hôpital dit, clinique Auguste-Lumière, actuellement Direction des Affaires techniques des Hospices civils de Lyon** — Lyon 8e Arrondissement;Métropole de Lyon (1930) — Bellemain Paul
+- `ACR0000169` **cinéma le Savoy** — Bourg-Saint-Maurice (1958) — Maréchal Henri
+- `ACR0000174` **chambre de commerce** — Chambéry (1933) — Luciani Charles
+- `ACR0000182` **ouvrage Maginot dit ouvrage du Lavoir** — Modane (1935) — None
+- `ACR0000206` **Immeubles des frères Favre** — Besançon (1937) — Favre Joseph, André
+- `ACR0000210` **Église Saint-François des Fougères** — Grand-Charmont (1967) — Dumas Pierre
+- `ACR0000212` **Gymnase Viette** — Montbéliard (1986) — Mattern Jacques
+- `ACR0000213` **Lycée Jules-Viette** — Montbéliard (1957) — Lauga Pierre, Brandon Claude, Solmon François, Vigneron Marc
+- `ACR0000133` **Auditorium Maurice-Ravel** — Lyon 3e Arrondissement;Métropole de Lyon (1970) — Pottier Henri, Delfante Charles
+- `ACR0000170` **hôtel de ville** — Bourg-Saint-Maurice (1953) — Pantz Raymond
+- `ACR0000171` **Archives dites " Les anciennes Archives départementales** — Chambéry (1936) — Pétriaux Roger
+- `ACR0000180` **Église Notre-Dame-de-l'Assomption** — Modane (1951) — Le Même Henry Jacques, Dénarié Henri, Ganeau L.
+- `ACR0000193` **Palais des sports Jean-Michel Geoffroy** — Dijon (1973) — Devalière Jean-François
+- `ACR0000135` **immeuble d'infirmières, dit Home des infirmières ou Home Lacassagne** — Lyon 3e Arrondissement;Métropole de Lyon (1960) — Tekhnè, Bourdeix Pierre, Chomel Alain
+- `ACR0000185` **refuge de montagne dit Porte du Parc national de la Vanoise-Rosuel** — Peisey-Nancroix (1971) — Durupt Christian
+- `ACR0000188` **chapelle de la Transfiguration-du-Christ-sur-la-Montagne** — Tignes (1959) — Pantz Raymond, Pantz Bernard, Fay Claude
+- `ACR0000189` **Église Saint-Jacques de Tarentaise** — Tignes (1950) — Jamet
+- `ACR0000209` **La tour des juges du tremplin de ski** — Chaux-Neuve (1989) — Boucton Gérard
+- `ACR0000214` **piscine de plein air** — Montbéliard (1962) — Mattern Jacques
+- `ACR0000221` **stade** — Luxeuil-les-Bains (1936) — Giroud Paul
+- `ACR0000231` **Monument à Notre-Dame-du-Suprême-Pardon** — Chiddes (1927) — Renaud Georges-Théodore
+- `ACR0000238` **ancienne station de carburant** — Gueugnon (1960) — Entreprise du bâtiment travaux publics et génie civil
+- `ACR0000251` **Maison Orain** — Lannion (1965) — Le Flanchec Roger, Krebs Xavier
+- `ACR0000260` **Chapelle d’ursulines de l’institution Notre-Dame de Kerbertrand** — Quimperlé (1933) — Chaussepied Charles, Pineau André
+- `ACR0000272` **Hôtel de ville** — Saint-Méen-le-Grand (1934) — Poirier Jean
+- `ACR0000309` **Ancienne école normale d’instituteurs, actuelle Ecole supérieure du Professorat et de l'Education** — Chartres (1922) — Brandon Raoul, Roux-Dorlut Pierre, Maunoury Dominique
+- `ACR0000311` **Gare** — Chartres (1933) — Pacon Henri
+- `ACR0000220` **Restaurant « Lac des 7 chevaux »** — Luxeuil-les-Bains (1959) — None
+- `ACR0000223` **villa Henri Kielwasser** — Vesoul (1956) — Maisonnier André
+- `ACR0000225` **Groupe scolaire Jean-Jaurès** — Damparis (1932) — Vidal Henri
+- `ACR0000228` **Usine Girod Médias** — Morbier (1938) — Duboin Joseph, Fraenkel Lucien
+- `ACR0000232` **Maison de Bonaré** — Dun-les-places (1977) — Bertrand Gilbert-Paul
+- `ACR0000239` **Sous-Préfecture de Louhans** — Louhans (None) — Palazzi Henri
+- `ACR0000244` **Centre culturel Louis-Escande** — Mâcon (1971) — Levasseur Robert
+- `ACR0000249` **Marché des Vosges** — Belfort (1929) — Schwartz-Haumont
+- `ACR0000252` **Collège de jeunes filles, actuellement lycée Ernest Renan** — Saint-Brieuc (1934) — Lefort Georges-Robert
+- `ACR0000265` **Maison Crespel** — Rennes (1950) — Chouinard Louis
+- `ACR0000282` **Chambre de commerce** — Lorient (1928) — Dutartre Louis-Marie, Caro-Picard Charles, Ramonatxo Charles
+- `ACR0000307` **Ancien abattoir, actuelle Brasserie sancerroise** — Sancerre (1931) — Charton Roger, Fridel Édouard
+- `ACR0000313` **Préfecture d'Eure-et-Loir, place de la République et cité administrative** — Chartres (1954) — Badani Daniel, Roux-Dorlut Pierre, Maunoury Jean, Maunoury Dominique
+- `ACR0000219` **Chapelle Notre-Dame-des-Ailes** — Luxeuil-les-Bains (1956) — Chauliat Eugène, Chauliat Jean-Paul
+- `ACR0000224` **Etablissement régional d'enseignement adapté** — Crotenay (1953) — Sogorb André
+- `ACR0000270` **Immeuble d’habitation, dit Les Horizons** — Rennes (1959) — Maillols Georges
+- `ACR0000276` **Église Notre-Dame-de-la-Victoire** — Lorient (1954) — Hourlier Jean-Baptiste, Letourneur René, Untersteller Nicolas-Pierre, Guével Job, Michel Jacques
+- `ACR0000287` **Chapelle Saint-Paul des Gibjoncs** — Bourges (1969) — Mansiat Jacques, Blatter Pierre
+- `ACR0000291` **Immeuble** — Bourges (1967) — Gimonet Christian, Tardy Xavier
+- `ACR0000317` **Mairie, école et bains-douches** — Combres (1937) — Chollet Joannès, Mathon Jean-Baptiste
+- `ACR0000217` **Maison Antoine Kielwasser** — Chemilly (1963) — Maisonnier André
+- `ACR0000234` **Silo à grains** — La Charité-sur-Loire (1949) — Gaillardin
+- `ACR0000242` **immeuble de logements curviligne** — Mâcon (1955) — Petit Daniel, Augros Barnabé, Fournier Claude, Leguet Raoul
+- `ACR0000268` **Marché couvert, dit halles centrales** — Rennes (1912) — Le Ray Emmanuel, Gentil et Bourdet
+- `ACR0000283` **Église Saint-Guen** — Vannes (1966) — Maisonneuve Jacques, Kasper Erich, Guillemot Claude
+- `ACR0000293` **Maison Bouriant** — Bourges (1969) — Gimonet Christian, Gauchery François
+- `ACR0000314` **Mairie-école** — Chassant (1938) — Fournier René
+- `ACR0000316` **Minoterie dite Les Moulins de Chérisy** — Chérisy (1930) — None
+- `ACR0000320` **Groupe scolaire Ferdinand-Buisson et cité-jardin des Rochelles** — Dreux (1931) — Sarrut André, Beauniée Georges
+- `ACR0000322` **Ancienne usine La Radiotechnique, actuelle pépinière d’entreprises La Radio** — Dreux (1956) — Reby Marcel
+- `ACR0000324` **Restaurant d’entreprise de La Radiotechnique** — Dreux (1974) — SETIB
+- `ACR0000207` **Lycée Claude-Nicolas-Ledoux** — Besançon (1991) — Quirot Bernard, Blaise Pascal, Jousselin Stéphane, Lhoste Denis
+- `ACR0000222` **Maison Petitperrin** — Vesoul (1964) — Petitperrin Jean
+- `ACR0000267` **Maison Odorico** — Rennes (1940) — Lemoine Yves
+- `ACR0000271` **Maison de villégiature, dite villa Le Revenant** — Saint-Lunaire (1928) — Hémar Yves
+- `ACR0000191` **ouvrage Maginot dit ouvrage de Saint-Gobain, actuellement musée de la fortification** — Villarodin-Bourget (1930) — Commission d'Organisation des Régions Fortifiées
+- `ACR0000201` **cité universitaire** — Besançon (1932) — Tournier René
+- `ACR0000202` **École des Beaux-Arts** — Besançon (1970) — Boucton Gérard
+- `ACR0000236` **Église Sainte-Bernadette** — Digoin (1933) — Bernard Pierre
+- `ACR0000241` **Centre nautique Paul-Bert** — Mâcon (1947) — Augros Barnabé
+- `ACR0000259` **Magasin de commerce Ty-Dibab, actuellement restaurant** — Quimper (1930) — Legrand René
+- `ACR0000177` **Église Notre-Dame** — Fourneaux (1950) — Le Même Henry Jacques, Toulouse Jean
+- `ACR0000208` **Restaurant, ancien Pavillon de l'office de Tourisme** — Besançon (1968) — Demenge Michel
+- `ACR0000215` **Bains-douches** — Montbéliard (1933) — Boucton André
+- `ACR0000218` **Villa Malitchenko** — Frotey-les-Vesoul (1963) — Maisonnier André
+- `ACR0000240` **Archives départementales** — Mâcon (1965) — Palazzi Henri
+- `ACR0000245` **Groupe scolaire Bellevue** — Paray-le-Monial (1928) — Chanet Antoine, Liogier Jean
+- `ACR0000279` **Maison** — Lorient (1950) — Le Saint Gauthier Félix
+- `ACR0000226` **Institut médico-éducatif** — Dole (1972) — Girard Pierre, Crozat Pierre
+- `ACR0000243` **Immeubles collectifs** — Mâcon (1944) — Petit Daniel, Augros Barnabé, Fournier Claude, Leguet Raoul
+- `ACR0000247` **Groupe scolaire du Mont et des Barres** — Belfort (1922) — Fanjat Émile, Giroud Paul
+- `ACR0000248` **maison du Peuple et esplanade** — Belfort (1927) — Giroud Paul
+- `ACR0000257` **Maison de l'architecte Claude Petton** — Plougastel-Daoulas (1973) — Petton Claude
+- `ACR0000262` **Chapelle Notre-Dame de l'Hermitage** — Goven (1938) — Coüasnon Charles
+- `ACR0000264` **Collège et lycée Saint Vincent** — Rennes (1910) — Mellet Henri
+- `ACR0000277` **École maternelle Bisson** — Lorient (1954) — Tourry Georges, Brunerie Pierre, Romualdo-Hautefage Maurice
+- `ACR0000310` **Ancienne maison de l’agriculture, actuelle chambre départementale d’Agriculture d’Eure-et-Loir** — Chartres (1970) — Bruneteau Jacques, Demanche Patrick, Pauzat Jean-Jacques
+- `ACR0000350` **Extension du musée de l’Hospice Saint-Roch** — Issoudun (1995) — Colboc Pierre
+- `ACR0000365` **Médiathèque** — Saint-Pierre-des-Corps (1993) — Barrier Jean-Yves
+- `ACR0000375` **Église Saint-Paul** — Tours (1972) — Marconnet Michel
+- `ACR0000381` **Palais des Congrès** — Tours (1989) — Nouvel Jean, Cattani et Associés Emmanuel
+- `ACR0000290` **Hôtel de ville** — Bourges (1992) — Vasconi Claude
+- `ACR0000321` **Immeuble s à gradins GR1 et GR2** — Dreux (1977) — Andrault Michel, Parat Pierre
+- `ACR0000355` **Siège des éditions Van de Velde** — Fondettes (1976) — Grimshaw Nicholas
+- `ACR0000377` **Immeuble avenue de Grammont** — Tours (1957) — Dorian Jean
+- `ACR0000387` **Bâtiment administratif ancien site Hitachi** — Ardon;Saint-Cyr-en-Val (1991) — Hayama Reiko
+- `ACR0000389` **Église Sainte-Thérèse-de-l’Enfant-Jésus de Vésines** — Chalette-sur- Loing (1939) — Boitel Robert J.
+- `ACR0000286` **Caisse régionale du Crédit agricole** — Bourges (1973) — Herbert Michel
+- `ACR0000294` **Maison L.** — Bourges (1972) — Gimonet Christian
+- `ACR0000303` **Maison Pasquini** — Méry-sur-Cher (1967) — Häusermann Pascal
+- `ACR0000308` **Piscine des Dauphins** — Brou (1946) — Guittet Henri
+- `ACR0000319` **Eglise Saint-Michel** — Dreux (1965) — Dumas Pierre
+- `ACR0000344` **Maison Militon** — Châteauroux (1941) — Barge Jacques
+- `ACR0000361` **Mairie et ancienne école, actuellement mairie, gite d’étapes et maison des associations** — Lurais (1933) — Silbert H., Teiton
+- `ACR0000289` **Église Saint-Jean** — Bourges (1964) — Pison Guy Stanislas, Mansiat Jacques
+- `ACR0000305` **Maison Crevits** — Saint-Doulchard (1969) — Gimonet Christian
+- `ACR0000333` **Poste** — Nogent-le-Rotrou (1938) — Bukiet Joseph
+- `ACR0000419` **Siège de la Caisse régionale de Crédit agricole mutuel du Loiret** — Saint-Jean-de-Braye (1971) — Andrault Michel, Parat Pierre, Sarrazin Jean-Pierre
+- `ACR0000425` **Groupe scolaire Victor-Hugo – Les Remparts** — Blois (1952) — Aubert André
+- `ACR0000449` **Lycée Madame-de-Sévigné** — Charleville-Mézières (1967) — Faugeron Jean
+- `ACR0000465` **Maison Dick** — Saint-André-les-Vergers (1975) — Nouvel Jean
+- `ACR0000435` **Ancien relais de chasse** — Loreux (1972) — Sicardon Philippe
+- `ACR0000444` **Église Notre-Dame-des-Rottes** — Vendôme (1964) — Marconnet Michel
+- `ACR0000462` **Église Saint-Paul** — Warcq (1965) — Villiere Pierre, Dalia D., Malherbe de N.
+- `ACR0000480` **Église Saint-Vincent-de-Paul** — Strasbourg (1962) — Le Donné André, Zack Léon
+- `ACR0000451` **Palais de Justice** — Charleville-Mézières (1965) — Dupré Jean-Robert, Dupré Jean-Paul, Harmel Henri
+- `ACR0000472` **Église Saint-Arbogast** — Herrlisheim (1965) — Monnet Bertrand, Guri Fernand, Lardeur Gérard
+- `ACR0000475` **Médiathèque André-Malraux** — Strasbourg (2009) — None
+- `ACR0000483` **Immeuble** — Strasbourg (1933) — Helmlinger Tim
+- `ACR0000433` **Base de Loisirs du Lac de Loire, hangars et club-house** — Vineuil (1967) — Hoÿm de Marien de Louis-Gabriel, Titus Roger
+- `ACR0000442` **Centrale nucléaire de Saint-Laurent-des-Eaux** — Saint-Laurent-Nouan (1963) — Mailly Jean de
+- `ACR0000445` **Silo de la Gare d’Onzain** — Veuzain-sur-Loire (1937) — None
+- `ACR0000446` **Église Notre-Dame** — Ballay (1925) — Simon Jacques
+- `ACR0000459` **École élémentaire Blanpain** — Sedan (1952) — Mailly de Jean
+- `ACR0000467` **Entrepôts, ancien siège des Etablissements économiques troyens, actuellement Maison des associations** — Troyes (1930) — Vayeur Charles, Mony Louis
+- `ACR0000468` **Immeuble** — Troyes (1935) — Roger R.
+- `ACR0000469` **Immeubles d’Habitation à Bon Marché, dits Villa Jules-Guesde** — Troyes (1926) — Hummel Roger, Dubreuil André, Maurey Maurice
+- `ACR0000474` **Centre d’interprétation de l’architecture et du patrimoine (CIAP)** — Lichtenberg (1993) — Bruno Andrea, Laubal Jean-Pierre
+- `ACR0000491` **Port** — Strasbourg (1898) — Oberthur Gustave, Haug Eugène, Brion Jacques-Albert
+- `ACR0000485` **Maison des Droits de l'Homme** — Strasbourg (1965) — Monnet Bertrand, Papillard Françoise, Aprill Jean-Pierre
+- `ACR0000497` **Silos, actuellement bibliothèque « Les Silos », Maison du livre et de l’affiche** — Chaumont (1990) — Canal, Rubin Daniel, Rubin Patrick, Abbadie Jean-Pierre
+- `ACR0000512` **Gare SNCF de Mulhouse** — Mulhouse (1927) — Schulé Charles, Doll Albert, Gélis R., Umbdenstock Gustave
+- `ACR0000522` **Mairie-groupe scolaire et bureau de poste** — Dontrien (1925) — Maigrot Émile
+- `ACR0000537` **Maison** — Reims (1929) — Margotin Marc
+- `ACR0000569` **Lycée des métiers des industries graphiques Paul-Louis-Cyfflé** — Nancy (1925) — Wiehlorski Jean-Frédéric
+- `ACR0000571` **Centre paroissial du Haut-du-Lièvre, église de la Vierge-des-Pauvres** — Nancy (1963) — Louis Dominique-Alexandre, Nouvel Jean
+- `ACR0000506` **Église Saint-Pierre-et-Paul** — Bennwihr (1957) — Pouradier-Duteuil Pierre, Pillon Georges, Martineau Paul
+- `ACR0000509` **Église Saint-Léon** — Colmar (1964) — Muller Joseph
+- `ACR0000518` **viaduc autoroutier dit Croix de la Hardt** — Sausheim (1975) — Teyssandier Jean-Paul, Masquida Jean-Paul
+- `ACR0000532` **Conservatoire** — Reims (1994) — Roubert Jean-Loup, Dumont Henri, Bléhaut Jacques
+- `ACR0000550` **Villa Picard** — Dommartemont (1956) — Louis Dominique-Alexandre
+- `ACR0000561` **Chapelle Notre-Dame-de-Lourdes** — Mercy-le-Bas (1962) — Duvaux Jacques
+- `ACR0000498` **Établissement administratif de l’Inspection académique** — Chaumont (1988) — Bolze Pierre, Rodriguez-Pagès Simon
+- `ACR0000528` **piscine Tournesol** — Fère-Champenoise (1970) — Schoeller Bernard
+- `ACR0000534` **Hall de la gare SNCF** — Reims (1932) — Gaston Le Marec & Ridet, Limousin
+- `ACR0000546` **Halle** — Vitry-le-François (1940) — Pensée Jean-Louis, Clauzier René
+- `ACR0000552` **Musée de l’histoire du Fer et centre de recherches de l’histoire de la sidérurgie (C.R.H.S.)** — Jarville-la-Malgrange (1963) — André Jacques, André Michel, André Jean-Luc, Faye André, Prouvé Claude
+- `ACR0000558` **villa Ledermann** — Lunéville (1966) — Anxionnat Robert
+- `ACR0000494` **Église du Sacré-Coeur** — Mulhouse (1956) — "Le Donné André, Patout Michael, Zack Léon, Pichard Janie, Gerrer Albert, Zack Irène"
+- `ACR0000517` **Maisons de l’architecte Jean Finiels** — Orschwihr (1965) — Finiels Jean, Thieriet Georges, Herriset
+- `ACR0000521` **Église Saint-Laurent** — Dontrien (1930) — Margotin Léon, Roubert Louis, Bircmont Georges, Simon Jacques, Sédiey Ernest
+- `ACR0000540` **Siège social Maison Demay, mémorial de la Résistance** — Reims (1940) — Clauzier Maurice
+- `ACR0000565` **Anciens grands moulins et silos Vilgrain** — Nancy (1919) — Bourgeois le Pierre, André Jacques, André Michel
+- `ACR0000574` **Église paroissiale Saint-Crépin – Saint Crépinien** — Piennes (1928) — Noulin-Lespès Paul-Alfred, Clermont-Virotte François, Poelle André
+- `ACR0000589` **Église paroissiale Saint-Gorgon** — Aumetz (1953) — Vidal Henri, Martinez Roland
+- `ACR0000594` **Église Notre-Dame du Wiesberg** — Forbach (1964) — Aillaud Émile, Rieti Fabio
+- `ACR0000621` **ancienne centrale électrique des filatures et tissages de Nomexy dites usines Boussac** — Nomexy (1948) — None
+- `ACR0000623` **Groupe scolaire** — Condé-sur-l'Escaut (1934) — Ambruster Henri
+- `ACR0000599` **circuit de montagnes russes du parc d’attractions Walygator, dit l’Anaconda** — Maizières-les-Metz (1989) — Cobb William L., D.H. Manufacturing
+- `ACR0000600` **Église Saint-Pierre** — Metz (1956) — Pingusson Georges-Henti, Ehrard Justin, Wolff René
+- `ACR0000609` **Église paroissiale Sainte-Thérèse-de-l’Enfant-Jésus** — Vasperviller (1956) — Litzenburger Carl
+- `ACR0000575` **Groupe paroissial Saint-Michel : église, chapelle, salle de catéchisme, logements pour les religieux et les scouts** — Saint-Max (1960) — Tauvel Pierre
+- `ACR0000583` **Guinguette et dépendances de la plage aménagée du lac Vert** — Doulcon (1938) — Mazaud Georges, Becq Claude, Vassart Daniel
+- `ACR0000585` **ancienne boulonnerie** — Gercourt-et-Drillancourt (1923) — None
+- `ACR0000591` **Ferme héréditaire de la Wiederaufbau** — Denting (1943) — Steinbach Rudolph, Leitl Alfons
+- `ACR0000610` **Anciennes Usines Hobus Werke** — Woippy (1941) — Steinbüchel-Rheinwall Rambald von
+- `ACR0000611` **Piscine municipale Roger-Mercier dite piscine Tournesol** — Bruyères (1975) — Schoeller Bernard
+- `ACR0000582` **Hôtel de ville et salle des fêtes** — Villerupt (1962) — Gilbert Roger, Laporte Jean
+- `ACR0000588` **chapelle Sainte-Jeanne-d’Arc** — Verdun (1961) — Fayeton Jean-Louis, Deligny Jean
+- `ACR0000596` **groupe scolaire Louis Houpert du Wiesberg** — Forbach (1961) — Aillaud Émile
+- `ACR0000608` **anciens laboratoires de la société lorraine de Laminage continu (Sollac)** — Serémange-Erzange (1967) — Rostain Charles
+- `ACR0000634` **Église Notre-Dame-de-l'Assomption** — Athies (1929) — Chaine Emmanuel, Poutaraud Marcel
+- `ACR0000641` **Salle des fêtes** — Proyart (1931) — Rabant Paul
+- `ACR0000648` **Chapelle du collège Saint-Charles** — Athis-Mons (1953) — Kindermans Jean
+- `ACR0000689` **Église Stella Matutina** — Saint-Cloud (1965) — Bourdonnais Alain, Bouts Thierry
+- `ACR0000691` **Gare de Vanves-Malakoff** — Vanves (1933) — Philippot Jean
+- `ACR0000334` **Ancien poste de secours, actuelle guinguette** — Oulins (1992) — None
+- `ACR0000342` **Hôtel des Postes** — Châteauroux (1912) — Guadet Paul, Suard Louis
+- `ACR0000679` **Chapelle Saint-Luc** — Montrouge (1961) — Arsène-Henry Xavier, Arsène-Henry Luc
+- `ACR0000692` **Monastère des Bénédictines missionnaires ; Prieuré Sainte-Bathilde** — Vanves (1930) — Bellot Dom
+- `ACR0000346` **Médiathèque et scène nationale L’Equinoxe** — Châteauroux (1990) — Godivier Jean-Louis
+- `ACR0000354` **Cinéma Art Déco** — Azay-le-Rideau (1932) — Berne Pierre
+- `ACR0000638` **Terrain de jeu de paume** — Chaulnes (1926) — None
+- `ACR0000653` **Mosquée** — Evry-Courcouronnes (1984) — Baudot Marc-Henry
+- `ACR0000666` **Église Sainte-Thérèse-de-l'Enfant-Jésus** — Boulogne-Billancourt (1926) — Bourdery Charles
+- `ACR0000677` **Tour hertzienne** — Meudon (1950) — Abraham Hippolyte, dit : Pol Abraham, Willerval Jean
+- `ACR0000683` **Arche de la Fraternité, dite Grande Arche de La Défense et parvis de La Défense** — Puteaux (1989) — Spreckelsen von Johan Otto, Reitzel Erik, Andreu Paul, Rice Peter
+- `ACR0000685` **Chapelle du collège La Salle Passy Buzenval** — Rueil-Malmaison (1955) — Considère Émile-Paul, Considère Pierre
+- `ACR0000336` **Piscine Tournesol** — Chabris (1975) — Cabinet d’urbanisme et d’architecture B. Schoeller & Associés, Schoeller Bernard
+- `ACR0000343` **Lycée Pierre-et-Marie-Curie** — Châteauroux (1956) — Barge Jacques, Bouguin Pierre
+- `ACR0000348` **Tour Saint-Cyran dite "Le Building** — Châteauroux (1961) — Bouguin Pierre, Csali Robert
+- `ACR0000349` **Ancienne usine Indreco, actuellement PIAF (Pôle Images, Arts et Formations)** — Issoudun (1946) — Chapaud René
+- `ACR0000360` **Pont de Langeais** — La Langeais;Chapelle-aux-Naux (1935) — Baudin-Chateauneuf
+- `ACR0000645` **Groupe scolaire** — Roisel (1925) — Martineau Maurice
+- `ACR0000659` **couvent de la Clarté-Dieu** — Orsay (1953) — Arsène-Henry Xavier, Arsène-Henry Luc, Besnard-Bernadac Emmanuel
+- `ACR0000674` **Église Notre-Dame-de-la-Pentecôte** — Courbevoie (1998) — Hammoutène Franck
+- `ACR0000687` **Temple** — Rueil-Malmaison (1969) — Verrey Philippe
+- `ACR0000332` **Lycée Rémi Belleau** — Nogent-le-Rotrou (1971) — Doco Louis, Levert Georges, Spy François
+- `ACR0000351` **Musée archéologique d’Argentomagus** — Saint-Marcel (1990) — Bodin Michel
+- `ACR0000358` **Villa Le Gravier** — Joué-les-Tours (1937) — Süe Louis
+- `ACR0000367` **Ancien magasin Lefroid ; actuel magasin Le Printemps** — Tours (1927) — Devernois Eugène
+- `ACR0000374` **Église Sainte-Jeanne-d’Arc** — Tours (1970) — Marconnet Michel
+- `ACR0000379` **L’Etoile bleue, ancienne maison close, actuelle Jeune Chambre économique de Touraine** — Tours (1920) — Jacquemin, Sante Vallar
+- `ACR0000396` **Temple protestant – Centre cultuel Renée-de-France** — Montargis (1970) — Lesage Jacques
+- `ACR0000399` **Église des Peuples-du-Monde (paroisse Saint-Jean-Bosco)** — Orléans (1961) — Winter Paul
+- `ACR0000407` **Médiathèque** — Orléans (1994) — Besset du Pierre, Lyon Dominique
+- `ACR0000423` **Bibliothèque Abbé-Grégoire** — Blois (1993) — Harari Jean
+- `ACR0000438` **Pont Jean-Jaurès** — Romorantin-Lanthenay (1931) — Société Pelnard Considère et Caquot néan
+- `ACR0000458` **Maison** — Saulx-lès- Rethel (1928) — Gillet Louis
+- `ACR0000470` **Piscine Lucien-Zins** — Troyes (1934) — None
+- `ACR0000471` **Maison Degott** — Epfig (1959) — Prouvé Claude, Degott (commanditaire
+- `ACR0000486` **Parlement européen (IPE 4)** — Strasbourg (1991) — A.S. Architecture studio, Robain Martin, Tisnado Rodo, Bonne J.F., Bretagnolle Alain, Arnaud René-Henri, Valente Gaston
+- `ACR0000501` **Église Sainte-Thérèse** — Saint-Dizier (1962) — Croizé André
+- `ACR0000529` **Université de Reims Champagne-Ardenne, campus de la Croix-Rouge, dit les Coquilles** — Reims (1972) — Dubard de Gaillarbois André, Dubard de Gaillarbois Denis, Clauzier Robert, Uhalde-Bernier
+- `ACR0000548` **Villa Bichaton** — Art-sur-Meurthe (1962) — Louis Dominique-Alexandre
+- `ACR0000380` **Centre de création contemporaine Olivier-Debré** — Tours (2017) — Aires Francisco, Mateus Manuel
+- `ACR0000390` **Pont suspendu sur la Loire** — Châteauneuf-sur-Loire (1838) — Baudin-Châteauneuf
+- `ACR0000448` **Église Sainte-Jeanne-d'Arc** — Charleville-Mézières (1929) — Chirol Pierre
+- `ACR0000454` **Chapelle de Montmarin** — Givry (1960) — Froideveau Yves-Marie
+- `ACR0000464` **Collège "Euréka** — Pont-Sainte-Marie (1990) — Pfeiffer François, Freycenon Bruno
+- `ACR0000482` **Gaz de Strasbourg** — Strasbourg (1932) — Oberthur Gustave, Züblin&Cie E., Perrière&Cie, Heintz Kehr et associés.
+- `ACR0000500` **Chapelle de Saint-Vinebault** — Chevillon (1960) — Parisot Georges
+- `ACR0000507` **Usine Ricola** — Brunstatt-Didenheim (1993) — Herzog Jacques, Meuron de Pierre
+- `ACR0000526` **Maison Moët et Chandon** — Epernay (1923) — Piquart Henri, Maigret de Bruno
+- `ACR0000533` **Église Saint-Vincent-de-Paul** — Reims (1967) — Camelot Robert, Serraz, Bléhaut Jacques
+- `ACR0000542` **Mairie** — Sermaize-les-Bains (1927) — Gelin Octave
+- `ACR0000543` **piscine Caneton** — Sézanne (1978) — Charvier Alain, Aigrot Jean-Paul, Charras Franck
+- `ACR0000362` **Ancienne station service dite Relais Charles-Martel** — Sainte-Maure-de-Touraine (1955) — Lagneau Paul
+- `ACR0000364` **Magasin général SNCF** — Saint-Pierre-des-Corps (1948) — Freyssinet Eugène
+- `ACR0000369` **Chapelle Saint-Martin** — Tours (2017) — Duthilleul Jean-Marie
+- `ACR0000386` **Maison** — Amilly (1967) — Lavot Jacques, Foessel
+- `ACR0000388` **Pont suspendu sur la Loire** — Bonny-sur-Loire;Beaulieu-sur- Loire (1899) — Arnodin Ferdinand, Baudin-Châteauneuf
+- `ACR0000394` **Eglise Notre-Dame-des-Cités** — Montargis (1966) — Rouquet Jean, Lesage Jacques
+- `ACR0000400` **Eglise Sainte-Jeanne-d’Arc** — Orléans (1967) — Even Louis, Picard Michel
+- `ACR0000409` **FRAC - Centre-Val de Loire** — Orléans (2013) — Jakob+MacFarlane
+- `ACR0000417` **Voie d'aérotrain (vestiges)** — Artenay;Cercottes;Chevilly;Ruan;Saran (1969) — Bertin Jean
+- `ACR0000427` **Pont François-Mitterrand** — Blois (1994) — Bouchain Patrick, Wilmotte Jean-Michel
+- `ACR0000447` **Mairie-École** — Ballay (1925) — Simon Jacques
+- `ACR0000461` **Hôtel de ville** — Vouziers (1924) — Lesage Victor, Miltigen Charles
+- `ACR0000492` **Synagogue de la Paix** — Strasbourg (1947) — Berst Jean-Paul, Meyer-Levy Claude
+- `ACR0000499` **Rotonde SNCF** — Chalindrey (1947) — Laffaille Bernard
+- `ACR0000511` **Église paroissiale Saint-François-d’Assise** — Mulhouse (1962) — Baur Hermann, Marozeau Paul, Stocker Ernst dit Coghuf (sculpteur, vitrailliste)
+- `ACR0000516` **Tour de l’Europe** — Mulhouse (1969) — Spoerry François, Michau Bernard
+- `ACR0000520` **Établissement scolaire de filles, actuellement collège Victor Duruy** — Châlons-en-Champagne (1929) — Maigrot Émile
+- `ACR0000525` **Comité interprofessionnel du vin de Champagne (CIVC)** — Epernay (1951) — Schnell André
+- `ACR0000535` **Maison** — Reims (1924) — Christ Auguste, Bodier F.
+- `ACR0000539` **Maison et atelier du maître-verrier Jacques Simon, actuellement atelier Simon-Marcq** — Reims (1927) — Sainsaulieu Max, Sainsaulieu Louis, Simon Jacques
+- `ACR0000544` **Maison dite maison du Futur** — Tinqueux (1988) — Noël François, Van de Wingaert Thierry
+- `ACR0000376` **Grand Hôtel** — Tours (1927) — Boille Maurice
+- `ACR0000393` **Villa Blanc** — Lombreuil (1963) — Székely Pierre, Jousselin Séphane, Ferranet Michel
+- `ACR0000398` **Direction régionale de l'économie, de l'emploi, du travail et des solidarités (ex-DIRRECTE)** — Orléans (1973) — Bernard Henry, Bruneteau Jacques E.
+- `ACR0000402` **Immeuble dit tour Gambetta** — Orléans (1962) — Hardion Joël
+- `ACR0000429` **Imprimerie Cino Del Duca** — Blois (1963) — Patscheider Tullio
+- `ACR0000434` **Parc-plage de Montrichard** — Faverolles-sur-Cher (1936) — None
+- `ACR0000466` **Caisse régionale du Crédit agricole** — Troyes (1969) — Morel Jacques, Knoll, Dubigeon
+- `ACR0000473` **Usine hydroélectrique** — Kembs (1928) — Koechlin René
+- `ACR0000478` **Cours européenne des droits de l’homme** — Strasbourg (1989) — Rogers Richard, Bucher Claude
+- `ACR0000502` **Ciné-quai, ancienne usine Miko** — Saint-Dizier (1927) — None
+- `ACR0000504` **Église Notre-Dame de l’Annonciation** — Ammerschwihr (1968) — Keller Pierre, Dumas Pierre, Prioleau, Benoît, Hilaire Camille
+- `ACR0000510` **Ancien atelier de montage de la société NSC dit Le Louvre** — Guebwiller (1920) — Entreprise J.B. Matter, Gamberoni de Logelbach
+- `ACR0000514` **Centre culturel de la Filature** — Mulhouse (1990) — Vasconi Claude
+- `ACR0000519` **Centre de tri postal, dit la Poste rouge, actuellement immeuble de bureaux** — Châlons-en-Champagne (1950) — Royer Charles-Henri
+- `ACR0000524` **Immeuble "Les Pyramides** — Epernay (1969) — Andrault Michel, Parat Pierre
+- `ACR0000567` **Église Sainte-Anne** — Nancy (1956) — Prunet Pierre
+- `ACR0000554` **Église Saint-Paul reconvertie en centre culturel** — Laxou (1961) — Mazerand Pierre
+- `ACR0000615` **chapelle de l’institution scolaire privée Notre-Dame** — Epinal (1957) — Deschler Émile
+- `ACR0000617` **ancienne usine de tissage Claude** — Gérardmer (1946) — Vigneron Georges, Savreux Louis, Balland Maurice
+- `ACR0000618` **Ensembles verriers de l’église Saint-Laurent** — La Bresse (1952) — Deschler Émile
+- `ACR0000560` **Chapelle de la Vierge-aux-Pauvres** — Marbache (1955) — Louis Dominique-Alexandre, Chapuis François
+- `ACR0000563` **Ecole nationale supérieure d’Architecture** — Nancy (1992) — Vacchini Livio, François Christian, Henrion Patricia
+- `ACR0000570` **Centre de transfusion sanguine et de réanimation** — Nancy (1961) — Louis Dominique-Alexandre
+- `ACR0000572` **immeuble dit tour siège des coopérateurs** — Nancy (1970) — Fleck Louis
+- `ACR0000579` **Chapelle du centre hospitalier régional et universitaire de Nancy-Brabois** — Vandoeuvre-lès-Nancy (1973) — Lemaresquier Noël, Lebret Robert
+- `ACR0000586` **cinéma Lux** — Montmédy (1945) — None
+- `ACR0000601` **Internat du lycée Général Fabert** — Metz (1934) — Parisot Robert, Millochau Paul
+- `ACR0000607` **Plan incliné du canal de la Marne au Rhin dit « de Saint-Louis-Arzviller »** — Saint-Louis (1965) — Compagnie française d'entreprises, Chantiers réunis Loire-Normandie, Equipements mécaniques et hydrauliques
+- `ACR0000592` **ancien siège et carreau de la mine de charbon** — Faulquemont (1934) — Madeline Léon-Félix-Marie-Joseph
+- `ACR0000616` **Collège Georges-Clémenceau** — Epinal (1937) — Desenclos André
+- `ACR0000556` **anciens grands bureaux de l’entreprise Senelle-Maubeuge** — Longwy (1929) — Bourgeois le Pierre, Zimmermann Jean
+- `ACR0000562` **chapelle de Lumière** — Mousson (1959) — Parisot Robert
+- `ACR0000564` **Foyer du Groupe des étudiants catholiques (G.E.C.) du Cours Léopold** — Nancy (1926) — Criqui Jules, Clément Georges, La Mache Paul
+- `ACR0000580` **Faculté des Sciences et Technologies** — Vandoeuvre-lès-Nancy (1961) — Goclowski Claude, Goclowski Claude, Tourry Georges, Lay Edmond
+- `ACR0000587` **ancienne usine de la société meusienne de Lunetterie (SML – Essilor)** — Saint-Mihiel (1963) — Haenel Jacques
+- `ACR0000619` **chapelle Notre-Dame-des-Chaumes** — Le Valtin (1960) — Balland Maurice, Louis Dominique-Alexandre
+- `ACR0000632` **Église Saint-Pierre-et-Saint-Paul** — Allaines (1920) — Jacquet Georges
+- `ACR0000642` **Mairie, école, poste** — Proyart (None) — Rabant Paul
+- `ACR0000633` **Église Notre-Dame-de-l'Assomption** — Assevillers (1923) — Duthoit Louis
+- `ACR0000635` **Église Saint-Didier** — Chaulnes (1927) — Teisseire Godefroy
+- `ACR0000637` **Monument aux morts** — Chaulnes (1924) — Entreprise Delleur, Déchin Jules
+- `ACR0000639` **Église Saint-Vaast** — Proyart (1925) — Rabant Paul
+- `ACR0000640` **Monument aux morts** — Proyart (1924) — Désiré Corbel
+- `ACR0000643` **Cinéma Le Pax** — Quend (1946) — Lecompte Georges
+- `ACR0000644` **Église paroissiale Saint-Martin** — Roisel (1928) — Debat-Ponsan Jacques
+- `ACR0000656` **Église luthérienne Saint-Marc** — Massy (1963) — Verrey Philippe
+- `ACR0000673` **Église luthérienne** — Courbevoie (1949) — A.& Philippe Verrey
+- `ACR0000690` **Chapelle de la maison de retraite Larmeroux** — Vanves (1939) — Marne Paul, Marne Marcel
+- `ACR0000695` **Immeubles** — Paris 12e Arrondissement (1962) — Anger Roger, Puccinelli Pierre, Heyman Mario
+- `ACR0000646` **Mairie** — Roisel (1926) — Lucet M.
+- `ACR0000647` **Salle des fêtes et cinéma** — Roisel (1927) — Bénard Henri
+- `ACR0000655` **Église Notre-Dame-de-France** — Juvisy-sur-Orge (1936) — Lambert Paul
+- `ACR0000662` **Église du Saint-Esprit** — Viry-Chatillon (1964) — Korady Anton
+- `ACR0000664` **Chapelle Sainte Croix (ancienne chapelle de la résidence universitaire)** — Antony (1961) — Baudoin Eugène
+- `ACR0000665` **Église Saint-Jean-Porte-Latine** — Antony (1967) — Pinsard Pierre
+- `ACR0000626` **Stade-vélodrome André Pétrieux** — Roubaix (1928) — Gréber Jacques
+- `ACR0000620` **ancienne station-service et garage de l’Avenir** — Mirecourt (1950) — None
+- `ACR0000625` **Musée d'Art et d'industrie, ancienne piscine** — Roubaix (1932) — Baert Albert, Philippon Jean-Paul
+- `ACR0000629` **buildings du port** — Boulogne-sur-Mer (1951) — Vivien Pierre, Mopin Eugène
+- `ACR0000657` **Synagogue** — Massy (1963) — Sonrel Pierre, Duthilleul Jean
+- `ACR0000671` **Station de pompage dite usine élévatoire de Clichy** — Clichy-la-Garenne (1935) — Anciens Etablissements Ed. Zublin et Cie, Perrière et Cie A.
+- `ACR0000672` **Chapelle Saint-Bernard** — Colombes (1962) — Pottier Henry
+- `ACR0000675` **Église Saint-Stanislas des Blagis** — Fontenay-aux-Roses (1934) — Braive Georges, Braive Jean
+- `ACR0000630` **Hôtel de ville** — Le Portel (1936) — Bonhomme Marcel
+- `ACR0000631` **lycée hôtelier du Touquet** — Le Touquet-Paris-Plage (1966) — Dufetel André
+- `ACR0000636` **Mairie, place et allée d'arbres** — Chaulnes (1924) — Jupin J., Pilet A.
+- `ACR0000663` **Chapelle de l'institution Sainte-Marie** — Antony (1968) — Dengler Georges, Zunz Jean
+- `ACR0000668` **Église La Pentecôte de Port Galand** — Bourg-la-Reine (1967) — Vuarnesson Philippe
+- `ACR0000686` **Église Saint-Jean-Marie- Vianney** — Rueil-Malmaison (1961) — Duthilleul Jean, Sonrel Pierre
+- `ACR0000697` **Cinémathèque française (ancien American Center)** — Paris 12e Arrondissement (1988) — Frank O.Gehry&Associates Inc., Saubot et Jullien Associés, Cieren Philippe, Rouit Jean, Atelier de l'île, Brard Dominique
+- `ACR0000698` **Opéra Bastille (Opéra national de Paris)** — Paris 12e Arrondissement (1989) — Ott Carlos, Saubot Roger, Julien François
+- `ACR0000700` **Ancienne Halle aux farines, actuel centre universitaire Paris VII-Denis-Diderot** — Paris 13e Arrondissement (1949) — Nicolas Michelin &Associés, Antonini-Darmon
+- `ACR0000730` **Église Saint-François-d’Assise** — Champagne-sur-Seine (1965) — Marot Michel
+- `ACR0000742` **Église de-Tous-les-Saints** — Bobigny (1967) — Stoskopf Gustave
+- `ACR0000747` **Église Saint-Michel** — Livry-Gargan (1965) — Danis Benoît
+- `ACR0000776` **Réservoirs dits Les Flûtes (ensemble de châteaux d'eau)** — Villejuif (1990) — Charon Jacques
+- `ACR0000714` **Église Saint-Ferdinand-des-Ternes avec sa crypte** — Paris 17e Arrondissement (1937) — Théodon Paul, Durand Pierre, Bertrand Frédéric
+- `ACR0000727` **Station Madeleine de la ligne 14 du métropolitain (ligne Météor)** — Paris 8e Arrondissement (1998) — Vaysse Jean-Pierre, Kohn Bernard
+- `ACR0000735` **Stade nautique Marlène-Peratou** — Aubervilliers (1965) — Kalisz Jacques, Perrottet Jean, Martin Joël, Marty Guy, Beguin Gilles, Macchini Jean-André
+- `ACR0000746` **Tour Hertzienne, dite tour de Romainville** — Les Lilas (1982) — Vasconi Claude, Austasie Michel assistant)
+- `ACR0000758` **Église évangélique Martin-Luther** — Saint-Denis (1967) — Verrey Philippe, Venancie Pierre
+- `ACR0000710` **Tour Totem** — Paris 15e Arrondissement (1978) — Andrault Michel, Parat Pierre
+- `ACR0000713` **Chapelle Saint-Joseph-des-Epinettes** — Paris 17e Arrondissement (1964) — Heaume Arthur-Georges, Persitz Alexandre
+- `ACR0000720` **Synagogue de Belleville** — Paris 20e Arrondissement (1930) — Hesse Lucien, Debré Germain
+- `ACR0000721` **Centre national d’art et de culture Georges Pompidou, Institut de recherche et de coordination acoustique** — Paris 4e Arrondissement (1977) — Piano Renzo, Rogers Richard, Franchini Gianfranco, Rubin Daniel, Rubin Patrick, Polig Heckel Bleichart
+- `ACR0000731` **Église Notre-Dame-des-Roses** — Grisy-Suisnes (1966) — Korady Anton
+- `ACR0000733` **Ermitage Notre-Dame-de-Kazan** — Moisenay (1960) — Wendt Euthyme
+- `ACR0000767` **Gare de Gentilly** — Gentilly (1931) — Brachet Louis-Loÿs
+- `ACR0000773` **Viaduc ferroviaire** — Nogent-sur-Marne, Le Perreux-sur-Marne, Champigny-sur-Marne (1945) — Entreprises Limousin
+- `ACR0000774` **Église des Saints-Anges-gardiens** — Saint-Maurice (1934) — Tandeau de Marsac Jean
+- `ACR0000703` **Église Saint-Marcel** — Paris 13e Arrondissement (1963) — Michelin Daniel, Michelin Jean
+- `ACR0000717` **Église Notre-Dame-des-Buttes-Chaumont** — Paris 19e Arrondissement (1960) — Honneger Denis
+- `ACR0000765` **Préfecture du Val-de-Marne** — Créteil (1967) — Badani Daniel, Roux-Dorlut Pierre, Lapparent de Philippe, Mestoudjian Karnik Ivan
+- `ACR0000771` **Synagogue dit Centre communautaire Hekhal-David** — Le Perreux-sur-Marne (1993) — Herzberg Max, Aubert Joël
+- `ACR0000786` **Église Saint-Louis-de-Beauregard** — Poissy (1960) — Stoskopf Gustave
+- `ACR0000792` **Église paroissiale Saint-Pierre-aux-Liens** — Bellefontaine (1962) — Aubillard Père, Alanic Pierre, Corail dit : Khoko ou Coco René
+- `ACR0000799` **hôtel de voyageurs « l’impératrice » et pharmacie** — Fort-de-France (1947) — Glaudon Charles, Cidalise-Montaise Marcel, Valide, Dantin
+- `ACR0000804` **Maison Tarin, actuellement maison des sœurs missionnaires du Saint-Esprit** — Fort-de-France (1958) — Caillat Louis
+- `ACR0000806` **Banque des Antilles françaises (BDAF)** — Fort-de-France (1931) — non précisé
+- `ACR0000814` **Ecole de filles Mixte A** — Le Marin (1949) — Vasseur Pierre
+- `ACR0000836` **Institution pour handicapés physiques, maison de retraite** — Boulleville (1935) — Dupont Pierre, Office national des Mutilés et Réformés de guerre
+- `ACR0000837` **Archives départementales** — Evreux (1937) — Hugot R.
+- `ACR0000864` **Église Sainte-Croix : clocher** — Saint-Lô (1951) — Mersier Marcel
+- `ACR0000865` **Église Saint-Pierre** — Villiers-Fossard (1954) — Pison Guy, Desouches J., Couturat Jean
+- `ACR0000866` **Ancienne gare routière, actuellement pépinière d’entreprise et bureaux de France 3 Basse-Normandie** — Alençon (1955) — Vissuzaine Roger, Longuet
+- `ACR0000868` **immeuble Moulinex** — Alençon (1954) — Vissuzaine Roger, Longuet
+- `ACR0000874` **Bains douches** — Flers (1923) — Vicialle Eugène
+- `ACR0000876` **Maison dite L’Hermitage** — Rémalard-en-Perche (1949) — Gage André
+- `ACR0000888` **Usine de construction automobile de la régie nationale des usines Renault** — Cléon (1958) — None
+- `ACR0000891` **Quincaillerie Leveau** — Dieppe (1930) — Féray Georges
+- `ACR0000909` **Gare ferroviaire** — Le Havre (1932) — Lisch Just, Pacon Henri
+- `ACR0000933` **Grande pharmacie du Centre** — Rouen (1900) — Hamelet Fernand-Bernard
+- `ACR0000947` **gare routière** — Royan (1953) — Simon Louis, Grizet Pierre
+- `ACR0000963` **Hôtel de Ville** — Aubusson (1936) — Diot Pierre, Lesbre Louis, Rollin Lucien
+- `ACR0000965` **Bains-douches** — Boussac (1935) — Raynaud
+- `ACR0000983` **Maison Verdier** — Beaumontois en Périgord (1973) — Saillol Bernard, Picin S., Verdier François, Verdier Bernadette
+- `ACR0000996` **villa Lyside** — La Teste-de-Buch (1926) — Expert Roger-Henri
+- `ACR0000997` **cité administrative** — Bordeaux (1965) — Mathieu Pierre, Calmon Pierre
+- `ACR0001013` **Chapelle de l’institut national des Jeunes sourds** — Gradignan (1958) — Mathieu Pierre, Boissonnet Edmond
+- `ACR0001016` **Gare du bac** — Le Verdon-sur-Mer (1957) — Sabatie L.
+- `ACR0001017` **Station radar Vogel** — Le Verdon-sur-Mer (1941) — Organisation Todt
+- `ACR0001030` **École nationale supérieure d’architecture et de paysage de Bordeaux** — Talence (1972) — Ferret Claude
+- `ACR0001032` **Pôle de Lanaud** — Boisseuil (1991) — Nouvel Jean, Boucher Édouard
+- `ACR0001033` **ancienne colonie de vacances du Four** — Cieux (1971) — Schweitzer Roland
+- `ACR0000696` **ministère de l’Économie et des Finances** — Paris 12e Arrondissement (1989) — Chemetov Paul, Huidobro Borja, Duhart-Harosteguy Émile, Arretche Louis, Karasinsky Roman, Ciocardel Virgil
+- `ACR0000701` **Bibliothèque nationale de France (site Tolbiac-François Mitterand)** — Paris 13e Arrondissement (1995) — Perrault Dominique
+- `ACR0000716` **Cité des sciences et de l’industrie, parc de la Villette** — Paris 19e Arrondissement (1986) — Fainsilber Adrien, Chamayou Gérard, Tschumi Bernard
+- `ACR0000791` **Église Notre-Dame-du-Chêne** — Viroflay (1966) — Stoskopf Gustave
+- `ACR0000793` **Maison-bateau dite Torgiléo** — Bellefontaine (1948) — Dubois Victor
+- `ACR0000803` **Maison des officiers** — Fort-de-France (1958) — Caillat Louis
+- `ACR0000811` **observatoire météorologique** — Fort-de-France (1934) — Brossier Georges
+- `ACR0000826` **Chapelle de la Brèche** — Hermanville-sur- mer (1957) — Kopfl Pierre, Lavinac Suzanne, Devocoux Robert
+- `ACR0000842` **Église paroissiale Saint-Martin** — Lieurey (1950) — None
+- `ACR0000848` **Hôtel de voyageurs dit Hôtel de la Plage, actuellement résidence Le Voltaire** — Agon-Coutainville (1931) — Godefroy Jules-Alexandre
+- `ACR0000849` **Église** — Cavigny (1957) — Cochepain Yves, Cailler Georges, Rocher Maurice, Barillet Jean
+- `ACR0000851` **Magasin Ratti** — Cherbourg-en-Cotentin (1929) — Levavasseur René
+- `ACR0000853` **Chapelle Saint-Vincent** — Coutances (1954) — Karazinski Roman
+- `ACR0000873` **salle des fêtes ""La petite A** — Flers (1932) — None
+- `ACR0000878` **Chapelle de l’ancien Grand séminaire** — Sees (1937) — Besnard-Bernadac Félix
+- `ACR0000882` **Église paroissiale Saint-Wandrille** — Belleville-en-Caux (1957) — Bonnet Roger, Loire Gabriel
+- `ACR0000892` **Chapelle Notre-Dame-de-la-Garde** — Etretat (1950) — Giraudet, Fabre, Rocher, Degusseau G.
+- `ACR0000903` **Ecole primaire Jean-Jaurès** — Le Grand-Quevilly (1935) — Hanote René, Flavigny Robert, Marion René
+- `ACR0000945` **Ecole élémentaire Mario-Roustan** — Angoulême (1931) — Baleix Roger
+- `ACR0000950` **installation sportive Gaëtan-Devaud, piscine et stade** — Brive-la-Gaillarde (1941) — Devaud Gaëtan, Jean Georges
+- `ACR0000969` **barrage du Dorat** — Faux-la-Montagne (1946) — Sarrasin Alexandre, Groupe d’exploitation hydraulique de Limoges
+- `ACR0000979` **Groupe scolaire Anatole-France** — Thouars (1951) — Dorian Charles, Bouchard Marcel
+- `ACR0001003` **Groupe scolaire de la Benauge** — Bordeaux (1950) — Mathieu Pierre, Tagini Roger, Rivière Joseph, Buthaud René
+- `ACR0001014` **Église Notre-Dame des Flots** — Lacanau (1964) — Agora, Maxwell Patrick, Moreau Jean-Claude, Duclos Francis
+- `ACR0001015` **Maison Jacques Salier** — Latresne (1966) — Courtois Adrien, Salier Yves, Lajus Pierre, Sadirac Michel
+- `ACR0001018` **Batterie des Arros, GI305a** — Le Verdon-sur-Mer (1941) — Organisation Todt
+- `ACR0001020` **Église Notre-Dame-des-Flots** — Lège-Cap-Ferret (1956) — Morin Raymond
+- `ACR0001021` **Tétrodons du VVF de Claouey** — Lège-Cap-Ferret (1970) — Berce Jacques, Ciriani Henri
+- `ACR0001034` **École professionnelle Féret du Longbois** — Limoges (1937) — Stern Georges-Moïse
+- `ACR0000694` **Église Saint-Eloi** — Paris 12e Arrondissement (1968) — Leboucher Marc
+- `ACR0000699` **Centre universitaire Pierre-Mendès-France, site de Tolbiac** — Paris 13e Arrondissement (1970) — ANPAR, Andrault Michel, Parat Pierre, Celnik Nathan, Guva Aydin, Capieu Alain
+- `ACR0000707` **Église Notre-Dame-de-l'Arche-d'Alliance** — Paris 15e Arrondissement (1996) — Architecture Studio, Robain Martin
+- `ACR0000708` **Église Notre-Dame-de-la-Salette** — Paris 15e Arrondissement (1965) — Colboc Henri, Dionis du Séjour Jean
+- `ACR0000709` **Église Saint-Léon** — Paris 15e Arrondissement (1924) — Brunet Émile
+- `ACR0000796` **Banque Crédit martiniquais, actuellement BRED** — Fort-de-France (1937) — Tanguy Yves
+- `ACR0000823` **Église Saint-Paul** — Caen (1954) — Dupuis Raymond, Tréverdyr Yves
+- `ACR0000833` **Église Saint-Martin** — Villers-Bocage (1958) — Le Sauter Roland, Le Sauter Léon
+- `ACR0000871` **Église du Sacré-Cœur** — Bagnoles de l'Orne Normandie (1938) — Michelin Olivier, Lorin Charles
+- `ACR0000908` **Etablissement de bienfaisance dit Maison du Marin** — Le Havre (1930) — Thibaudeau Henri
+- `ACR0000942` **Église Saint-Martin** — Serqueux (1956) — Percheron Michel
+- `ACR0000957` **Ecole nationale professionnelle, aujourd'hui lycée Pierre-Caraminot** — Egletons (1933) — Danis Robert, Saule Léon, Danis Benoist
+- `ACR0000967` **Bains-douches** — Chénérailles (1959) — Galland Louis
+- `ACR0000972` **station-essence** — Guéret (1977) — Vaugelade Marc
+- `ACR0000973` **villa dite maison B. et jardin** — Mérinchal (1982) — Bourdeau Michel
+- `ACR0001006` **Salle des fêtes dite Théatre La Pergola** — Bordeaux (1928) — Picard Marcel
+- `ACR0001007` **Salle des fêtes de la Cité du Grand-Parc** — Bordeaux (None) — 2007
+- `ACR0001008` **Base sous-marine** — Bordeaux (1942) — Organisation Todt
+- `ACR0001012` **Tribunal de grande instance** — Bordeaux (1992) — Rogers Richard
+- `ACR0001026` **Bâtiment d’accueil de la grotte de Pair-non-Pair** — Prignac-et-Marcamps (2007) — Hernandez Patrick
+- `ACR0001041` **immeuble de résidence** — Limoges (1938) — Villemain Paul, Mandon-Joly Louis
+- `ACR0000702` **Église Notre-Dame-de-la-Sagesse** — Paris 13e Arrondissement (1996) — Faloci Pierre-Louis
+- `ACR0000783` **Skit du Saint Esprit** — Le Mesnil-Saint-Denis (1935) — None
+- `ACR0000797` **Chapelle du Christ-Roi dite de Béthléem** — Fort-de-France (1960) — Lavigne-Sainte-Suzanne de Maurice
+- `ACR0000807` **Caisse Générale de la Sécurité sociale** — Fort-de-France (1954) — Madelain Henri, Meyer-Levy Claude, Caillat Louis, Rémy Georges
+- `ACR0000810` **Imprimerie officielle, actuellement siège du journal France-Antilles** — Fort-de-France (1936) — Donat Honoré
+- `ACR0000817` **Maison Roy-Camille, actuellement centre médico-psychologique** — Saint-Pierre (1936) — Caillat Louis, Roy-Camille Raphaël
+- `ACR0000824` **Bureau de poste** — Deauville (1930) — Chirol Pierre
+- `ACR0000828` **Château d'eau** — Lisieux (1965) — Duval Georges
+- `ACR0000829` **Église Saint-François-Xavier** — Lisieux (1960) — Duval Georges
+- `ACR0000839` **immeubles en série : îlot L** — Evreux (1945) — Bailleau Pierre, Desaux, Ducellier, Duclos, Lefebvre, Valmier, Plaquin
+- `ACR0000850` **immeuble** — Cherbourg-en-Cotentin (1927) — Drancey René-Charles-Louis
+- `ACR0000883` **Poste** — Bolbec (1937) — Royer
+- `ACR0000886` **Pont de Brotonne** — Rives-en-Seine (1973) — Mathirat Jacques, Muller Jean
+- `ACR0000895` **Hôtel de ville** — Forges-les-Eaux (1933) — None
+- `ACR0000897` **Camp Philipp-Morris** — Gonfreville-L'Orcher (1944) — None
+- `ACR0000920` **Émetteur Radio-Normandie** — Louvetot (1935) — Legrand Fernand
+- `ACR0000922` **Centre administratif communal regroupant l'hôtel de ville, le tribunal d'instance, théâtre et salle polyvalente** — Neuchâtel-en-Bray (1956) — Auzelle Robert, Roullé Louis
+- `ACR0000932` **Entrepôt public dit docks et entrepôts réels de Rouen, aujourd'hui centre commercial** — Rouen (1956) — Robinne André, Viraut, Campenon-Bernard
+- `ACR0000949` **Église paroissiale Sainte-Thérèse de Lisieux, ou Sainte-Thérèse-des-Chapélies (cité des Chapélies)** — Brive-la-Gaillarde (1958) — Jean Georges
+- `ACR0000970` **Ecole nationale des métiers du bâtiment** — Felletin (1947) — Paquet Jean-Pierre
+- `ACR0000974` **rotonde du centre médical A. Leune, à usage de salle à manger du sanatorium** — Sainte-Feyre (1953) — Astorg Marcel
+- `ACR0000978` **Palais des Congrès** — Parthenay (1968) — Maréchal Jean-François, Le Sauter Léon
+- `ACR0000988` **Hôtel de ville** — Rouffignac - Saint-Cernin-de-Reilhac (1948) — Lafaye Robert
+- `ACR0000999` **Collège Francisco Goya** — Bordeaux (1930) — Perrier Raoul
+- `ACR0001040` **garage Dussagne** — Limoges (1935) — Ravazé Maurice-Jacques, Wybo Georges
+- `ACR0000715` **Cité de la musique (dont conservatoire national supérieur de Musique et de Danse de Paris)** — Paris 19e Arrondissement (1990) — Portzamparc de Christian
+- `ACR0000718` **Église Saint-Serge** — Paris 19e Arrondissement (1924) — None
+- `ACR0000723` **chapelle Notre-Dame-du-Bon-Conseil** — Paris 7e Arrondissement (1963) — Delage François, Henry Paul, Coulon René-André, Faraut Roger
+- `ACR0000753` **Cimetière intercommunal des Joncherolles** — Pierrefitte-sur-Seine;Villetaneuse (1971) — Auzelle Robert, Gervaise Raymond, Lery Pierre, Patriotis Hector, Conti de Jean-Claude
+- `ACR0000764` **Palais de justice** — Créteil (1976) — Badani Daniel, Roux-Dorlut Pierre
+- `ACR0000778` **Église Notre-Dame-de-Nazareth** — Vitry-sur-Seine (1965) — Le Donné André
+- `ACR0000794` **École de filles « Les Flamboyants »** — Ducos (1950) — Vasseur Pierre, Romain Robert, Donatien Fernand
+- `ACR0000802` **Lycée de Bellevue** — Fort-de-France (1958) — Labro Georges
+- `ACR0000724` **Musée du Quai Branly – Jacques Chirac** — Paris 7e Arrondissement (2002) — Nouvel Jean, Société Joseph Paris
+- `ACR0000751` **Synagogue dit Centre communautaire Ohel-Youssef** — Pantin (1992) — Carril Christine, Carril Dominique
+- `ACR0000777` **Rotonde ferroviaire** — Villeneuve-Saint-Georges (1947) — None
+- `ACR0000780` **Église Sainte-Geneviève** — Garges-lès-Gonesse (1966) — Saint Rémy Marc de, Hardy Jean-Pierre
+- `ACR0000795` **Immeuble Edouard-Edouarzi, actuellement commissariat de police** — Ducos (1952) — Aribo Richard, Lienafa Léon
+- `ACR0000800` **immeuble Antilles** — Fort-de-France (1955) — Caillat Louis
+- `ACR0000728` **Ancien siège de la Caisse centrale de réassurance** — Paris 9e Arrondissement (1955) — Balladur Jean, Lebeigle Benjamin
+- `ACR0000719` **Les Orgues de Flandre** — Paris 19e Arrondissement (1967) — Schulz Van Treeck Martin
+- `ACR0000729` **Chapelle Notre-Dame-de-toutes-les protections** — Champagne-sur-Seine (1938) — Papandopouos J.
+- `ACR0000775` **Église Sainte-Colombe et chapelle de secours** — Villejuif (1966) — Senn Rainer
+- `ACR0000805` **Siège d’association dit Maison des syndicats** — Fort-de-France (1948) — Salasc Maurice
+- `ACR0000732` **temple** — Lagny-sur-Marne (1997) — Monnier Sylvestre
+- `ACR0000744` **Église Saint-Jean-l'Evangéliste** — Drancy (1933) — Philippot Jean
+- `ACR0000761` **Église Saint-Jean-l'Evangéliste** — Cachan (1936) — Vidal Henri
+- `ACR0000779` **Notre-Dame-de-la-Paix** — Arnouville-lès-Gonesse (1954) — Debré Antoine, Serraz René, Small Jacques
+- `ACR0000781` **Église Saint-Michel** — Goussainville (1957) — Nedonchelle Roger
+- `ACR0000808` **Fort Saint-Louis, guérite d’entrée** — Fort-de-France (1960) — None
+- `ACR0000831` **Église de l'Assomption Notre-Dame** — Val-d'Arry (1959) — Musetti Charles
+- `ACR0000815` **Église Saint-Louis-Marie-Grignon-de-Montfort** — Rivière-Pilote (1957) — Salasc Marcel, Sainrimat Christian, Terrine Miguel
+- `ACR0000832` **Église** — Saint-Pair (1961) — Auvray Gilles
+- `ACR0000835` **Maison dite maison paquebot** — Bernay (1929) — Perret André Debeauvais, Marais Joseph
+- `ACR0000844` **Mairie** — Saint-André-de-l'Eure (1933) — Puteaux Maurice
+- `ACR0000852` **maison** — Cherbourg-en-Cotentin (1927) — Drancey René-Charles-Louis
+- `ACR0000857` **Église Saint-Pierre** — Thèreval (1957) — Prioleau Jacques
+- `ACR0000858` **Église Saint-Cyr-et-Sainte-Julitte** — Laulne (1959) — Lulé Bernard
+- `ACR0000861` **Église Saint-Rémy** — Quibou (1954) — Cochepain Yves, Tougard Henri
+- `ACR0000863` **école** — Roncey (1933) — Cochepain André
+- `ACR0000877` **Église** — Saint-Pierre-du-Regard (1959) — Meurice
+- `ACR0000884` **Magasin coopératif dit COOP de la République** — Bonsecours (1932) — Remoissonnet Frères
+- `ACR0000890` **Pont mobile dit pont Ango** — Dieppe (1950) — Féray Georges
+- `ACR0000915` **Cinéma Normandy** — Le Havre (1933) — Daigue Henri
+- `ACR0000917` **Hangar 81 dit hangar aux cotons** — Le Havre (1949) — Casaccia
+- `ACR0000927` **Maison** — Rouen (1930) — None
+- `ACR0000847` **Ilôt Pasteur, immeubles à logements** — Vernon (1948) — Tessier JeanPottier Henri
+- `ACR0000862` **Église Saint-Georges** — Raids (1959) — Le Breton Pierre-André
+- `ACR0000872` **Magasin de commerce, actuellement établissement thermal dit pavillon des Fleurs** — Bagnoles de l'Orne Normandie (1927) — Bluysen Auguste, Mazzioli
+- `ACR0000885` **Centrale thermique dite centrale de Dieppedalle** — Canteleu (1949) — None
+- `ACR0000902` **mairie-groupe scolaire** — La Bouille (1933) — Pruvost Roger, Coquelin (entrepreneur, Fournier des Gorat Pierre
+- `ACR0000904` **Hôtel de ville et centre culturel** — Le Grand-Quevilly (1935) — Thomas Emile Aubrun
+- `ACR0000913` **Bureau d'embauche des dockers (BCMO), actuellement salle de sports Lucien Nolent** — Le Havre (1957) — Loisel Henri, Ernoult Gérard, Fabre Charles, Soudier le Jean
+- `ACR0000921` **Villa** — Mont-Saint-Aignan (1930) — Pruvost Roger
+- `ACR0000935` **Synagogue** — Rouen (1950) — François Gilbert, Duménil Robert, Herr François, Louard
+- `ACR0000809` **immeuble « Au Printemps » actuellement Galeries Lafayette** — Fort-de-France (1934) — Merlande, Kalfon
+- `ACR0000816` **Hôtel de ville** — Saint-Pierre (1934) — Caillat Louis, Dormoy René
+- `ACR0000830` **Garage de réparation automobile Jonquard actuellement magasins de commerce et station-service** — Lisieux (1950) — None
+- `ACR0000854` **Monuments aux morts** — Cherbourg-en-Cotentin (1931) — Rolez Émilie
+- `ACR0000855` **marché couvert** — Granville (1936) — Nillus, Guibourg R.
+- `ACR0000875` **maison La Tuilerie** — Cour-Maugis sur Huisne (1978) — Dumont Jacques, Leloup Philippe
+- `ACR0000889` **Maison dite villa Simon** — Dieppe (1930) — Féray Georges
+- `ACR0000906` **Abattoirs, aujourd'hui siège social SOGET** — Le Havre (1964) — Sardnal Théo
+- `ACR0000910` **immeubles en série** — Le Havre (1936) — Daigue Henri
+- `ACR0000930` **Poste** — Rouen (1938) — Audou Alfred, Hébert-Coëffin Josette
+- `ACR0000821` **Église Saint-Nicolas** — Aurseulles (1956) — Guignard Jean
+- `ACR0000845` **Monument aux morts commémoratif de la Résistance** — Saint-Etienne-l'Allier (1948) — None
+- `ACR0000846` **Sanatorium de la Musse** — Saint-Sébastien-de-Morsent (1930) — Bardin Joseph, Favier Marcel-Henri
+- `ACR0000856` **Église Saint-Martin** — Thèreval (1952) — Chapaud, Haguenauer, Simon
+- `ACR0000859` **Bureau de poste** — Montmartin-sur -Mer (1933) — None
+- `ACR0000869` **Église Saint-Michel** — Argentan (1968) — Meurice
+- `ACR0000870` **Hôtel de ville** — Argentan (1957) — Geffroy Roland
+- `ACR0000880` **Église Saint-Martin** — Bailly-en-Rivière (1953) — Féray Georges, Lanctuit, Duparcq
+- `ACR0000881` **Usine de construction électrique dite usine Claret puis société des Moteurs Electriques de Normandie** — Barentin (1956) — Blot
+- `ACR0000893` **Station de radiodétection de la Kriegsmarine** — Fécamp (1942) — Organisation Todt
+- `ACR0000894` **Établissement de bienfaisance dit Pavillon de l'Enfance** — Fécamp (1929) — Mauge Émile, Mauge Jacques
+- `ACR0000898` **Villas jumelles** — Grainville-la-Teinturière (1955) — None
+- `ACR0000899` **Usine à papier dite usine à papier Sonopa, puis la Chapelle Darblay** — Grand-Couronne (1928) — None
+- `ACR0000929` **Pont dit 2e pont Boieldieu** — Rouen (1955) — Saupique Georges, Baumel Jean
+- `ACR0000941` **Bac du Hode** — Saint-Vigor d’Ymonville (1929) — None
+- `ACR0000955` **Villa Cahuet** — Brive-la-Gaillarde (1954) — Jean Georges
+- `ACR0000984` **Guinguette Barnabé** — Boulazac Isle Manoire (1935) — Foussard Léopold
+- `ACR0000986` **Musée national de la préhistoire** — Les Eyzies (1994) — Buffi Jean-Pierre
+- `ACR0000987` **Centre hospitalier Dujarric-de-la-Rivière** — Périgueux (1950) — Beylard Daniel, Bouquerel Pierre, Cocula Paul
+- `ACR0000993` **villa Canopé** — La -Teste-de-Buch (1926) — Expert Roger-Henri
+- `ACR0000995` **Villa Kypris** — Arcachon (1926) — Expert Roger-Henri, Guérin Charles
+- `ACR0001022` **Maison Diamant** — Mérignac (1967) — Agora, Moreau Jean-Claude
+- `ACR0000938` **Ecole maternelle Kergomard** — Saint-Etienne-du-Rouvray (1927) — Billiez Robert, Ruquier Albert
+- `ACR0000959` **stade municipal** — Egletons (1936) — Blanchot René
+- `ACR0000964` **Bains-douches** — Aubusson (1927) — Huguet Félix, Mazet
+- `ACR0000975` **Ecole maternelle Jacques-Prévert** — Melle (1951) — Doray Jean, Barbarit R., Dejean de la Batie L.
+- `ACR0000990` **jardin de l'imaginaire** — Terrasson-Lavilledieu (1996) — Gustafson Kathryn, Marchand Philippe
+- `ACR0001000` **Crèche et bains-douches, actuellement salle des fêtes** — Bordeaux (1930) — Ferret Pierre
+- `ACR0001001` **École nationale de la magistrature** — Bordeaux (None) — 2007
+- `ACR0001002` **Établissement vinicole dit Établissement Calvet** — Bordeaux (1968) — Touzin Jacques, Bouillet Henri
+- `ACR0001019` **Batterie des Arros, GI307** — Le Verdon-sur-Mer (1941) — Organisation Todt
+- `ACR0001024` **Club Nautique** — Pauillac (1964) — Cauly Charles, Chassin André
+- `ACR0001029` **Institut régional du Travail social** — Talence (1971) — Lay Edmond
+- `ACR0000962` **Tour administrative** — Tulle (1971) — Sarrabezolles Jacques
+- `ACR0000966` **Château d'eau** — Boussac (1935) — Société auxiliaire d'entreprises électriques et travaux publics, Poulenat, Nicolaon Gabriel
+- `ACR0000985` **Maison Delanghe** — Champcevinel (1973) — Nouvel Jean
+- `ACR0001031` **centre international d'art et du paysage** — Beaumont-du-Lac (1980) — Rossi Aldo, Fabre Xavier
+- `ACR0000937` **Lotissement concerté des maisons américaines** — Sainte-Adresse (1945) — None
+- `ACR0000944` **Pont** — Tancarville (1955) — Lagrange M., Esquillan Nicolas, Huet M., Robinson F.
+- `ACR0000946` **Ecole élémentaire Marie-Curie** — La Couronne (1932) — Baleix Roger
+- `ACR0000960` **Barrage de l'Aigle** — Soursac (1939) — Coyne André, Decelle André, Brochet Lucien
+- `ACR0000971` **ateliers et bureaux Pinton** — Felletin (1973) — Willerval Jean
+- `ACR0000977` **Groupe scolaire La Mara** — Parthenay (1973) — Perdriault Henri, Bellanger Colette
+- `ACR0000980` **Halles** — Thouars (1925) — Bouchard Marcel, Burcier Julien
+- `ACR0000998` **Cité universitaire de Budos** — Bordeaux (1930) — D’Welles Jacques
+- `ACR0001005` **Piscine Galin** — Bordeaux (1940) — Gérard Jacques, Chassin André, Perrot Jean-Claude
+- `ACR0001027` **maison de M. Naturel : Villa Quand-même et Mépris** — Sainte-Hélène (1930) — None
+- `ACR0001036` **château d'eau de Beaubreuil** — Limoges (1976) — Bleuset Lionel
+- `ACR0001039` **Faculté de droit** — Limoges (1998) — Fuksas Massimiliano
+- `ACR0001051` **centre culturel Jean-Pierre Fabrègue** — Saint-Yrieix-la-Perche (1994) — Jeune le Yves, Sfez Jean-Pierre
+- `ACR0001057` **Pont de la Coudette** — Peyrehorade (1943) — Esquillan Nicolas
+- `ACR0001058` **salle des fêtes, ancien foyer municipal** — Roquefort (1935) — Bonnefous Franck, Danglade Lucien
+- `ACR0001071` **Inscription Maritime, ex Direction interdépartementale des Affaires maritimes, actuel espace d'exposition temporaire DIDAM** — Bayonne (1933) — Gomez Louis, Gomez Benjamin
+- `ACR0001082` **Entrée de la grotte** — Niaux (1993) — Fuksas Massimiliano
+- `ACR0001084` **cave coopérative vinicole** — Fleury (1937) — Herans Marcel
+- `ACR0001068` **ancien garage Nivadour** — Bayonne (1930) — Perret Henri, Hébrard, Grésy André
+- `ACR0001076` **Ateliers Courrèges** — Pau (1970) — Laaribeau Eric, Lamaison Jean-Michel
+- `ACR0001089` **cave coopérative vinicole** — Saint-Nazaire-d’Aude (1951) — Villeneuve René
+- `ACR0001100` **Groupe scolaire Puech-Cabrier** — Beaucaire (1965) — Vago Pierre
+- `ACR0001112` **Restaurant universitaire Saint-Césaire** — Nîmes (1970) — Massota Joseph
+- `ACR0001113` **Immeuble de logement social Nemausus** — Nîmes (1986) — Nouvel Jean, Ibos Jean-Marc
+- `ACR0001117` **Immeuble de la SADA, compagnie d’assurances** — Nîmes (1967) — Massota Joseph
+- `ACR0001135` **Restaurant universitaire Daniel-Faucher** — Toulouse (1949) — Valle Robert-Louis, Castaing Fabien, Viatgé Pierre
+- `ACR0001136` **Archives départementales de la Haute-Garonne** — Toulouse (1952) — Viatgé Pierre, Castaing Fabien, Viatgé Pierre
+- `ACR0001045` **Opéra théâtre** — Limoges (1956) — Sonrel Pierre, Campagne André, Villemain Paul, Lescure Raymond
+- `ACR0001056` **salle des fêtes, ancien foyer municipal** — Moustey (1939) — Bonnefous Franck
+- `ACR0001077` **Villa Lartigue** — Pau (None) — Lartigue
+- `ACR0001078` **Club-house du Golf de Chantaco** — Saint-Jean-de-Luz (1927) — Walter Jean
+- `ACR0001064` **Mairie** — Anglet (1935) — Marcel William, Cazaux Edouard, Lesquibe Jean, Pena de la José
+- `ACR0001065` **Villa Arguia** — Anglet (1927) — Siclis Charles
+- `ACR0001070` **Bâtiment des Douanes et des Ponts et Chaussées** — Bayonne (1934) — Gomez Louis, Gomez Benjamin
+- `ACR0001081` **Centrale hydroélectrique de Mérens** — Mérens-les-Vals (1965) — Villemur Jacques, Noyers de Paul
+- `ACR0001087` **cave coopérative vinicole de Montlaur** — Val-de-Dagne (1949) — Villeneuve René
+- `ACR0001091` **Viaduc autoroutier** — Millau;Creissels (1996) — Foster Norman, Foster and Partners, Virlojeux Michel
+- `ACR0001111` **Villa Costabel** — Milhaud (1962) — Pellier Armand
+- `ACR0001119` **Villa Serres** — Nîmes (1985) — Pellier Armand
+- `ACR0001125` **cave coopérative vinicole** — Souvignargues (1939) — Floutier Henri
+- `ACR0001038` **École nationale supérieure d'arts décoratifs** — Limoges (1994) — Michelin Nicolas, Geipel Finn
+- `ACR0001053` **chapelle de l’hôpital Layné** — Mont-de-Marsan (1937) — Bonnefous Franck, Danglade Lucien
+- `ACR0001061` **Pont** — Castelmoron-sur-Lot (1931) — Christiani et Nielsen
+- `ACR0001066` **Villa El Hogar actuellement salle communale** — Anglet (1924) — Marcel William
+- `ACR0001075` **Église Saint-Pierre** — Pau (1970) — Remondet André
+- `ACR0001083` **cave coopérative vinicole** — Coursan (1936) — Herans Marcel, Bres Paul
+- `ACR0001088` **cave coopérative vinicole** — Ouveillan (1936) — Ladousse Gaston
+- `ACR0001052` **Église de la Trinité** — Soorts-Hossegor (1951) — Durand Bernard, Lesquibe Jean, Carrière Charles
+- `ACR0001059` **Maison Fargues** — Saint-Paul-lès-Dax (1969) — Hondelatte Jacques, Duprat Jean-Claude, Fagart Laurent
+- `ACR0001067` **Villa Le Bungalow** — Anglet (1929) — Pavlossky André
+- `ACR0001069` **Hôtel des Postes** — Bayonne (1930) — Soupre Jean, Soupre Joseph, Godefroy Jean
+- `ACR0001073` **Villa Malaye** — Bayonne (1931) — Gomez Louis, Gomez Benjamin
+- `ACR0001093` **Maison Moulin** — Aigues-Mortes (1973) — Pellier Armand
+- `ACR0001107` **cave coopérative vinicole** — Domessargues (1945) — Floutier Henri
+- `ACR0001110` **collège mixte, actuelle cité scolaire André-Chamson** — Le Vigan (1953) — Chabanne Ernest-Ferdinand, Pierredon Maurice-Louis
+- `ACR0001114` **maison des compagnons** — Nîmes (1969) — Pellier Armand
+- `ACR0001116` **atelier Pellier** — Nîmes (1963) — Pellier Armand
+- `ACR0001124` **Ecole prototype à une classe** — Saint-Dionisy (1950) — Mazet Claude-Charles
+- `ACR0001042` **immeuble des PTT (ancienne résidence du collège)** — Limoges (1931) — Geay Louis-Charles-Henry
+- `ACR0001050` **pont du Dognon** — Saint-Laurent-les-Églises (1929) — Société des forces motrices de la Vienne
+- `ACR0001054` **Arênes du Plumaçon** — Mont-de-Marsan (1933) — Bonnefous Franck
+- `ACR0001074` **Magasin de commerce, Hôtel de voyageurs dit La Maison Basque** — Biarritz (1924) — Marcel William
+- `ACR0001060` **Batterie de l'Adour** — Tarnos (1943) — Organisation Todt
+- `ACR0001080` **musée Sainte-Croix** — Poitiers (1969) — Monge Jean
+- `ACR0001090` **cave coopérative vinicole** — Villeneuve-les-Corbières (1948) — Villeneuve René
+- `ACR0001092` **Bains-douches municipaux** — Villefranche-de-Rouergue (1936) — Masini Achille, Huc Léon
+- `ACR0001103` **Villa Fauquier** — Caissargues (1980) — Pellier Armand
+- `ACR0001104` **cave coopérative vinicole** — Canaules-et-Argentières (1947) — Floutier Henri
+- `ACR0001121` **lycée agricole et Centre de formation agricole (CFPPA)** — Rodilhan (1965) — Massota Joseph
+- `ACR0001127` **Foyer municipal de Gallician** — Vauvert (1958) — Pellier Armand
+- `ACR0001142` **Grand magasin les Nouvelles Galeries** — Toulouse (1960) — Dubard de Gaillarbois André, Dory Antoine, Mailhe René
+- `ACR0001143` **Hôtel central des Postes** — Toulouse (1939) — Thuriès Pierre
+- `ACR0001105` **La Compagnie rhodanienne** — Castillon-du-Gard (1963) — Massota Joseph
+- `ACR0001122` **Crédit agricole** — Saint-Ambroix (1978) — Pellier Armand
+- `ACR0001130` **École de garçons** — Boulogne-sur-Gesse (1933) — Gilet Joseph
+- `ACR0001133` **Villa Chancholle** — Poucharramet (1968) — Castaing Fabien
+- `ACR0001134` **Internat du lycée agricole de Saint-Gaudens** — Saint-Gaudens (None) — Fabrique d'architecture Joseph Almudever, Almudever Joseph, Lefebvre Christian
+- `ACR0001094` **cave coopérative vinicole** — Aigues-Vives (1937) — Floutier Henri
+- `ACR0001095` **ancien Crédit agricole, actuellement Mairie PRIM'** — Alès (1972) — Massota Joseph
+- `ACR0001096` **cave coopérative vinicole** — Aubais (1939) — Floutier Henri
+- `ACR0001118` **Villa Comte** — Nîmes (1977) — Pellier Armand
+- `ACR0001137` **Château d’eau de l’hôpital Marchant** — Toulouse (1963) — Debeaux Pierre
+- `ACR0001139` **Cité universitaire Daniel Faucher** — Toulouse (1949) — Valle Robert-Louis, Castaing Fabien, Viatgé Pierre
+- `ACR0001141` **ENSICA (école nationale supérieure d'ingénieurs de constructions aéronautiques)** — Toulouse (1928) — Lemaresquier Charles, Lemaresquier Noël
+- `ACR0001145` **Pont Saint-Michel** — Toulouse (1955) — Freyssinet Eugène
+- `ACR0001147` **institut d'optique électronique** — Toulouse (1958) — Montagne Camille
+- `ACR0001151` **Villa Chanfreau** — Toulouse (1964) — Debeaux Pierre
+- `ACR0001101` **Villa atelier de Paule-Pascal** — Bouillargues (1972) — Pellier Armand
+- `ACR0001123` **cave coopérative vinicole** — Saint-Christol-les-Alès (1926) — Pierredon Louis
+- `ACR0001126` **cave coopérative vinicole de Gallician** — Vauvert (1952) — Floutier Henri
+- `ACR0001131` **Usine des eaux de Clairfont** — Portet-sur-Garonne (1966) — Josic Alexis
+- `ACR0001132` **Villa Espagno** — Portet-sur-Garonne (1968) — Castaing Fabien
+- `ACR0001144` **Maison Pilette** — Toulouse (1924) — Pilette Edmond
+- `ACR0001108` **Domaine de l’Espiguette (Sicarex – Antav) et logements** — Le Grau-du-Roi (1969) — Massota Joseph
+- `ACR0001115` **maison Pellier** — Nîmes (1952) — Pellier Armand
+- `ACR0001153` **Barrage de Cap-de-Long** — Aragnouet (1950) — Coyne André, Bellier Jean
+- `ACR0001162` **Centre hélio-marin Oltra** — Agde (1972) — Lopez François, Pypops C., Rebillard C., Ribet J., Bonnefoy C., Coste François
+- `ACR0001184` **Musée Paul-Valéry** — Sète (1970) — Guillaume Guy
+- `ACR0001150` **Villa Bachelot** — Toulouse (1967) — Bachelot Bernard
+- `ACR0001152` **Villa Moussion** — Vigoulet-Auzil (1969) — Gardia Paul, Zavagno Maurice
+- `ACR0001155` **Paravalanche de Castillon (ou de la Mongie)** — Bagnères-de-Bigorre (1959) — Esquillan Nicolas
+- `ACR0001159` **Centre culturel et sportif Léo Lagrange** — Séméac (1955) — Fourcaud Raoul
+- `ACR0001164` **VVF Belambra Club "Les Rives de Thau** — Balaruc-les-Bains (1969) — Gomis André, Huidobro Bernard, Tloupas Philolaos
+- `ACR0001178` **colonne d’équilibrage de l’aqueduc Saint-Clément** — Montpellier (1935) — Bernard Elie-Marcel
+- `ACR0001183` **Couvent des Dominicaines des Tourelles** — Saint-Mathieu-de-Tréviers (1972) — Gleb Thomas, Colboc-Lions Geneviève, Thellier Gil
+- `ACR0001172` **Cité universitaire des Arceaux** — Montpellier (1930) — Bernard Elie-Marcel
+- `ACR0001158` **Centrale hydroélectrique de Pragnères** — Gavarnie-Gèdre (1953) — Appia Georges
+- `ACR0001170` **Restaurant universitaire du Vert-Bois** — Montpellier (1966) — Jaulmes Philippe, Deshons Jean-Claude
+- `ACR0001180` **Kiosque Bosc** — Montpellier (1926) — Bernard Elie-Marcel
+- `ACR0001186` **villa solaire de Mme Pécout** — Sète (1986) — Chave Gérard, Cedat S.
+- `ACR0001173` **Église Saint Esprit** — Montpellier (1968) — Pigeire Marcel, Blanchet Léon, Ducros
+- `ACR0001182` **Tour Triangle** — Montpellier (1973) — AUA Montpellier, Crouzet Robert, Michel Jean-Louis, Tourre Pierre, Stapels René
+- `ACR0001190` **Village de vacances** — Prayssac (1966) — Remondet André, La Brunerie de Henri, Malizard André
+- `ACR0001204` **Villa Espel** — Perpignan (1965) — Abelanet Maurice
+- `ACR0001193` **immeuble** — Perpignan (1939) — Charpeil Julien
+- `ACR0001195` **immeuble de la DDE** — Perpignan (1941) — Berthier Joseph, Mas Chancel Édouard
+- `ACR0001210` **Barrage hydroélectrique** — Rivières (1948) — Campenon Bernard et Cie, Campenon Edmé, Bernard André
+- `ACR0001243` **école des Violettes** — Saumur (1936) — Henin Jean
+- `ACR0001244` **Archives départementales** — Laval (1992) — Perrault Dominique, Heude Alfred
+- `ACR0001246` **Extension de l'hôtel de ville** — La Flèche (1994) — Fainsilber Adrien, Korenbaum Roland, Bodinier Philippe
+- `ACR0001163` **Groupe scolaire "Les mûriers** — Alignan-du-Vent (1954) — Mazet Claude-Charles
+- `ACR0001220` **Hôtel La Pérouse** — Nantes (1993) — Barto Clotilde, Barto Bernard, Mazeron Pierrick
+- `ACR0001224` **Blockhaus de la Pointe Saint-Gildas** — Préfailles (1942) — Organisation Todt
+- `ACR0001234` **ancienne base de sous-marins** — Saint-Nazaire (1942) — Organisation Todt
+- `ACR0001248` **Les Galeries Lafayette, anciennement Les Dames de France** — Le Mans (1925) — Le Ray Emmanuel
+- `ACR0001157` **Bâtiment d’accueil du parc national des Pyrénées** — Cauterets (1995) — Huet Bernard
+- `ACR0001160` **Immeuble Le Navarre** — Tarbes (1964) — Lay Edmond
+- `ACR0001165` **Villa Urbani** — Castelnau-le-Lez (1983) — Grégori Guy
+- `ACR0001168` **campus université Paul-Valéry** — Montpellier (1962) — Egger René, Jaulmes Philippe, Deshons Jean-Claude
+- `ACR0001212` **Église Saint-Hermeland** — Bouaye (1957) — Boquien Jean, Ganuchaud Georges
+- `ACR0001196` **Maison** — Perpignan (1939) — Muchir Férid
+- `ACR0001211` **Mairie-école** — Albefeuille-Lagarde (1930) — Hoekstra J.
+- `ACR0001227` **Blockhaus du Pointeau** — Saint-Brevin-les-Pins (1942) — Organisation Todt
+- `ACR0001231` **Église Saint-Gohard** — Saint-Nazaire (1954) — Guillou André, Ganuchaud Georges, Fleury
+- `ACR0001154` **Barrage de Migouélou** — Arrens-Marsous (1956) — Coyne André, Bellier Jean
+- `ACR0001236` **bibliothèque municipale Toussaint** — Angers (1978) — Mornet Philippe
+- `ACR0001245` **Monastère du Carmel** — Laval (1965) — Marconnet Michel
+- `ACR0001156` **Siège de l'Observatoire du Pic du Midi de Bigorre** — Bagnères-de-Bigorre (1957) — Debeaux Pierre
+- `ACR0001166` **piscine Tournesol Joseph di Stefano** — Frontignan (1975) — Schoeller Bernard
+- `ACR0001169` **Restaurant universitaire du Triolet** — Montpellier (1963) — Jaulmes Philippe, Deshons Jean-Claude, Rouan François
+- `ACR0001171` **Unité d'architecture pédagogique, école d'architecture ENSA de Montpellier** — Montpellier (1976) — Gallix Édouard, Rueg Michel, Doumenc Luc, Leccia Jean-Jacques, Rey Jean-Pierre, Szczot Frédéric
+- `ACR0001174` **Immeuble de bureaux Cransac** — Montpellier (1984) — Fontès François, Gardia Serge
+- `ACR0001175` **ancien institut de chimie, actuellement Ecole nationale supérieure de chimie de Montpellier** — Montpellier (1931) — Bernard Elie-Marcel
+- `ACR0001188` **villa Brun-Gérente** — Sussargues (1975) — Grégori Guy
+- `ACR0001189` **École** — Gigouzac (1948) — Abraham Hippolyte, dit : Pol Abraham
+- `ACR0001176` **Ancienne mairie de Montpellier** — Montpellier (1975) — Jaulmes Philippe, Deshons Jean-Claude
+- `ACR0001194` **immeuble Monoprix** — Perpignan (1939) — Muchir Férid
+- `ACR0001229` **Château d'eau du Moulin du Pé** — Saint-Nazaire (1954) — None
+- `ACR0001232` **Les Halles** — Saint-Nazaire (1956) — Dommée Claude
+- `ACR0001239` **Maison Musset** — Beaupréau-en-Mauges (1968) — Pierrès Francis
+- `ACR0001242` **Blockhaus du château de Pignerolle** — Saint-Barthélémy d’Anjou (1942) — Organisation Todt
+- `ACR0001266` **Musée national Fernand-Léger** — Biot (1956) — Svetchine André
+- `ACR0001273` **Théâtre de plein air Jean-Cocteau** — Cap-d'Ail (1960) — Cocteau Jean
+- `ACR0001198` **Maison Maury** — Perpignan (1934) — Muchir Férid, Joffre Alfred
+- `ACR0001205` **ancienne cave vinicole Byrrh** — Rivesaltes (1926) — None
+- `ACR0001240` **Église** — Ingrandes-Le Fresne sur Loire (1954) — Lesenechal François
+- `ACR0001260` **Silo** — Riez (1937) — Bernard
+- `ACR0001265` **Chalet Capron** — Beuil (1960) — Buzzi Georges
+- `ACR0001271` **ancien siège syndical de la CGT** — Cannes (1960) — Brante Michel (architecte, Vollenweider Gérard
+- `ACR0001283` **Musée Chagall** — Nice (1962) — Hermant André
+- `ACR0001284` **Palais Mary** — Nice (1939) — Arsenian Kevork
+- `ACR0001192` **Atelier de l’artiste Bausil dit La Maison Rouge** — Perpignan (1925) — Castan Raoul
+- `ACR0001197` **Maison Bressac** — Perpignan (1949) — Muchir Férid
+- `ACR0001206` **Église Notre-Dame-d'Espérance** — Castres (1959) — Sacquin Gérard
+- `ACR0001207` **Église Saint-Joseph de Laden** — Castres (1968) — Benne Maurice
+- `ACR0001214` **Église Notre-Dame-de-Grâce** — None (1950) — Ganuchaud Georges
+- `ACR0001235` **Église** — Blain (1950) — Liberge Yves
+- `ACR0001238` **Les Galeries Lafayette, anciennement Nouvelles Galeries** — Angers (1901) — Lamaizière Léon, Martin Auguste, Laville
+- `ACR0001257` **Ouvrage de Restefond** — Jausiers (1931) — Commission d'organisation des Régions fortifiéesFilloneau, Belhague
+- `ACR0001263` **Villa Aujourd'hui** — Antibes (1938) — Dierks Barry, Patout Pierre, Expert Roger-Henri, Goffi Isidore, V.L., Capron Roger
+- `ACR0001293` **Viaduc d'Erbossiera** — Peille (1928) — Sejourne Paul
+- `ACR0001221` **Immeuble Delamarre** — Nantes (1934) — None
+- `ACR0001223` **Marché de Talensac** — Nantes (1934) — Le Guillou Jean, Vié Henri, Desfontaines
+- `ACR0001225` **église Notre-Dame-du-Rosaire** — Rezé (1960) — Rouquet Jean
+- `ACR0001226` **Hôtel de ville** — Rezé (1987) — Anselmi Alessandro
+- `ACR0001268` **halle dite marché Forville** — Cannes (1929) — Bret Henri
+- `ACR0001279` **VVF "" Le Clavary** — Grasse (1958) — Deroche Jean, Fabre Valentin, Perrotet Jean, Corajoud Michel
+- `ACR0001296` **Unité de retraite "Riviera 2** — Saint-Cézaire-sur-Siagne (1970) — Bize Georges, Ducollet Jacques
+- `ACR0001253` **Blockhaus** — Noirmoutier-en-l'Île (1942) — Organisation Todt
+- `ACR0001251` **usine de transformateurs BC, puis usine Horoquartz** — Fontenay-le-Comte (1967) — Mathieu Georges, Epardaud Raymond
+- `ACR0001252` **Blockhaus** — La Guérinière (1942) — Organisation Todt
+- `ACR0001255` **Unité fonctionnelle scolaire de l'Institution Saint-Gabriel** — Saint-Laurent-sur-Sèvres (1971) — Pierrès Francis
+- `ACR0001292` **Chapelle Saint-Martin** — Peille (1950) — Buzzi Georges
+- `ACR0001314` **cité universitaire Abram** — Aix-en-Provence (1935) — Castel Gaston
+- `ACR0001325` **Hôtel Les Cabanettes** — Arles (1965) — Pellier Armand
+- `ACR0001299` **Fondation Maeght** — Saint-Paul-de-Vence (1964) — Sert José Lluis
+- `ACR0001249` **Zara, anciennement Les Dames de France** — Le Mans (1939) — Grigné Henri
+- `ACR0001264` **Villa" La Calade** — Antibes (1937) — Cavallin César, Adnet Jacques
+- `ACR0001295` **silos de la carrière** — Saint-André-de-la-Roche (1964) — Toscan Honoré
+- `ACR0001324` **Église Saint-Pierre de Trinquetaille** — Arles (1952) — Vago Pierre, Van Migom Jacques
+- `ACR0001302` **Palais Bulles** — Théoule (1979) — Lovag Antti
+- `ACR0001305` **le Grand Palais** — Vallauris (1926) — Varthaliti Léonard
+- `ACR0001307` **villa Les Jacarandas** — Villefranche-sur-Mer (1978) — Brante Michel, Vollenweider Gérard
+- `ACR0001254` **Ancienne colonie de vacances de Bezons** — Saint-Hilaire-de-Riez (1969) — Santeff Yvan
+- `ACR0001261` **Église du Sacré-Cœur** — Antibes (1957) — Haury Maurice
+- `ACR0001294` **Tombe de Le Corbusier** — Roquebrune-Cap-Martin (1957) — Jeanneret Charles-Édouard, dit : Le Corbusier
+- `ACR0001300` **Fort Saint-Roch** — Sospel (1940) — None
+- `ACR0001328` **Villa Benkemoun** — Arles (1971) — Sala Emile, Jouve Alain
+- `ACR0001267` **Gare maritime** — Cannes (1952) — "Buzzi Georges, Lambelin Guy, Capron Roger"
+- `ACR0001270` **Observatoire de la Californie ou de Super-Cannes** — Cannes (1929) — Sauvan Georges
+- `ACR0001274` **piscine Tournesol** — Carros (1955) — Schoeller Bernard
+- `ACR0001281` **Faculté de lettres** — Nice (1964) — Lagneau Guy, Weil Michel, Dimitrijevic et associés Jean
+- `ACR0001301` **Gare de Saint-Dalmas-de-Tende** — Tende (1925) — None
+- `ACR0001306` **clinique Les Cadrans solaires (centre de broncho-pneumologie)** — Vence (1965) — Daher Guy, Offenstein Yves
+- `ACR0001321` **Restaurant Le Bouddoir (devanture), anciennement restaurant Malta** — Aix-en-Provence (1950) — Amado Jo, Amado Jean
+- `ACR0001322` **Centre sportif et scolaire Fernand Fournier** — Arles (1952) — Van Migom Jacques, Van Migom Michel, Pelissier Jean
+- `ACR0001327` **Villa Bank** — Arles (1971) — Sala Emile, Jouve Alain
+- `ACR0001361` **silo à grains dit silo d'Arenc** — Marseille 2e Arrondissement (1926) — Froment-Clavier
+- `ACR0001384` **Centre paroissial du Cabot Rouvière** — Marseille 9e (1973) — Delarozière Benoît
+- `ACR0001387` **immeuble de bureaux dit Immunotech** — Marseille 9e Arrondissement (1966) — Besson André, Bruynel André, Siame Jean-Pierre
+- `ACR0001391` **Ensemble Notre-Dame-des-Marins et école maternelle Di Lorto** — Martigues (1967) — Atelier Delta, Averous Pierre, Ecochard Michel, Bonnel Yves, Dallest LouisPerrachon Raymond, Tarrazi Bernard
+- `ACR0001396` **Villa Noël** — Noves (1974) — Pellier Armand
+- `ACR0001409` **Hôpital architecture militaire d’héliothérapique du fort du Château,** — Briançon (1925) — ministère des armées
+- `ACR0001381` **Piscine Tournesol de Bonneveine** — Marseille 8e Arrondissement (1970) — Schoeller Bernard
+- `ACR0001383` **Tour FR3** — Marseille 8e Arrondissement (1954) — Lajarrige Joseph, Poutu Louis, Michelis Eugène
+- `ACR0001395` **Les Aires** — Maussane-les-Alpilles (1968) — Bruyère André
+- `ACR0001402` **Silo** — Trets (1932) — Salomon Georges
+- `ACR0001379` **immeuble Cantini** — Marseille 8e Arrondissement (1955) — Dunoyer de Segonzac André-Jacques, Dabat Roger
+- `ACR0001394` **Tétrodon** — Martigues (1972) — Agence AUA, Berce Jacques, Tribel-Heinz Annie, CIRIANI Henri
+- `ACR0001398` **Ecole Jules-Ferry** — Tarascon (1948) — Vago Pierre, Guesnot Pierre, Guesnot Marcel
+- `ACR0001410` **Fermes de la reconstruction** — Cervières (1950) — Panaskhet Achille, de
+- `ACR0001332` **Tour de vigie-réservoir, dite la clef à molette** — Fos-sur-mer (1966) — Jaubert Gaston, Lopez J.
+- `ACR0001351` **Centre hospitalier Édouard Toulouse** — Marseille 15e Arrondissement (1955) — Sourdeau Jean-Louis, Egger René, Crozet Jean Senes Victor
+- `ACR0001359` **Librairie Tacussel (devanture) ancienne** — Marseille 1er arrondissement (1933) — Amado Jean, Sourdive Frédéric, Mouren F., Malgaud H.
+- `ACR0001376` **Notre-Dame du Roucas Blanc** — Marseille 7e Arrondissement (1961) — Genton Pierre
+- `ACR0001390` **Synagogue Tiferet-Israël** — Marseille 9e Arrondissement (1969) — Boukobza Fernand
+- `ACR0001400` **Le Panoramique (ancien centre civique)** — Tarascon (1962) — Vago Pierre, Guesnot Pierre, Guesnot Marcel, Pierre Léon
+- `ACR0001405` **Stadium** — Vitrolles (1990) — Ricciotti Rudy
+- `ACR0001406` **ancien sanatorium Grand Hôtel des Neiges** — Briançon (1931) — Joullie Henri, Bissuel Joseph
+- `ACR0001411` **Ouvrage Maginot des Aittes** — Cervières (1932) — ministère de la Guerre
+- `ACR0001421` **Chalet** — Saint-Bonnet-en-Champsaur (1955) — Chirié Eugène, Barrera Pierre
+- `ACR0001455` **Caisse d'épargne** — Toulon (1969) — Henry Alfred, Chapon Jacques, Beauregard Jean
+- `ACR0001443` **maison dite villa Les Alizés** — Le Lavandou (1951) — Blanc Maurice, Bentz J-P.
+- `ACR0001470` **Crédit agricole** — Orange (1975) — Bourgoin Max
+- `ACR0001471` **Anciennes installations architecture militaires du plateau d'Albion** — Rustrel (1966) — None
+- `ACR0001424` **Prototype de groupe scolaire** — Saint-Jacques-en-Valgaudemar (1950) — Le Même Henry Jacques
+- `ACR0001445` **Centre artistique et culturel de Châteauvallon** — Ollioules (1965) — Komatis Henri
+- `ACR0001459` **Palais Paris France** — Toulon (1950) — Montaut de Pierre, Gorska Adrienne, Lajarrige Joseph, Poutu Louis
+- `ACR0001419` **Usine hydroélectrique des Claux** — Vallouise-Pelvoux (1929) — Planche Gilbert
+- `ACR0001452` **le Palais des Sirènes** — Sainte-Maxime (1929) — Bret Henri
+- `ACR0001469` **Coopérative vinicole du Luberon** — Maubec (1925) — Usclat, Guichard
+- `ACR0001330` **La Fenouillère, direction technique de la SPSE** — Fos-sur-mer (1968) — Calsat Henri-Jean
+- `ACR0001308` **Villa Laude et Dujardin** — Villefranche-sur-Mer (1964) — Rottier Guy
+- `ACR0001315` **École supérieure d'art d'Aix-en-Provence Félix Ciccolini** — Aix-en-Provence (1974) — Pradel-Lebar Claude
+- `ACR0001329` **Villa Vaché** — Arles (1965) — Quintrand Paul
+- `ACR0001331` **Tétrodon, habitat mobile** — Fos-sur-mer (1960) — Atelier d'Urbanisme et d'Architecture, Ciriani Henri, Berce Jacques
+- `ACR0001336` **Chantiers navals** — La Ciotat (1950) — None
+- `ACR0001310` **Villa Barberis** — Villeneuve-Loubet (1962) — Rottier Guy
+- `ACR0001334` **immeuble dit HBM Frédéric Mistral** — Istres (1929) — Clermont François, Bossu Auguste
+- `ACR0001340` **ancienne usine Rivoire et Carret** — Marseille 11e Arrondissement (1925) — Faure Germain, Atelier de Montgrand, Buisson, Scampini, Pasqua
+- `ACR0001365` **Cité universitaire Gaston Berger** — Marseille 3e Arrondissement (1960) — Berthelot Jacques
+- `ACR0001388` **Maison des jeunes de la Pauline** — Marseille 9e Arrondissement (1962) — Averous Pierre
+- `ACR0001401` **Lycée Alphonse-Daudet** — Tarascon (1935) — Lyon Henri, Castel Gaston, Castel Ello, Castel Yves
+- `ACR0001416` **Forteresse du Janus** — Montgenèvre (1931) — ministère de la Guerre
+- `ACR0001427` **Pont de l'Artuby** — Aiguines (1937) — Caquot Bernard, Pelnard Considère et Caquot, Thorrand et Cie
+- `ACR0001341` **immeuble dit HBM Eugène-Michelis** — Marseille 11e Arrondissement (1934) — Castel Gaston
+- `ACR0001373` **Compagnie lyonnaise Immobilière** — Marseille 7e Arrondissement (1965) — Atelier Delta, Bonnel Yves, Dallest Louis, Averous Pierre, Perrachon Raymond, Tarrazi Bernard
+- `ACR0001382` **Immeuble Le Brasilia** — Marseille 8e Arrondissement (1957) — Boukobza Fernand
+- `ACR0001399` **Hôpital** — Tarascon (1967) — Guesnot Pierre, Guesnot Marcel, Laborde Pierre, Claude Robert
+- `ACR0001418` **Chalets "Les Perchoirs** — Orcières (1964) — Dufayard Georges
+- `ACR0001430` **Villa l'Esquilette** — Bormes-les- Mimosas (1964) — Johnson Philip
+- `ACR0001367` **Faculté de médecine de La Timone** — Marseille 5e (1955) — Egger René, Boudard Yannic
+- `ACR0001375` **Les Alpilles** — Marseille 7e Arrondissement (1974) — Jameux Pierre
+- `ACR0001377` **Rowing-Club** — Marseille 7e Arrondissement (1964) — Atelier Delta, Bonnel Yves, Dallest Louis, Averous Pierre, Perrachon Raymond, Tarrazi Bernard
+- `ACR0001404` **pavillon tropical métallique Fillod** — Vitrolles (1951) — Fillod Ferdinand
+- `ACR0001417` **Ouvrage Maginot du Gondran E** — Montgenèvre (1933) — ministère de la Guerre
+- `ACR0001433` **Coopérative vinicole dite cave coopérative La Fréjussienne** — Fréjus (1925) — Draperi Henri
+- `ACR0001438` **maison dite Villa Sylvacanne** — La Seyne-sur-Mer (1939) — Rougeul Robert
+- `ACR0001441` **maison dite villa Altair** — Le Lavandou (1958) — Lefèvre Devaux André, Aubert Jean
+- `ACR0001366` **Le Marceau** — Marseille 3e Arrondissement (1964) — Gros Claude
+- `ACR0001386` **Église de la Pauline (Sainte-Emilie de Vialar)** — Marseille 9e Arrondissement (1961) — Averous Pierre
+- `ACR0001397` **Les Astragales** — Sausset-les-Pins (1966) — Bruyère André
+- `ACR0001407` **Centre médical Le Bois de l'Ours (ancien sanatorium)** — Briançon (1934) — None
+- `ACR0001450` **L'Arbois** — Sainte-Maxime (1933) — Darde René
+- `ACR0001456` **Chapelle de la Transfiguration** — Toulon (1967) — Mattio Jean-Gérard
+- `ACR0001460` **Piscine du Port-Marchand** — Toulon (1970) — Henry Alfred, Mattio Jean-Gérard
+- `ACR0001442` **maison dite Villa Le Pin-Blanc** — Le Lavandou (1958) — Lefèvre Devaux André
+- `ACR0001462` **immeuble dit résidence San Miguel** — Avignon (1968) — Bourgoin Max
+- `ACR0001466` **Piscine couverte** — Carpentras (1931) — Christol Jean
+- `ACR0001453` **Maison Fontanelatto** — Sainte-Maxime (1926) — Bret Henri
+- `ACR0001464` **poste dit hôtel des postes cours Kennedy** — Avignon (1948) — Chirié Eugène, Chirié Pierre, Chirié Jacques
+- `ACR0001465` **lycée Victor-Hugo** — Carpentras (1925) — Busquet Léopold
+- `ACR0001473` **Aéroport Roland-Garros** — Sainte-Marie (1975) — Frizel Wladimir
+- `ACR0001551` **Auditorium** — Royan (1961) — Maillard Henri-Pierre, Jourdain Armand
+- `ACR0001586` **Presbytère de l'église Notre-Dame des Pins du Petit Piquey** — Lège-Cap-Ferret (1971) — Salier, Courtois & Lajus
+- `ACR0001475` **Immeuble d’habitation** — Brest (1939) — Freyssinet Aimé
+- `ACR0001539` **Pont La Fayette** — Paris 10e Arrondissement (1927) — Pelnard-Considère & Caquot, Caquot Albert
+- `ACR0001540` **Dôme de Paris (ancien palais des sports)** — Paris 15e Arrondissement (1959) — Dufau Pierre, Parjadis de la Rivière Victor
+- `ACR0001549` **Vaisseau Moebius, Cité internationale de la bande dessinée et de l'image** — Angoulême (1990) — Castro-Denissof, Castro Roland, Remond Jean
+- `ACR0001569` **Hôtel de ville-poste-café-halle de Villemur-sur-Tarn** — Villemur-sur-Tarn (1935) — Thillet Joseph
+- `ACR0001575` **Coopérative agricole départementale de la Sarthe** — Château-du-Loir (1937) — Charles Rabut, Coopérative agricole de la Guierche
+- `ACR0001478` **Pont suspendu sur la Loire** — Meung-sur-Loire (1925) — None
+- `ACR0001543` **Ministère de l’air et école nationale supérieure de l’aéronautique (ancienne cité de l’air)** — Paris 15e Arrondissement (1929) — Tissier Léon, Pène Louis, Agence 234
+- `ACR0001559` **Villa Sirius** — Bayonne (1929) — Hiriart Joseph, Lafaye François, Gruber Jacques
+- `ACR0001555` **Hôtel Saint-James** — Bouliac (None) — 2007
+- `ACR0001580` **Église Saint-Bernard-des-Sablons** — Le Mans (1977) — Ducellier Bernard, Prebay Alain, Association diocésaine du Mans
+- `ACR0001581` **Chevalement de mine Saint-Michel ; Epagne** — Saint-Maurice-des-Noues (1947) — Société des Mines de Faymoreau
+- `ACR0001550` **Galerie Botton** — Royan (1956) — Maillard Henri-Pierre, Jourdain Armand
+- `ACR0001567` **Immeuble et garage Citroën** — Toulouse (1956) — 3A, Castaing Fabien, Viatge Pierre, Debeaux Pierre, Labat Alexandre, Bescos MichelNoyers de Paul
+- `ACR0001570` **Observatoire du Pic du Midi ; bâtiment interministériel du Pic du Midi** — Bagnères-de-Bigorre (1959) — Debeaux Pierre
+- `ACR0001577` **Chapelle de la congrégation des sœurs de la Providence de Ruillé** — Le Mans (1960) — Leroux-Hugon Joseph, Commissaire Henri, Congrégation des Sœurs de la Providence de Ruillé
+- `ACR0001578` **Église Saint-Liboire** — Le Mans (1961) — Lagrange Jean-Louis, Association diocésaine du Mans
+- `ACR0001583` **Marines : résidence La Brigantine et résidence La Galiote** — Cogolin (1971) — Atea-Setap, Lagneau Guy, Weill Michel, Dimitrijevic Jean
+- `ACR0001587` **musée Vesunna** — Périgueux (1959) — 2020
+- `ACR0001554` **Commissariat de police** — Bordeaux (1928) — Picard Marcel
+- `ACR0001571` **Maison Cafournelle** — Montauban (1969) — Algayres Jean
+- `ACR0001572` **Centre d'art et de design La Cuisine** — Nègrepelisse (2008) — RCR Arquitectes, Aranda Rafael, Pigem Carme, Vilalta Ramon
+- `ACR0001538` **Hôpital Beaujon** — Clichy-la-Garenne (1932) — Walter Jean, Cassan Urbain, Plousey Louis
+- `ACR0001545` **Forum des Halles (super structure de la place carrée, rue du cinéma et de la piscine Berlioux)** — Paris 1er Arrondissement (1979) — Chemetov Paul, Chauvelin Gérard, Guardigli Luigi
+- `ACR0001553` **Villa Palissy** — Brive-la-Gaillarde (1931) — Macary François, Macary Louis
+- `ACR0001576` **Église Sainte-Thérèse** — Le Mans (1955) — Vago Pierre, Association diocésaine du Mans
+- `ACR0001548` **Garage de réparation automobile Citroën puis Peugeot** — Louviers (1932) — Ravazé Maurice-Jacques
+- `ACR0001557` **Bains douches** — Rochechouart (1933) — None
+- `ACR0001565` **Ancienne usine Job** — Toulouse (1937) — Thuriès Antoine
+- `ACR0001476` **Immeuble d’habitation, dit immeuble Tomine** — Rennes (1934) — Le Moine Yves, Tomine
+- `ACR0001477` **Pont suspendu sur la Loire** — Châtillon-sur-Loire (1928) — Baudin-Châteauneuf
+- `ACR0001542` **Parc André Citroën** — Paris 15e Arrondissement (1985) — Clément Gilles, Provost Allain, Berger Patrick, Jodry Jean-François, Viguier Jean-Paul
+- `ACR0001546` **Passerelle Léopold-Sedar Senghor** — Paris 1er Arrondissement-7e (1997) — Mimram Marc
+- `ACR0001558` **Piscine Tournesol** — Biscarosse (1970) — Schoeller Bernard
+- `ACR0001563` **Maison Sztulman** — Pin-Balma (1974) — Groupe Coopérative d'Architecture GCA, Dubourg Jean-Philippe, Barrué Michel, Tiné Gérard
+- `ACR0001579` **Église du Christ-Sauveur** — Le Mans (1965) — Lagrange Jean-Louis, Pelnard-Considère, Association diocésaine du Mans
+- `ACR0001592` **Centre artisanal** — Évry-Courcouronnes (1976) — Bastid Dominique, Bazaud Patrice, Gravayat Michel
+- `ACR0001593` **Gare** — Évry-Courcouronnes (1977) — Hamburger Bernard
+- `ACR0001624` **Lycée Marcelin Berthelot** — Saint-Maur-des-Fossés (1938) — Lotte Maurice
+- `ACR0001633` **Lycée Claude Bernard et son gymnase** — Paris 16e Arrondissement (1938) — Umbdenstock Gustave
+- `ACR0001634` **Lycée La Fontaine** — Paris 16e Arrondissement (1938) — Héraud Gabriel
+- `ACR0001635` **Lycée Balzac et son gymnase** — Paris 17e Arrondissement (1958) — Paquet Jean-Pierre
+- `ACR0001600` **Patinoire François Le Comte** — Évry-Courcouronnes (1975) — Couteur Jean le
+- `ACR0001619` **Lycée Germaine Tillon** — Le Bourget (2014) — Contresti Toussaint, Luciani Charles, Hubert et Ruy
+- `ACR0001628` **Lycée Auguste Rodin** — Paris 13e Arrondissement (1964) — Demaret Jean
+- `ACR0001629` **Lycée technique Bachelard** — Paris 13e Arrondissement (1938) — Creuzot Jean
+- `ACR0001643` **lycée professionnel Diderot** — Bavilliers (1985) — Kroll Lucien, Schneider Marie-Laure, Runsdatker Serge, Gomez Jean-Marc
+- `ACR0001646` **maison de Pierre Lajus** — Mérignac (1973) — Lajus Pierre
+- `ACR0001602` **Lycée François Truffaut** — Bondoufle (1990) — Anspach Hogna, Crespel André, Humbaire Jean-Pierre, Ropa Bernard
+- `ACR0001610` **Lycée Les Sept-Mares** — Maurepas (1973) — Bisson Guy
+- `ACR0001613` **Lycée Galilée** — Paris 13e Arrondissement (1996) — Kalisz Jacques
+- `ACR0001615` **Ancien lycée de Sèvres, actuel collège de Sèvres** — Sèvres (1952) — Brunau Félix, Feichtinger
+- `ACR0001616` **Lycée André Sabatier** — Bobigny (1984) — Gangneux Marie-Christine, Huet Bernard, PEROT Léna
+- `ACR0001622` **Lycée Flora Tristan** — Noisy-le-Grand (1980) — Kalisz Jacques
+- `ACR0001625` **Lycée Jules Verne** — Cergy (1993) — Architecture Studio
+- `ACR0001626` **Lycée Alfred Kastler** — Cergy (1978) — Letia Valentin-Gérard
+- `ACR0001630` **Lycée Galilée** — Paris 13e Arrondissement (1996) — Kalisz Jacques
+- `ACR0001595` **Groupe scolaire des Champs-Élysées** — Évry-Courcouronnes (1977) — Maurios Georges
+- `ACR0001609` **Lycée Jean Rostand** — Mantes-la-Jolie (1967) — Lopez Raymond, Lopez Rémi
+- `ACR0001611` **Lycée Le Corbusier** — Poissy (1968) — Chauliat Jacques
+- `ACR0001618` **Lycée Wolfgang Amadeus Mozart** — Le Blanc-Ménil (1991) — Chemetov Paul, Huidobro Borja
+- `ACR0001620` **Lycée Paul Robert** — Les Lilas (1994) — Taillibert Roger
+- `ACR0001645` **villa Hébrard, dite villa Cherenda** — Arcangues (1972) — Hébrard Jean-Raphaël
+- `ACR0001596` **Groupe scolaire Georges Lapierre et bibliothèque des Aunettes** — Évry-Courcouronnes (1985) — Barnoud Henri
+- `ACR0001601` **Ensemble Villa Charles Delescluze dit Les Glycines** — Évry-Courcouronnes (1982) — Sarfati Alain
+- `ACR0001604` **Lycée Jules Ferry** — Conflans-Sainte-Honorine (1936) — Jacques Joannon, Fernand Marandon
+- `ACR0001608` **Lycée de Villaroy** — Guyancourt (1993) — Lombard François, Beasse Pierre, Houguenade Jean-François
+- `ACR0001612` **Lycée Louis Bascan** — Rambouillet (1962) — Barge Jacques
+- `ACR0001614` **Lycée Jean Monnet** — Montrouge (1955) — Barbé Guy
+- `ACR0001623` **Lycée Maximilien Perret** — Alfortville (1997) — Fuksas Massimiliano
+- `ACR0001631` **Lycée Raspail** — Paris 14e Arrondissement (1996) — Taillibert Roger
+- `ACR0001640` **lycée agricole Perrenot de Granvelle** — Dannemarie-sur-Crète (1969) — Clipet Jean-Pierre, Boucton Gérard
+- `ACR0001642` **chapelle Notre-Dame-sous-Roches** — Valentigney (1958) — Bertrand Alain, Chavignier Louis
+- `ACR0001644` **église Sainte-Thérèse** — Belfort (1964) — Dumas Pierre, Bonato, Chevalley Pierre
+- `ACR0001597` **Ensemble de logements dits "Champs-Élysées** — Évry-Courcouronnes (1977) — Kohn Bernard
+- `ACR0001603` **Lycée Jean-Baptiste Corot et son gymnase** — Savigny-sur-Orge (2009) — Grange Germain, Leclercq François, Dusapin Fabrice
+- `ACR0001606` **Lycée René Cassin** — Noisiel (1981) — Hogna Anspach, André Crespel, Jean-Pierre Humbaire, Bernard Ropa
+- `ACR0001638` **Lycée technique d'Alembert** — Paris 19e Arrondissement (1937) — Abraham Pol, Tabon Pierre
+- `ACR0000339` **Chapelle Sainte-Blanche ; Château de Touvent (Etablissement public départemental Blanche de Fontarce)** — Châteauroux (1921) — Lemaresquier Charles, Suard Louis
+- `ACR0001594` **École Jacques Cartier** — Évry-Courcouronnes (1971) — Prieur François
+- `ACR0001605` **Lycée François Couperin et son gymnase** — Fontainebleau (1967) — Cidrac Rogatien de
+- `ACR0001617` **Lycée Eugène Delacroix** — Drancy (1958) — Niermans Jean
+- `ACR0001627` **Lycée Gustave Monod** — Enghien-les-Bains (1958) — Martin Georges
+- `ACR0001632` **Lycée Fresnel** — Paris 15e Arrondissement (1957) — Richez Roger, Raclot Michel, Wogensky André, Blauwe Pierre de
+- `ACR0001636` **Lycée hôtelier Jean Drouant** — Paris 17e Arrondissement (1936) — Arfvidson André-Louis, Gravereaux Raymond
+- `ACR0001639` **Lycée Hélène Boucher** — Paris 20e Arrondissement (1937) — Sallez Lucien
+- `ACR0000976` **Poste** — Melle (1912) — Mongeaud Paul
+- `ACR0001649` **villa « Garrigue », dite villa «Tenaya »** — Bayonne (1970) — Salier Yves
+- `ACR0001648` **Maison Grausse** — Vézac (1974) — Schweitzer Roland
+- `ACR0001650` **Résidence Calebassiers IV** — Saint-Denis (1976) — Marot Michel
+- `ACR0001653` **Résidence Mazagran** — Saint-Denis (1967) — Schaub Marc
+- `ACR0001652` **Ensemble Polaris de la Cité des Étoiles** — Le Port (1981) — Tolède Christian
+- `ACR0001651` **Résidence Caricubes I** — Saint-Denis (1978) — Groupe 4, Rey Gustave, Ménagé Jean, Claudon Alain, Masson Charles, Nuwenborg Marc, von
+- `ACR0001660` **Groupe scolaire Edouard Vaillant** — Fontenay-sous-Bois (1977) — Zublena Aymeric
+- `ACR0001657` **Atelier d'architecture Masséna** — Paris 13e arrondissement (1986) — Chemetov Paul, Huidobro Borja, Mimram Marc
+- `ACR0001661` **Hôtel industriel Mozinor** — Montreuil (1975) — Goas Claude, le, Bertrand Gilbert-Paul
+- `ACR0001658` **Musée de La Poste : façade sud** — Paris 15e arrondissement (1973) — Chatelin André, Juvin Robert
+- `ACR0001662` **résidence ""Les terrasses d'Aegyptos"" : pyramide ""Louqsor"" ; pyramide ""Assour** — Angoulême (1976) — Andrault Michel, Parat Pierre, ANPAR
+- `ACR0001669` **Paillotte dite Marina de Talaris** — Lacanau (1979) — Lajus Pierre
+- `ACR0001665` **Institut du Monde arabe** — Paris (1987) — "Nouvel Jean, Lézénès Gilbert, Soria Pierre, Architecture Studio, Robain Martin, Galmiche Jean-François, Tisnado Rodo, Bonne Jean-François"
+- `ACR0001666` **Chapelle Saint-François de l’Almont** — Melun (1974) — Fatosme Jean
+- `ACR0001670` **Station de pompage** — Delle (1927) — Giroud Paul architecte, Delage André
+- `ACR0001671` **Stade de France** — Saint-Denis (1998) — Macary Michel, Zublena Aymeric, Régembal Michel, Costantini Claude
+- `ACR0001672` **Maison de l'architecte Jacques Bret et son agence d'architecture** — Trélissac (1968) — Bret Jacques, Desplat
+- `ACR0001676` **Ancien foyer de jeunes travailleuses (Association Saint François d'Assise)** — Saint-Denis (1966) — Schaub Marc
+- `ACR0001677` **Résidence Paul Valéry** — Avignon (1969) — Conil Albert, Konic Rasto
+- `ACR0001675` **Ancien centre de formation de l'ARFUTS (Association Réunionnaise pour la Formation et l’Utilisation des Travailleurs Sociaux )** — Saint-Paul (1965) — Hébrard Jean, Abadie Pierre
+- `ACR0001679` **Maison pour tous Champfleury** — Avignon (1981) — "Conil Lucien, Lévêque Dominique, Poulet Jean-Pierre"
+- `ACR0001678` **Stade du Schlossberg** — Forbach (1957) — Aillaud Émile, Celentano
+- `ACR0001687` **Groupe scolaire des Terrasses** — Cergy (1983) — Bernard Jean, Soler Francis
+- `ACR0001693` **Cité d'artistes** — Paris 15e Arrondissement (1989) — Kagan Michel
+- `ACR0001685` **Maison de quartier Axe majeur-Horloge, ancien groupe scolaire La Lanterne** — Cergy (1983) — Jourda Hélène, Perraudin Gilles
+- `ACR0001683` **Ecole élementaire La chanterelle** — Cergy (1985) — Mottini Patrice
+- `ACR0001684` **Groupe scolaire des Châteaux** — Cergy (1973) — Forgia Léa, Valéanu Michel
+- `ACR0001682` **Groupe scolaire de la Belle Epine** — Cergy (1981) — Deslandes Martine, Deslandes Philippe
+- `ACR0001688` **Hôtel de l'agglomération, ancien centre administratif et culturel** — Cergy (1976) — Pencreac'h Georges, Vasconi Claude, Tahar F., Vérité J., Perrottet Jean
+- `ACR0001680` **Eglise Saint-Joseph-Artisan** — Montgeron (1959) — Mathieu Michel, Denis Raoul, Barillet Jean
+- `ACR0001681` **Chambre des métiers et de l'artisanat du Val d'Oise, ancien centre de formation des Banques Populaires** — Cergy (1975) — Seifert Ivan, SETAP, Cormier Nicolas
+- `ACR0001694` **Chapelle Sainte-Thérèse** — Basse-Terre (1966) — Isnard Pierre
+- `ACR0001696` **Salle d'escalade Cime Altitude 245** — Dijon (2008) — Stoffel Séverine, Lefebvre Stéphane
+- `ACR0001699` **maison "Marsan** — Biscarosse (1974) — Lajus Pierre
+- `ACR0001695` **Piscine de la Fontaine d'Ouche** — Dijon (1975) — " Devalière Jean-François, Grangy Michel"
+- `ACR0001697` **Couverture du demi-terrain de football** — Seloncourt (2008) — "Jullian de la Fuente Carlos"
+- `ACR0001698` **Base nautique de kayak** — Pesmes (1988) — None
+- `ACR0001721` **Centre historique Valmy 1792** — Valmy (2012) — Faloci Pierre-Louis
+- `ACR0001722` **Hôtel du département de la Meuse** — Bar-le-Duc (1991) — Perrault Dominique
+- `ACR0001725` **gymnase « La Légère Mélinoise »** — Échenoz-la-Méline (1932) — inconnus
+- `ACR0001729` **Musée Léon-Dierx** — Saint-Denis (1963) — Hébrard Jean, Abadie Pierre, Monfreid, Daniel de
+- `ACR0001731` **Ancienne Maison de l'Agriculture, puis Centre régional d'Action culturelle, actuelle dépendance départementale (Société publique locale Ecologie et Développement durable des Espaces naturels)** — Saint-Denis (1956) — Bossu Jean, Vienne Fabien
+- `ACR0001730` **Hôtel du Département de La Réunion dit palais de La Source** — Saint-Denis (1975) — Hébrard Jean, Abadie Pierre
+- `ACR0001724` **médiathèque Jean-François-Champollion** — Dijon (2004) — Pierre Laurent, Chochon François
+- `ACR0001733` **Siège de la Société d'Importation des Pharmaciens de La Réunion (SIPR)** — Saint-Denis (1968) — Dubreuil Louis
+- `ACR0001734` **Siège régional de la Météorologie nationale (direction interrégionale de Météo-France pour l’Océan Indien)** — Saint-Denis (1960) — Royer Gilbert, Singher Jean-Laurent, Lejeune Guy
+- `ACR0001723` **auditorium Robert-Poujade** — Dijon (1992) — Arquitectonica, Bougeault & Walgenwitz, ARTEC, New-York
+- `ACR0001727` **Ancien hôpital pour enfants** — Saint-Louis (1951) — Isautier Charles
+- `ACR0001726` **Hôtel consulaire de la chambre de Commerce et d'Industrie de La Réunion** — Saint-Denis (1956) — Hébrard Jean, Abadie Pierre, Monfreid Daniel de
+- `ACR0001728` **Ancien hôtel des postes** — Le Port (1973) — Hébrard Jean, Abadie Pierre
+- `ACR0001732` **Chambre de Métiers et de l’Artisanat de La Réunion** — Saint-Denis (1985) — Cazanave Luc
+- `ACR0001737` **Maison dite RO-2C** — Dommery (2009) — Lenoir Éric, Alumarine, Ship Studio
+- `ACR0001745` **Maison de la radio** — Strasbourg (1956) — Tournon Paul, Devilliers A., Verdier P.
+- `ACR0001739` **Siège social de Piper Heidsieck** — Reims (2007) — "Jacques Ferrier Architecture, Sotram, SNC Lavalin et Pingat Ingénierie, Berthold, Agence TER, Ferruccio Laviani"
+- `ACR0001735` **Maison** — Floirac (1993) — Lacaton Anne, Vassal jean-Philippe
+- `ACR0001748` **École élémentaire René-Azalbert** — Sigean (1956) — Teppe André-Pierre, Bourély André-Louis, Gisclard-Cau Yvonne
+- `ACR0001749` **École maternelle Jules-Ferry** — Pont-Saint-Esprit (1949) — Troupel Edmond
+- `ACR0001752` **école primaire André-Malraux** — Montpellier (2015) — Coulon Dominique, Duclos Steve Letho, Liénard Fanny, Poulet Olivier
+- `ACR0001744` **Ancienne usine de Fûts et Bidons métalliques de l’Est** — Lunéville (1947) — César Fernand, Malot Raymond, Société des Entreprises Boussiron
+- `ACR0001750` **Groupe scolaire Montolivet ; école primaire Montolivet** — Villeneuve-lès-Avignon (1930) — Chabert Paul
+- `ACR0001755` **groupe scolaire Lou Malhoulet, avec mairie** — Pouget (Le) (1925) — Guilhaudis
+- `ACR0001746` **École élémentaire** — Montbrun-les-Corbières (1936) — Portal Louis
+- `ACR0001751` **groupe scolaire Anatole-France** — Frontignan (1925) — Carlier Léopold, Carlier Louis
+- `ACR0001756` **groupe scolaire Jean-Jaurès** — Cerbère (1938) — Castan Raoul, Thieulin Norbert, Prudhomme Joseph
+- `ACR0001761` **Ecole primaire** — Mas d'Azil (Le) (1949) — None
+- `ACR0001774` **Groupe scolaire** — Valentine (1956) — None
+- `ACR0001758` **groupe scolaire Ludovic-Massé** — Perpignan (1996) — Pous Philippe, Freixa Jaume, Ortiz Alicia
+- `ACR0001760` **groupe scolaire Léon-Blum** — Perpignan (1952) — Marty H.
+- `ACR0001770` **Groupe scolaire Jules Ferry** — Toulouse (1933) — None
+- `ACR0001773` **Groupe scolaire Croix Daurade-Cuvier** — Toulouse (1925) — None
+- `ACR0001759` **groupe scolaire Jordi-Barre et crèche** — Perpignan (2006) — Ramond Bertrand, Cabanne Bernard
+- `ACR0001762` **Ecole primaire Georges-Sand** — Lavelanet (1935) — None
+- `ACR0001763` **Ecole primaire Paul-Delpech** — Varilhes (1931) — None
+- `ACR0001766` **Groupe scolaire Molière** — Toulouse (1959) — None
+- `ACR0001757` **école élémentaire Joseph-Neo** — Elne (1953) — Banyuls Sam
+- `ACR0001767` **Groupe scolaire Matabiau** — Toulouse (1927) — None
+- `ACR0001772` **Groupe scolaire Ernest Renan** — Toulouse (1933) — None
+- `ACR0001776` **Ecole primaire Paul-Bert** — Figeac (1935) — None
+- `ACR0001782` **Ecole primaire Jules-Ferry** — Valence d'Agen (1932) — None
+- `ACR0001754` **groupe scolaire Léonce Ruffié** — Saint-Thibéry (1935) — Touzet Charles
+- `ACR0001768` **Groupe scolaire Jules Julien** — Toulouse (1929) — None
+- `ACR0001775` **Ecole maternelle Lissagaray** — Auch (1956) — None
+- `ACR0001781` **Ecole primaire du Pays cordais** — Cordes-sur-Ciel (2012) — None
+- `ACR0001764` **Ecole primaire** — Bournazel (2008) — None
+- `ACR0001765` **Ancienne école élémentaire** — Blagnac (1937) — None
+- `ACR0001769` **Groupe scolaire Jean Jaurès** — Toulouse (1927) — None
+- `ACR0001779` **Ecole élémentaire** — Sarrancolin (1932) — None
+- `ACR0001780` **Ecole élémentaire Jean-Moulin** — Tarbes (1954) — None
+- `ACR0001753` **école maternelle Ingrid-Bergman ; école élémentaire Jean-Moulin** — Montpellier (1937) — Bernard Elie-Marcel
+- `ACR0001786` **Maison du Parc Naturel Régional du Haut-Jura** — Lajoux (2006) — Scaranello Adelfo
+- `ACR0001788` **École nationale supérieure d'architecture de Lyon** — Vaulx-en-Velin (1987) — Perraudin Gilles, Jourda Françoise-Hélène
+- `ACR0001789` **Chalet Pousseur** — Contamine-Montjoie (1953) — Plottier Philibert
+- `ACR0001790` **Salle Eugène Vadot** — Plombières-lès-Dijon (1967) — Hostettler Charles, Prioleau Jacques, Verney Paul.
+- `ACR0001787` **Église Notre-Dame-de-la-Paix** — Saint-Etienne (1944) — Hur Édouard
+- `ACR0001791` **Salle Consortium** — Dijon (2008) — Ban Shigeru, Gastines Jean de, Made In
+- `ACR0001785` **Ancien marché couvert** — Dornes (1948) — Christo Henri
+- `ACR0001795` **Piscine de plein-air** — Obernai (1956) — Stoskopf Charles-Gustave, Alméras Valérie
+- `ACR0001797` **piscine Kibitzenau** — Strasbourg (2014) — Sauer Françoi, Dahan André, Feichtinger Dietmar
+- `ACR0001803` **salle d'escalade Climbing House center, ancien bâtiment du blanchiment Dollfus-Mieg** — Mulhouse (2020) — Lynde Pierre
+- `ACR0001793` **Salle Jean-Moulin (ancien bains-douches de l'usine de Micheville) et stade Brandenburger** — Audun-le-Tiche (1937) — Morel Roger, Sémécas Marcel, Philippe Alain, Filipetti Angel
+- `ACR0001798` **complexe sportif des Récollets** — Longwy (1969) — Filliatre André
+- `ACR0001799` **Piscine plein soleil** — Ostwald (1977) — Rabinel Jacques, Debouit Jean, Legrand Jean-Michel, Fischer Georges
+- `ACR0001801` **Centre aquatique Nautiland, centre aqualudique urbain,  aussi appelé parc de récréation aquatique** — Haguenau (1984) — Ruols Jean-Michel, Rey Thierry, Crécy de Olivier
+- `ACR0001802` **club d’aviron Les Régates rémoises, ancienne usine textile Machuel et Néouze puis Warnier et David** — Reims (1992) — Jacquet Jean-Michel
+- `ACR0001812` **Musée du Louvre** — Lens (2009) — Sejima Kazuyo, Nishizawa Ryue, Catherine Mosbach
+- `ACR0001806` **Musée de la céramique** — Desvres (1991) — "GIE Arietur : Klein Bertrand,  Huret Nicolas, Gabiller Marc"
+- `ACR0001810` **Salle-Jacques-Brel** — Faches-Thumesnil (1961) — Doisy Gaston
+- `ACR0001796` **Union Nautique : plage municipale et locaux de l'asg aviron** — Gérardmer (1958) — Gutton André, Goujard Virginie
+- `ACR0001804` **église Saint-Michel** — Matoury (1990) — Karpoff Serge
+- `ACR0001817` **Complexe OmniSports Evolutif Couvert (COSEC) Jean-Michel Curie** — Audincourt (1988) — Morin Éric, Lapprand Denis-Hugues, CETEC
+- `ACR0001821` **Musée Courbet** — Ornans (2008) — "Cabinet d’architecture Atelier 2/3/4, Cabinet Barrès, Paulet Bernard, Agence Gulliver"
+- `ACR0001800` **Piscine Tournesol** — Lingolsheim (1980) — Schoeller Bernard, Dahan Philippe, Cornaert Dominique, Constantinidis Thémis, Kubler Bruno
+- `ACR0001805` **Bibliothèque Saint-Corneille** — Compiègne (1950) — Paquet Jean-Pierre, Mauger Patrick
+- `ACR0001814` **salle Mille-club** — Watten (1981) — Bertrand Daniel, Demanche Patrick, Dernier Philippe, Roulle Jean-Pierre, Peskine Alain, Pauzat Jean-Jacques
+- `ACR0001807` **Médiathèque municipale Till-l’Espiègle** — Villeneuve-d'Asq (1970) — Deslandes Philippe, Deslandes Martine
+- `ACR0001808` **salle Mille-Club** — Bailleul (1976) — Béchu A.
+- `ACR0001815` **Musée des Beaux-Arts** — Calais (1965) — Pamart Paul, Coëtlogon Yves de
+- `ACR0001820` **Complexe Axone** — Montbéliard (2005) — " Denu Claude, Paradon Christian, OTE, ESP."
+- `ACR0001792` **Stade Edouard Fénal et vélodrome** — Lunéville (1937) — Royer Charles-Henri, Géant Xavier, Sindt Benoît
+- `ACR0001794` **Vélodrome** — Commercy (1946) — Col de R., Fraisse Philippe
+- `ACR0001813` **Historial de la grande Guerre** — Péronne (1987) — Ciriani Henri, Clément Gilles, Donegan Peter
+- `ACR0001809` **LAAC, lieu d'art et d'action contemporaine** — Dunkerque (1982) — Willerval Jean, Angot Roger, Roubeau Jean-Jacques, Deleu Louis, Klein Richard, Grafteaux Benoît, Samel Gilbert, Richard Alain, Zvenigorodsky Pierre, Scrive Philippe
+- `ACR0001816` **Maison de la Culture et des Sports** — Nevers (1964) — "Guillaume Max, Vauzelle Henri, Demangeat Camille, ABW Warnant"
+- `ACR0001818` **Scène de Musiques ACtuelles (SMAC) Le Moloco** — Audincourt (2009) — "Molnar & Piccinato architecture, Studio Totem, Image & Calcul, Thermibel"
+- `ACR0001819` **Résidence de Talant** — Dijon (1963) — "Joly-Delvalat Paul"
+- `ACR0001811` **Mémorial de l’internement et de la déportation** — Compiègne (2008) — Jean-Jacques Raynaud, Didier Ghislain, AVLS, Siretec, Malice Images, LM communiquer, Belle Raymond,  : LTA, AVLS, Paysage et Lumière
+- `ACR0001826` **Maroquinerie** — Bogny-sur-Meuse (2004) — Berger Patrick, Anziutti Jacques, Abinal Julien, Rousseau Marc, Patriarche-Rémy Blandine, Leruth Olivier
+- `ACR0001841` **maison familiale d'Yves Salier** — Bordeaux (1955) — Salier Yves
+- `ACR0001838` **Salle d'exposition** — Passavant-la-Rochère (1974) — Treille Roger
+- `ACR0001840` **maison Galinou** — Talence (1955) — Salier Yves, Lacube-Recht  Marie-Luce
+- `ACR0001822` **Gymnases universitaires du campus du Saulcy, COSEC (Complexe sportif évolutif couvert)** — Metz (1973) — Haenel Jacques, Société CM Fillod, Bararde Roger
+- `ACR0001823` **Piscine intercommunale** — Suippes (1993) — Busni Robert de
+- `ACR0001825` **Hôtel de ville** — Bogny-sur-Meuse (1969) — Croizé André, Deknuydt Bernard, Lenoir Eric
+- `ACR0001742` **maison « Le Carré Rouge »** — Villars-Santenoge (1997) — Friedmann Gloria, Scaranello Adelfo
+- `ACR0001827` **Chai d'embouteillage de la COOP** — Strasbourg (1964) — Kettner Edouard, Haug Eugène, Schulé Adolphe, Chemetoff Alexandre
+- `ACR0001828` **Siège social de la compagnie d'assurances MAIF** — Niort (1981) — Perrotte Claude, PVB Architecture, Velimirovic-Vely Branka, Benveniste Jean-Jacques, Covec Jean-Pau Le
+- `ACR0001842` **Lycée Jules Ferry** — Coulommiers (1970) — Aillaud Émile
+- `ACR0001843` **Lycée Galilée** — Gennevilliers (2006) — Lott Jean-Pierre, Dubus Jean
+- `ACR0001839` **Résidence Le Compostelle** — Pessac (1965) — Coutois-Salier-Lajus-Sadirac, Salier Yves, Lajus Pierre, Sadirac Michel, Coutois Adrien
+- `ACR0001845` **Centre nautique Les Antilles** — Jonzac (2002) — Hendricks Roelof, Hendricks Nannie
+- `ACR0001844` **Centre des congrès** — Jonzac (2018) — Trétrac, Bertreux Michel, Caud Daniel
+- `ACR0001847` **Temple protestant** — Mâcon (1963) — "Bitterli Oskar, Bitterli Fernande ; Augros Barnabé"
+- `ACR0001849` **Médiathèque Grand-Plage, ancien centre culturel Le Forum** — Roubaix (1979) — Noviant Louis-George, Dumont Jean
+- `ACR0001852` **Salle de spectacle Le Temps Machine** — Joué-les-Tours (2011) — Moussafir Jacques
+- `ACR0001853` **Résidence Lamartine** — Tours (1989) — Ginisty Marc, Mander Robert
+- `ACR0001851` **Conseil départemental du Cher, ancien établissement de Fabrication d’armement de Bourges** — Bourges (1985) — "Vidal Henri, Bayard Yves, Ministère de la Défense, Groupement industriel des armements terrestres - GIAT"
+- `ACR0001854` **Pavillon d'entrée de l'arboretum national du domaine des Barres** — Nogent-sur-Venisson (2000) — Naruse Hiroshi
+- `ACR0001858` **Bibliothèque universitaire Lucien Febvre** — Belfort (1999) — Beaudouin Laurent, Beaudouin Emmanuelle
+- `ACR0001855` **Campus universitaire de la Bouloie : bâtiment E de métrologie** — Besançon (1963) — Jouven George, Phelouzat Paul
+- `ACR0001829` **Château d'eau des Hauts-Clos** — Troyes (1970) — Coeur Claude Le, Périsse Georges
+- `ACR0001830` **Médiathèque Jacques Chirac** — Troyes (1999) — Besset Pierre du, Lyon Dominique, Glaser Gary, Weiner Lawrence
+- `ACR0001831` **Centre de vinification Moët & Chandon ; site Mont-Aigu** — Oiry (2010) — Pace Giovanni, Priolet Aurore
+- `ACR0001848` **Centre culturel Maurice Schumann** — Haumont (1961) — Danis Adolphe, Gaillard André, Brouard Pierre
+- `ACR0001850` **Cité judiciaire et son parc paysager** — Senlis (1977) — Pierre-André Chauveau, Paul Ambille
+- `ACR0001857` **Campus universitaire de la Bouloie : bibliothèque Proudhon** — Besançon (1997) — Beaudouin Laurent, Beaudouin Emmanuelle, Busato Maxime
+- `ACR0001856` **Campus universitaire de la Bouloie : bâtiment Fourier** — Besançon (1997) — Quirot Bernard, Jousselin Stéphane, Ferranet Michel
+- `ACR0001832` **Direction départementale (DDT) de la Meuse** — Bar-le-Duc (1983) — Priester Guy, Fizser Stanislas
+- `ACR0001862` **Groupe scolaire du Grand-Meaulnes** — Bourges (1956) — Pinon Marcel
+- `ACR0001874` **monument aux morts** — Amboise (1972) — Marot Michel (architecte, Derycke Henri
+- `ACR0001878` **Groupe scolaire Line-Porcher, école de musique et salle des fêtes** — Saint-Pierre-des-Corps (1991) — Barrier Jean-Yves
+- `ACR0001880` **école d'ingénieurs en informatique pour l'industrie (E3i)** — Tours (1993) — Tardits Philippe, Eugène Reynald
+- `ACR0001884` **Groupe scolaire Beaujardin-Raspail** — Tours (1955) — Labadie Pierre, Barrucand Roger, Gravrand Yves
+- `ACR0001889` **Salle de sport Caméo** — Tours (2008) — Breust Manuel, Chabrier Sandrine
+- `ACR0001859` **Collège et lycée technique Saint-Jean-Baptiste-de-la-Salle** — Bourges (1990) — Bulle Fabienne, Brinon Jean-Michel
+- `ACR0001871` **anciens abattoirs** — Aigurande (1937) — Betoux André
+- `ACR0001872` **institut universitaire de l'Indre** — Châteauroux (1996) — Barge Monique
+- `ACR0001875` **piscine de plein air** — Nouan-les-Fontaines (1969) — inconnu
+- `ACR0001883` **Groupe scolaire Anatole-France** — Tours (1957) — Boyer Robert, Henry Lhéritier de Chézelle Henry, Taté Henri, Tulasne André
+- `ACR0001888` **Résidence Rabelais-Perrault** — Tours (1976) — Ginsberg Jean, Lévy Georges
+- `ACR0001894` **Groupe scolaire Jules-Ferry** — Fleury-les-Aubrais (1932) — non connus
+- `ACR0001898` **bibliothèque universitaire de sciences** — Orléans-La-Source (2005) — Lipsky+Rollet
+- `ACR0001864` **ancien orphelinat La grande métairie** — Osmoy (1960) — Dubois Gabriel, Audoul Alfred, Setzer Georges
+- `ACR0001865` **Ecole maternelle Jules-Vallès** — Vierzon (1951) — Cuminal Michel
+- `ACR0001869` **Stade nautique municipal Arsène Mallet** — Illiers-Combray (1950) — non précisé
+- `ACR0001870` **piscine modèle Gerpiam** — Nogent-Le-Roi (1968) — Ducamp Paul, Maillard Henri-Pierre, Maunoury Dominique
+- `ACR0001873` **barrage d'Éguzon** — Cuzion (1926) — Bernier Charles, S.A. Charles Rabut et Cie, Mercie Gustave, Cochard
+- `ACR0001885` **Gymnase Dabilly** — Tours (2008) — "Boutet Julie, Pourrier Bertrand, Chervier Vincent, ABP"
+- `ACR0001896` **Lycée Jean-Zay** — Orléans (1939) — Laville Sylvère, Paillard Julien-Charles, Garapon Eugène, Bazin Léon-Émile, Durin H.
+- `ACR0001897` **Lycée Saint-Charles** — Orléans (1992) — Vallée Patrice
+- `ACR0001860` **Conservatoire à rayonnement départemental** — Bourges (2007) — Ivars & Ballet
+- `ACR0001863` **Vélodrome du CREPS** — Bourges (2013) — Atelier Carré d’Arche, Bosredon Christian, Piétu Martine, Schürmann Architekten
+- `ACR0001866` **Usine de distribution du gaz** — Vierzon (1949) — non connu
+- `ACR0001868` **Centre nautique** — Châteaudun (1972) — Lagneau Paul
+- `ACR0001877` **Groupe scolaire des Sablons** — Saint-Pierre-des-Corps (1951) — Dorian Jean
+- `ACR0001882` **Faculté des sciences et techniques** — Tours (1996) — Hammoutène Franck
+- `ACR0001887` **Résidence Origet** — Tours (1989) — Architurone
+- `ACR0001891` **Lycée Ampère et stade Léo-Lagrange** — Vendôme (2008) — Barbé Guillaume, Péneau Gaëlle, GPAA
+- `ACR0001895` **Lycée horticole** — Nogent-sur-Vernisson (1983) — Constant Georges, Cler Philippe
+- `ACR0001900` **Ensemble de bâtiments universitaires  de la Source :  bibliothèque de lettres, langues et sciences humaines ; amphithéâtres de sciences ; restaurant Le Forum.** — Orléans-La-Source (1966) — Cacoub Olivier-Clément
+- `ACR0001902` **groupe scolaire** — Saint-Maurice-sur-Aveyron (1953) — Delval Henri, Neau Gaston
+- `ACR0001913` **Stade nautique** — Drancy (1968) — Bouillard Charles, Marcoz  Roger Louis, Château Stéphane du
+- `ACR0001919` **Gymnase Hasenfratz** — Pantin (1962) — Aillaud Émile
+- `ACR0001925` **Résidence La Traverso** — Avignon (1979) — Mione Denis, Arbousset Michel
+- `ACR0001926` **Résidence Grand Horizon** — Toulon (1973) — Narkisian Jean-Georges
+- `ACR0001927` **Résidence La Croix du Sud** — Marseille (1969) — Présente Georges-Marc, Lardeau Guy
+- `ACR0001931` **école nationale supérieure d'architecture (ENSAN)** — Nantes (2009) — Lacaton Anne, Vassal Jean-Philippe
+- `ACR0001904` **groupe scolaire du centre** — Sully-sur-Loire (1958) — Blareau Georges, Winter Paul
+- `ACR0001908` **Tribune du stade Montbauron** — Versailles (1961) — Legrand Jean-Michel, Rabinel Jacques
+- `ACR0001909` **Stade nautique Gabriel-Menut** — Corbeil-Essonnes (1967) — Chemetov Paul, Deroche Jean, Konstanjevac Miroslav
+- `ACR0001911` **Complexe sportif** — Neuilly-sur-Seine (1979) — Grégoire Albert
+- `ACR0001921` **Piscine Marville** — Saint-Denis (1949) — Sadowski
+- `ACR0001922` **Gymnase Clémenceau** — Bry-sur-Marne (1972) — Fernandez-Heraud Odile
+- `ACR0001928` **Résidence Maisons-Jardins** — Marseille (1981) — KPDV, Kalt Michel, Pouradier-Duteil Daniel, Vignal Pierre, Schoeller Bernard, Charras Franck
+- `ACR0001903` **église Saint-Pierre** — Saint-Père-sur-Loire (1959) — Blareau Georges, Guillaume Max
+- `ACR0001907` **Tribune du stade de la Couldre** — Montigny-Le-Bretonneux (1999) — Chaix Philippe, Morel Jean-Paul
+- `ACR0001910` **Stade nautique** — Orsay (1968) — Maillard Henri-Pierre, Ducamp Paul, Bancon Michel
+- `ACR0001916` **Salle omnisport Marcel-Cerdan** — Neuilly-sur-Marne (1973) — Goas Claude Le
+- `ACR0001918` **Centre national de la danse** — Pantin (1972) — Kalisz Jacques, Perrottet Jean, Marty Guy, Robain Antoinette, Guieysse Claire, Trubert Guillaume, Lefranc Patricia, Goulencourt Sandrine, Franzen Manuela
+- `ACR0001923` **Palais omnisports** — Thiais (1994) — Agopyan Berdje
+- `ACR0001924` **Piscine du parvis et immeuble de logements** — Cergy (1976) — Dubuisson Jean
+- `ACR0001905` **Halle Joseph-Maigrot** — Paris (1964) — Bovet Georges, Berthelot Émile, Cuzol Robert (architecte, Taillibert Roger, Atelier A/Concept
+- `ACR0001906` **Piscine de la Faisanderie** — Fontainebleau (1972) — Hay Denis
+- `ACR0001914` **tribune du stade Jean-Bouin** — Gagny (1976) — Mathé Henri
+- `ACR0001915` **Gymnase Léon Lagrange** — Les Pavillons-sous-Bois (1949) — Larrieu Henri
+- `ACR0001917` **École supérieure d'ingénieurs en électrotechnique et électronique (ESIEE)** — Noisy-le-Grand (1987) — Dominique Perrault Architecture
+- `ACR0001920` **Tribune du stade Charles-Auray** — Pantin (1961) — Perrottet Jean, Kalisz Jacques, Kostanjévac Miroslav
+- `ACR0001932` **Centre des Congrès Prouvé (extension)** — Nancy (2014) — Barani Marc, Presle Christophe
+- `ACR0001833` **Collège Luis Ortiz** — Saint-Dizier (2010) — Thomas Jean-Philippe
+- `ACR0001944` **Villa Pointe d'aube** — Fondettes (1961) — Farges Julien
+- `ACR0001945` **Centre aquatique et patinoire Le Dôme** — Laon (2003) — Sarfati Alain
+- `ACR0001946` **Complexe aquatique Les Bains du Lac** — Mercin-et-Vaux (2018) — BVL architecture
+- `ACR0001947` **Piscine des Glacis** — Douai (1958) — Dromard
+- `ACR0001949` **Centre aquatique intercommunal Au Dragon d’Eau** — Saint-Amand-les-Eaux (2014) — AP-MA
+- `ACR0001940` **La Ruche, centre d’accueil périscolaire** — Tendon (2011) — Valentin Claude
+- `ACR0000841` **Cinéma Omnia** — Cherbourg-en-Cotentin (1952) — Metivier Jean, Lecoq Robert
+- `ACR0001948` **Piscine Tournesol Louis Poncet** — Raismes (1976) — Schoeller Bernard, Kluj Eric Architecture, Constantinidis Thémis, Durafour et Matra
+- `ACR0001952` **Piscine de la Vallée Dorée** — Liancourt (1972) — Hirt Robert, Cotechnipp
+- `ACR0001929` **atelier de Seund Ja Rhee** — Tourettes-sur-Loup (1992) — Petitcollot Christophe, Seund Ja Rhee
+- `ACR0001963` **ancienne Quicaillerie Bretone** — Saint-Brieuc (1935) — Fauny Jean
+- `ACR0001936` **Immeuble de logements L'européen** — Thionville (1961) — Virgili Lanfranco
+- `ACR0001950` **Piscine Tournesol** — Sin-le-Noble (1978) — Schoeller Bernard, Constantinidis Thémis, Durafour et Matra
+- `ACR0001951` **Piscine Triolo** — Villeneuve-d'Asq (1977) — Doldourian Jean, Willerval Jean, CIMEG
+- `ACR0001953` **Piscine Paul Boutefeu** — Noyon (1968) — Charpentier Claude, Tabanou Jean, MacGregor-Comarain
+- `ACR0001954` **Piscine Oxygène du Seuil de l’Artois** — Bapaume (2011) — Caméléon3
+- `ACR0001956` **Piscine Tournesol** — Divion (1977) — Schoeller Bernard, Constantinidis Thémis, Durafour et Matra
+- `ACR0001957` **Piscine Caneton** — Hersin-Coupigny (1975) — Aigrot Jean-Paul, Charras Franc, Charvier Alain
+- `ACR0001959` **Centre de natation communautaire Aqu'ABB** — Abbeville (2013) — Hélion, Chevalier-Caix A., Leverdier E, ARCOS architecture
+- `ACR0001960` **Centre aquatique Aquapôle** — Amiens (2019) — Chabanne et partenaires
+- `ACR0001968` **Groupe scolaire du Grand Bé** — Saint-Malo (1951) — Auffret Henry
+- `ACR0001971` **ancienne plage municipale des Familles** — Pontivy (1944) — Cadre Henry Le
+- `ACR0001933` **Boulangerie-Halle** — Avricourt (2016) — GENS, Eckly Guillaume, Fischer Barbara, Roustang Mathias
+- `ACR0001937` **Médiathèque -tiers lieu Puzzle** — Thionville (2012) — Coulon Dominique, Letho-Duclos Steve
+- `ACR0001961` **ancien cinéma Le Royal** — Saint-Brieuc (1934) — Fauny Jean, Hédou de la Héraudière Christian
+- `ACR0001955` **Piscine Émile Ranson** — Calais (1963) — Soupey Jean, Poyé Roger
+- `ACR0001935` **Musée du pays de Sarrebourg** — Sarrebourg (1999) — Desmoulin Bernard
+- `ACR0001938` **La Villa, centre d’interprétation du patrimoine archéologique** — Dehlingen (2012) — Piccon Louis, Nunc architectes
+- `ACR0001939` **Grande mosquée de Strasbourg** — Strasbourg (2007) — Portoghesi Paolo, Maechel Paul
+- `ACR0001962` **maison d'habitation dite maison Chaffoteaux** — Saint-Brieuc (1929) — Fauny Jean
+- `ACR0001964` **maison d'habitation Dir ha Dour** — Tréglonou (1973) — Bach Claude-Jules
+- `ACR0001965` **École nationale supérieure d'architcture (ENSA)** — Rennes (1988) — Berger Patrick
+- `ACR0001966` **Maison provinciale des Filles de Jésus** — Rennes (1993) — Perrin Hervé, Martin Georges
+- `ACR0001970` **Complexe sportif Le Gall-La Nouënne** — Hennebont (1954) — Millot René, Perrin Charles, Caillard Jean
+- `ACR0001974` **Groupe scolaire des Millepertuis** — Les Ulis (None) — Picard Michel, Hubert Michel
+- `ACR0001975` **Groupe scolaire du Bosquet** — Les Ulis (None) — Camelot Robert, Hubert Michel
+- `ACR0001978` **Piscine** — Les Ullis (None) — Mimram Marc
+- `ACR0001972` **Centre culturel Boris Vian, donjon, passerelles de la Daunière et du Forez** — Les Ulis (1984) — L'Atelier coopératif d'architectes urbanistes, Verlhac René, Vick William,  Frontice Serge, Boudier Dominique, Rodes Didier
+- `ACR0001979` **Châteaux d'eau** — Villebon-sur-Yvette (None) — Kétoff Serge
+- `ACR0001973` **Centre paroissial Jean XXIII** — Les Ulis (None) — Prieur François
+- `ACR0001976` **Groupe scolaire du Parc** — Les Ulis (None) — Camelot Robert, Hubert Michel, Picard Michel
+- `ACR0001977` **Hôtel de ville** — Les Ulis (None) — Camelot Robert, Hennuyer Michel, Finelli Jean-Claude
+- `ACR0001982` **Maison Mourioux** — Saint-Agnant-de-Versillat (1992) — Depresle François
+- `ACR0001985` **Théâtre (à l'exception de l'auvent de 1991)** — Caen (1959) — Bourbonnais Alain, Carpentier François
+- `ACR0001989` **Eglise Saint-Joseph, baptistère et clocher** — Lisieux (1962) — Duval fils Georges, Courel Robert
+- `ACR0001990` **ancien couvent La Providence, actuellement résidence pour personnes âgées** — Lisieux (1954) — Hamel Auguste, Cholin Roger, Turin Jacques C
+- `ACR0001992` **Mairie** — Duclair (1952) — Le Bugle André
+- `ACR0001997` **Eglise Saint-Thibaut-de-Marly** — Le Pecq (1962) — Perrouin Guy : Lunel Claude, Jung Pierre
+- `ACR0001998` **Eglise Notre-Dame-de-la-Croix** — Maisons-Laffitte (1959) — Barniaud Pierre
+- `ACR0001984` **Caisse d'allocations familiales du Calvados** — Caen (1951) — Auvray Pierre
+- `ACR0001991` **Ecole primaire Pierre Mendès-France** — Avranches (1955) — Cheftel André
+- `ACR0001983` **Piscine Tournesol** — Saint-Paul-Les-Dax (1974) — Schoeller Bernard, Constantidinis Thémis
+- `ACR0001986` **Galeries Lafayette** — Caen (1953) — Richard Georges, Daubin Pierre, Richard  Joachim
+- `ACR0001988` **Eglise Saint-Jean-Bosco** — Lisieux (1962) — Duval fils Georges, Courel Robert
+- `ACR0001994` **Ancien ISAI (immeuble sans affectation individuelle) des docks, actuel Groupe Normandie** — Rouen (1949) — Fayeton Jean-Louis, Remondet André, Lair Edmond, Pruvost Roger, Combrisson Noël
+- `ACR0001995` **Ancien centre social, actuel Maison Départementale des Personnes Handicapées et logements étudiants** — Rouen (1955) — Tougard Henri, Gosse Bernard, Robinne André
+- `ACR0001980` **Maison Mistri** — Bessines-sur-Gartempe (2016) — Depresle François, Hélie Pascal
+- `ACR0001993` **Eglise Saint Jean-Baptiste-de-la Salle** — Rouen (1965) — Pinsard Pierre, Vollmar Hugo
+- `ACR0002000` **Espace Jean Touret** — Courcelles-lès-Montbéliard (1959) — "Mattern Jacques, Touret Jean, du mobilier), Arlotti, Ruez"
+- `ACR0002002` **Mémorial des Guerres en Indochine** — Fréjus (1993) — Desmoulin Bernard
+- `ACR0002001` **Caisse d'épargne La Seyne-Ville** — La Seyne-sur-Mer (1966) — Parente Jean
+- `ACR0002003` **Lycée agricole Louis Giraud** — Carpentras (1968) — Bourgoin Max
+- `ACR0002004` **Résidence Eden Roc** — Marseille (1967) — Berthelot Jacques
+- `ACR0002009` **musée de Bibracte** — Saint-Léger-sous-Beuvray (1995) — Faloci Pierre-Louis
+- `ACR0002006` **Mémorial de la Résistance** — Vassieux-en-Vercors (1994) — Faure Olivier Félix, cabinet d'architecture Groupe 6
+- `ACR0002007` **centre d'art et de rencontre Curiox** — Ugine (1959) — Fay Claude
+- `ACR0002008` **centre archéologique européen** — Glux-en-Glenne (1995) — Faloci Pierre-Louis
+- `ACR0002011` **Piscine panoramique** — Lectoure (1966) — Maurin Roger
+- `ACR0002010` **Maison Milon** — Grllon (1990) — Saint Olive Hervé
+- `ACR0002013` **université : bâtiment des premiers cycles** — Évry-Courcouronnes (1994) — Butler Rémy architecte)
+- `ACR0002016` **Amphithéâtres Platon-Aristote du campus universitaire de Montmuzard** — Dijon (1969) — Barade Roger Martin
+- `ACR0002017` **Esplanade Erasme du campus universitaire de Montmuzard** — Dijon (2000) — None
+- `ACR0002019` **Résidences Lamartine, Buffon et Bossuet du campus universitaire de Montmuzard** — Dijon (1962) — Barade Roger Martin
+- `ACR0002012` **université : bâtiment Maupertuis** — Évry-Courcouronnes (2000) — Canal 3, Boudon Pierre, Michel Jacques, Monot Yves
+- `ACR0002021` **Unité de Formation et de Recherche (UFR) Sciences et Techniques du campus universitaire de Montmuzard** — Dijon (1972) — Barade Roger Martin
+- `ACR0002023` **Église Saint-Charles** — Redon (1972) — Perrin Yves
+- `ACR0002014` **résidence Arago** — Paris 14e Arrondissement (1965) — Roux-Dufort René, Roux-Dufort Evelyne
+- `ACR0002015` **maison Deslandes** — Meudon (1976) — Deslandes Martine, Deslandes Philippe
+- `ACR0002018` **Maison de l'université du campus universitaire de Montmuzard** — Dijon (1997) — Berger Patrick, Anziutti Jacques
+- `ACR0002020` **Tour de la bibliothèque de Droit et Lettres du campus universitaire de Montmuzard** — Dijon (1962) — Barade Roger Martin, Durand Guy, Ménard Philippe, Thibault Gérard
+- `ACR0002022` **Maison dite « haricot »** — Saint-Brieuc (1957) — Flanchec le Roger
+- `ACR0002024` **Pont sous-tendu** — Tinténiac (1998) — Faunières Marion, Lafon Pierre, Fruitet Louis
+- `ACR0002035` **Immeuble de la Direction départementale de l'équipement (DDTM), bâtiment Joffre** — Perpignan (1975) — Wursteisen Georges, Homs Marcel
+- `ACR0002025` **Église Saint-Jacques** — Carcassonne (1967) — Castella Henri
+- `ACR0002026` **Archives départementales de l'Aude** — Carcassonne (2003) — Courtade Pierre, SCPA Vigneu-Zilio, Atelier des Mathurins
+- `ACR0002036` **Résidence Port-Cipriano** — Saint-Cyprien (1964) — Abelanet Maurice, Dujol Jean, Bourbon Jacques, Lacalm Henri
+- `ACR0002038` **Village des Sables** — Torreilles (1978) — Abelanet Maurice, Dujol Jean, Bourbon Jacques, Lacalm Henri
+- `ACR0002032` **Église Notre-Dame-des-Flots** — Canet-en-Roussillon (1961) — Laberty René
+- `ACR0002037` **Mémorial du camp de Rivesaltes** — Salses-le-Château (2015) — Ricciotti Rudy, Passelac Romain, Roques François
+- `ACR0002028` **Gymnase des Serres** — Carcassonne (1974) — Tarbouriech Christiane, Tarbouriech Pierre
+- `ACR0002033` **Feu solaire du cap Cerbère** — Cerbère (1982) — Guerra Lucien
+- `ACR0002027` **Caveau du lycée agricole Charlemagne** — Carcassonne (2017) — Passelac Romain, Roques François
+- `ACR0002029` **Mairie** — Gruissan (1969) — Gleize Raymond, Hartané Edouard, Poussines Y.
+- `ACR0002030` **Maison des canisses** — Limoux (2001) — Ferrier Jacques, Planchez Sandra
+- `ACR0002031` **Chapelle Notre-Dame-de-tous-les-Horizons** — Le Barcarès (1986) — Blondel Michel
+- `ACR0002034` **Gymnase, actuel club de plongée du cap Cerbère** — Cerbère (1969) — Guering Georges
+- `ACR0002040` **Salle du Mille Club de l'Habitarelle** — Châteauneuf de Randon (1976) — Béchu A., Bidault J., Guillaume M.
+- `ACR0002039` **Chapelle du Mont-Lozère** — Mont-Lozère-et-Goulet (1967) — Peytavin Jean, Balayn Jean-Marie
+- `ACR0002041` **Villa Revel** — Assas (1968) — Revel Maurice, Camberoque Jean
+- `ACR0002042` **Piscine panoramique** — Lectoure (1965) — Maurin Roger
+- `ACR0002043` **Centre nautique** — Toulouse (1969) — Brunerie Henri
+- `ACR0002045` **Maison Albert** — Les Herbiers (1971) — Durand Guy, Ménard Yves, Société Durand Ménard
+- `ACR0002046` **Palais des sports de Beaulieu** — Nantes (1967) — Evano Georges, Pellerin Jean-Luc, Barto Bernard, Dziewolski Richard
+- `ACR0002047` **Stade de la Beaujoire - Louis Fonteneau** — Nantes (1983) — Agopyan Berdje
+- `ACR0002048` **Stadium métropolitain Pierre Quinon** — Nantes (2012) — Guervilly Jean, Paulet Bertrand
+- `ACR0002049` **Piscines d'Offard** — Saumur (1961) — Moignet Yves, Charvier Alain, Aigrot Jean-Paul, Charras Franc
+- `ACR0002050` **Stade d'Offard** — Saumur (1966) — None
+- `ACR0002051` **Institut français du cheval et de l'équitation** — Saumur (1974) — Faysse Jean-Jacques, Ogé Bernard, Crépy Geoffroy de
+- `ACR0002052` **Complexe sportif dit "Île aux sports des Sablons** — Le Mans (1972) — Vago Pierre
+- `ACR0002053` **La Rotonde** — Le Mans (1969) — Roinné Claude
+- `ACR0002054` **Salle omnisport de Noirmoutier** — Noirmoutier-en-l'Île (1979) — Rouquet Jean, Lourdin
+ Robert
+- `ACR0002055` **MuséoParc d'Alésia** — Alise-Sainte-Reine (2008) — Tschumi Bernard
+- `ACR0002056` **Centre de conservation et d'études archéologiques René Rémond** — Lons-le-Saunier (2005) — Reichardt Gilles, Ferreux Gilles
