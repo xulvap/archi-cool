@@ -16,6 +16,7 @@ Coques en béton projeté, formes organiques/rondes, ~1965-1980. Mouvement
 identifiable à part entière si le groupe grossit.
 
 - `ACR0000303` Maison Pasquini (Méry-sur-Cher, 1967) — Pascal Häusermann
+- `ACR0001302` Palais Bulles (Théoule-sur-Mer, 1979) — Antti Lovag, LE nom associé au mouvement avec Häusermann
 
 ## "High-tech" / postmoderne critique (Nouvel, Grimshaw, Vasconi, Rogers…)
 
@@ -35,8 +36,10 @@ continue.
 - `ACR0001012` Tribunal de grande instance (Bordeaux, 1992) — Richard Rogers
 - `ACR0000486` Parlement européen IPE4 (Strasbourg, 1991) — Architecture Studio
 - `ACR0000707` Église Notre-Dame-de-l'Arche-d'Alliance (Paris 15e, 1996) — Architecture Studio
+- `ACR0001244` Archives départementales (Laval, 1988-92) — Dominique Perrault (architecte de la BnF, même registre minimaliste/high-tech)
+- `ACR0001246` Extension de l'hôtel de ville (La Flèche, 1994) — Adrien Fainsilber (architecte de la Cité des Sciences de la Villette)
 
-7 lieux, 5 signatures (Nouvel x3) — clairement le groupe le plus fourni des
+9 lieux, 7 signatures (Nouvel x3) — clairement le groupe le plus fourni des
 trois. Sérieux candidat à devenir un vrai style ("architecture
 contemporaine"/"high-tech" ?) si la deuxième moitié du jeu confirme la
 tendance.
