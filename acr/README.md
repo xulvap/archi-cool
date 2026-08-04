@@ -82,11 +82,17 @@ côté par défaut. Voir `classify_styles.py` pour les critères de détection.
    déco"/"brutaliste" dans la notice) ; le reste passe par une relecture
    manuelle lieu par lieu (architecte, date, description, parfois recherche
    web ponctuelle pour des architectes/mouvements spécifiques — pas une
-   recherche par lieu, ingérable à ce volume). État au 2026-08-04 : **318/1824
-   classés**, 239 hors-sujet (urbanisme/aménagement, pas des bâtiments), ~1267
-   encore à relire. Ce n'est pas mécanisable à 100 % — un mauvais style est
-   pire qu'un lieu pas encore sur la carte, donc on laisse `styles: []` plutôt
-   que deviner quand le signal est faible.
+   recherche par lieu, ingérable à ce volume). **État au 2026-08-04 : première
+   passe complète terminée sur les 1824 lieux — 417 classés**, 239 hors-sujet
+   (urbanisme/aménagement, pas des bâtiments), 1168 relus au moins une fois
+   mais sans signal assez fort pour classer sans deviner (voir
+   `classify_review.md`). Répartition : Modernisme 182, Industriel et
+   rationaliste 164, Art Déco 33, Brutalisme 30, Post-modernisme 8. Ce n'est
+   pas mécanisable à 100 % — un mauvais style est pire qu'un lieu pas encore
+   sur la carte, donc on laisse `styles: []` plutôt que deviner quand le
+   signal est faible. Une 2e passe (recherches ponctuelles par architecte
+   récurrent, ex. Férid Muchir à Perpignan, Edmond Lay) ferait sûrement
+   monter ce chiffre, mais la première passe couvre déjà l'intégralité du jeu.
    Règle sur les nouveaux styles (Paul, 2026-08-04) : on peut en créer, mais
    pas trop — un cas qui ne rentre dans aucun des 5 actuels est mis de côté
    dans `edge_cases.md` (pas classé, pas hors-sujet) plutôt que de créer un
@@ -116,6 +122,7 @@ côté par défaut. Voir `classify_styles.py` pour les critères de détection.
 ## Statut
 
 Squelette de données prêt (1824 entrées, champs mécaniques peuplés).
-Classification des styles en cours (318/1824, voir ci-dessus). Rien n'est
+Classification des styles : première passe complète terminée (417/1824, voir
+ci-dessus). Rien n'est
 encore branché sur `index.html`/la carte — c'est volontaire, à la demande de
 Paul.

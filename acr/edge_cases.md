@@ -40,6 +40,7 @@ continue.
 - `ACR0001244` Archives départementales (Laval, 1988-92) — Dominique Perrault (architecte de la BnF, même registre minimaliste/high-tech)
 - `ACR0001246` Extension de l'hôtel de ville (La Flèche, 1994) — Adrien Fainsilber (architecte de la Cité des Sciences de la Villette)
 - `ACR0001722` Hôtel du département de la Meuse (Bar-le-Duc, 1991) — Dominique Perrault, 2e occurrence
+- `ACR0001917` ESIEE Paris (Noisy-le-Grand, 1987) — Dominique Perrault, 3e occurrence
 - `ACR0001555` Hôtel Saint-James (Bouliac, 2007) — Jean Nouvel
 - `ACR0001625` Lycée Jules Verne (Cergy, 1993) — Architecture Studio
 - `ACR0001623` Lycée Maximilien Perret (Alfortville, 1997) — Massimiliano Fuksas (italien, même registre)
