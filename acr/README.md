@@ -82,11 +82,16 @@ côté par défaut. Voir `classify_styles.py` pour les critères de détection.
    déco"/"brutaliste" dans la notice) ; le reste passe par une relecture
    manuelle lieu par lieu (architecte, date, description, parfois recherche
    web ponctuelle pour des architectes/mouvements spécifiques — pas une
-   recherche par lieu, ingérable à ce volume). État au 2026-08-04 : **285/1824
-   classés**, 239 hors-sujet (urbanisme/aménagement, pas des bâtiments), ~1300
+   recherche par lieu, ingérable à ce volume). État au 2026-08-04 : **318/1824
+   classés**, 239 hors-sujet (urbanisme/aménagement, pas des bâtiments), ~1267
    encore à relire. Ce n'est pas mécanisable à 100 % — un mauvais style est
    pire qu'un lieu pas encore sur la carte, donc on laisse `styles: []` plutôt
    que deviner quand le signal est faible.
+   Règle sur les nouveaux styles (Paul, 2026-08-04) : on peut en créer, mais
+   pas trop — un cas qui ne rentre dans aucun des 5 actuels est mis de côté
+   dans `edge_cases.md` (pas classé, pas hors-sujet) plutôt que de créer un
+   style à la première occurrence ; on tranche seulement si un vrai groupe se
+   dégage, à la fin plutôt qu'au fil de l'eau.
 2. **`nom`** — copie brute de `nom_officiel` pour l'instant. Dans `data.json`,
    `nom` est souvent une version raccourcie/désambiguïsée à la main (ex.
    `PA33000142` : nom officiel "Maison de type gratte-ciel" → nom affiché
@@ -111,6 +116,6 @@ côté par défaut. Voir `classify_styles.py` pour les critères de détection.
 ## Statut
 
 Squelette de données prêt (1824 entrées, champs mécaniques peuplés).
-Classification des styles en cours (285/1824, voir ci-dessus). Rien n'est
+Classification des styles en cours (318/1824, voir ci-dessus). Rien n'est
 encore branché sur `index.html`/la carte — c'est volontaire, à la demande de
 Paul.
