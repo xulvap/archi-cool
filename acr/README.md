@@ -111,7 +111,10 @@ côté par défaut. Voir `classify_styles.py` pour les critères de détection.
 5. **`visite_statut`** — non renseigné, comme pour la majorité du jeu MH à
    l'origine ; recherche au cas par cas plus tard.
 6. **`code_postal`** — absent de la source (le CSV n'a que le code INSEE
-   commune, différent du code postal). À enrichir si besoin.
+   commune, différent du code postal). **Fait le 2026-08-05** via
+   `scripts/geocode_postal.py` (géocodage inverse) : 1525/1576 lieux avec
+   coordonnées ont maintenant un code postal (349/420 parmi les lieux
+   classés).
 7. **Filtrage de pertinence** — 1824 lieux, c'est large : ça inclut par ex. de
    l'urbanisme/aménagement (lotissements, secteurs urbains) et pas seulement
    des bâtiments isolés. Une passe de tri (garder seulement ce qui correspond

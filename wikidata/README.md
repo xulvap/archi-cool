@@ -61,16 +61,33 @@ mais gardés dans le fichier avec `deja_sur_le_site: true` pour référence) :
   schéma partagé avec `data.json` — à retirer avant fusion.
 - `deja_sur_le_site` : idem, champ de travail à retirer avant fusion.
 
-## Ce qui manque avant fusion
+## Complétion (2026-08-05)
 
-1. **`dept` / `region`** — vides pour l'instant. Wikidata a l'info (chaîne
-   de propriétés P131 : commune → département → région) mais ça demande une
-   requête supplémentaire par lieu ou une jointure plus complexe ; pas fait
-   encore.
+Requête SPARQL étendue (chaîne P131 commune → département → région, type
+P31 comme `domaine`, adresse P6375) + géocodage inverse pour `code_postal`
+(`scripts/geocode_postal.py`, partagé avec ACR). État sur les 397 nouveaux
+lieux :
+
+- `nom`, `domaine` : 100 %
+- `dept`, `region`, `commune` : 81 % (323/397 — Wikidata n'a pas toujours la
+  chaîne P131 complète jusqu'au département)
+- `code_postal` : 93 % (371/397)
+- `annee`, `siecle` : 77 %
+- `architecte` : 54 %
+- `adresse` : 35 % (Wikidata a rarement l'adresse postale complète, P6375)
+- `lien_pop` : 40 % (uniquement les lieux liés à une notice Mérimée)
+
+## Ce qui manque encore
+
+1. **`historique`** — vide. Wikidata n'a pas de champ "texte descriptif" ;
+   contrairement à ACR/MH où ce texte vient de la notice officielle
+   Mérimée, la seule source possible ici serait un résumé Wikipédia
+   (contenu collaboratif, pas une source officielle sourcée comme le reste
+   du site) — **décision à prendre avec Paul avant d'aller plus loin**.
 2. **`nom`** — copie brute du label Wikidata, pas encore la version
    raccourcie/désambiguïsée à la main comme sur `data.json`.
-3. **`historique`, `domaine`, `adresse`, `code_postal`, `proprietaire`,
-   `visite_statut`** — vides, mêmes manques que sur ACR au même stade.
+3. **`proprietaire`, `visite_statut`** — pas dans Wikidata, demanderait une
+   recherche au cas par cas comme pour ACR/MH.
 4. **Industriel et rationaliste à revérifier** (voir plus haut) — c'est la
    seule des 5 catégories qui n'est pas directement fiable telle quelle.
 5. **Photos** — 269 lieux ont une vraie photo de référence disponible
@@ -79,6 +96,8 @@ mais gardés dans le fichier avec `deja_sur_le_site: true` pour référence) :
 
 ## Statut
 
-432 lieux (390 nouveaux), 4 styles sur 5 directement fiables (P149 natif),
+432 lieux (397 nouveaux), 4 styles sur 5 directement fiables (P149 natif),
 1 à revérifier (Industriel et rationaliste, proxy par type de bâtiment).
-Rien n'est branché sur `index.html`/la carte.
+Champs mécaniques bien remplis (voir Complétion ci-dessus) ; `historique`
+en attente d'une décision de source. Rien n'est branché sur
+`index.html`/la carte.

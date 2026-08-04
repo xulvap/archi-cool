@@ -63,26 +63,44 @@ def run_sparql(query, max_retries=5):
             raise
 
 
+# Shared block appended to both queries below: department/region via the
+# P131 (located in) administrative chain — commune -> department (an
+# instance of Q6465, "French department") -> region — plus a building
+# "type" (P31, e.g. "église", "usine") standing in for `domaine`, and a
+# street address (P6375) when Wikidata happens to have one.
+ENRICHMENT_CLAUSE = """
+      OPTIONAL {
+        ?item wdt:P131 ?commune .
+        ?commune wdt:P131* ?dept .
+        ?dept wdt:P31/wdt:P279* wd:Q6465 .
+        OPTIONAL { ?dept wdt:P131 ?region . }
+      }
+      OPTIONAL { ?item wdt:P31 ?type . }
+      OPTIONAL { ?item wdt:P6375 ?adresse . }
+"""
+
+
 def query_style(style_qid):
     """One row per item, architects/images already aggregated with GROUP_CONCAT
     so we don't get row-per-architect duplicates like the raw exploratory
     query did."""
     query = f"""
     SELECT ?item ?itemLabel ?coord ?communeLabel ?inception ?merimee
+           ?deptLabel ?regionLabel ?typeLabel ?adresse
            (GROUP_CONCAT(DISTINCT ?architectLabel; separator=", ") AS ?architectes)
            (SAMPLE(?image) AS ?img)
     WHERE {{
       ?item wdt:P149 wd:{style_qid} .
       ?item wdt:P17 wd:Q142 .
       ?item wdt:P625 ?coord .
-      OPTIONAL {{ ?item wdt:P131 ?commune . }}
       OPTIONAL {{ ?item wdt:P571 ?inception . }}
       OPTIONAL {{ ?item wdt:P380 ?merimee . }}
       OPTIONAL {{ ?item wdt:P84 ?architect . ?architect rdfs:label ?architectLabel . FILTER(LANG(?architectLabel)="fr") }}
       OPTIONAL {{ ?item wdt:P18 ?image . }}
+      {ENRICHMENT_CLAUSE}
       SERVICE wikibase:label {{ bd:serviceParam wikibase:language "fr". }}
     }}
-    GROUP BY ?item ?itemLabel ?coord ?communeLabel ?inception ?merimee
+    GROUP BY ?item ?itemLabel ?coord ?communeLabel ?inception ?merimee ?deptLabel ?regionLabel ?typeLabel ?adresse
     """
     return run_sparql(query)["results"]["bindings"]
 
@@ -90,20 +108,21 @@ def query_style(style_qid):
 def query_factories():
     query = f"""
     SELECT ?item ?itemLabel ?coord ?communeLabel ?inception ?merimee
+           ?deptLabel ?regionLabel ?typeLabel ?adresse
            (GROUP_CONCAT(DISTINCT ?architectLabel; separator=", ") AS ?architectes)
            (SAMPLE(?image) AS ?img)
     WHERE {{
       ?item wdt:P31/wdt:P279* wd:{FACTORY_QID} .
       ?item wdt:P17 wd:Q142 .
       ?item wdt:P625 ?coord .
-      OPTIONAL {{ ?item wdt:P131 ?commune . }}
       OPTIONAL {{ ?item wdt:P571 ?inception . }}
       OPTIONAL {{ ?item wdt:P380 ?merimee . }}
       OPTIONAL {{ ?item wdt:P84 ?architect . ?architect rdfs:label ?architectLabel . FILTER(LANG(?architectLabel)="fr") }}
       OPTIONAL {{ ?item wdt:P18 ?image . }}
+      {ENRICHMENT_CLAUSE}
       SERVICE wikibase:label {{ bd:serviceParam wikibase:language "fr". }}
     }}
-    GROUP BY ?item ?itemLabel ?coord ?communeLabel ?inception ?merimee
+    GROUP BY ?item ?itemLabel ?coord ?communeLabel ?inception ?merimee ?deptLabel ?regionLabel ?typeLabel ?adresse
     """
     return run_sparql(query)["results"]["bindings"]
 
@@ -146,17 +165,17 @@ def transform(binding, style, existing_refs):
         "nom_officiel": binding.get("itemLabel", {}).get("value"),
         "architecte": binding.get("architectes", {}).get("value") or None,
         "commune": binding.get("communeLabel", {}).get("value"),
-        "dept": None,          # TODO: needs a P131 chain walk or reverse geocode
-        "region": None,        # TODO: same
+        "dept": binding.get("deptLabel", {}).get("value"),
+        "region": binding.get("regionLabel", {}).get("value"),
         "protection": None,
         "statut": None,
-        "siecle": None,
+        "siecle": f"{annee//100 + 1}e s." if annee else None,
         "annee": annee,
         "decennie": decennie,
         "lat": lat,
         "lon": lon,
         "precision_coord": "exact",
-        "domaine": None,
+        "domaine": binding.get("typeLabel", {}).get("value"),
         "styles": [style],     # already known — Wikidata's own P149, not guessed
         "proprietaire": None,
         "proprietaire_detail": None,
@@ -164,7 +183,7 @@ def transform(binding, style, existing_refs):
         "lien_source": f"https://www.wikidata.org/wiki/{qid}",
         "historique": None,
         "image": None,         # TODO: photo pass — see wikidata_image_url below
-        "adresse": None,
+        "adresse": binding.get("adresse", {}).get("value"),
         "code_postal": None,
         "visite_statut": None,
         # Extra field, not part of the shared site schema — strip before
