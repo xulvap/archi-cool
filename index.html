@@ -244,6 +244,19 @@
     width:30px;height:30px;line-height:30px;text-align:center;z-index:5;transition:background .15s,color .15s;
   }
   #dp-back:hover{background:var(--ink);color:#fff;}
+  /* Sticky title bar: mobile-only, only ever shown in the full fiche once scrolled past the
+     real <h2> — see the media query for display + the scroll listener for the .visible toggle. */
+  #dp-sticky-title{
+    display:none;position:absolute;top:0;left:0;right:0;height:56px;z-index:4;
+    align-items:center;justify-content:center;padding:0 54px;
+    font-size:15px;font-weight:700;color:var(--ink);text-align:center;
+    background:rgba(251,250,247,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(231,225,211,.85);
+    opacity:0;transform:translateY(-6px);pointer-events:none;
+    transition:opacity .18s ease,transform .18s ease;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  }
+  #dp-sticky-title.visible{opacity:1;transform:translateY(0);}
   /* Mini preview card (mobile only — see the media query for how it actually shows/positions
      itself; hidden by default so desktop, which goes straight to the full side panel, never
      renders it). */
@@ -402,6 +415,9 @@
        sheet is open would let one fixed sheet cover the other. Simplest fix: hide the trigger
        entirely while a place is open, it reappears once the sheet closes. */
     #app.detail-open #pills-row{display:none;}
+    /* The full fiche takes over the screen below the header — search and "Autour de moi"
+       are map actions that don't apply while reading a place, so they step aside too. */
+    #app.detail-full .header-controls{display:none;}
     /* A panel anchored under its pill can run off a narrow screen. Detach it from the pill
        and pin it to the viewport instead, as a small floating sheet near the bottom —
        always fully on-screen. */
@@ -428,15 +444,22 @@
       border-left:none;border-right:none;border-bottom:none;border-top:1px solid rgba(231,225,211,.85);
       border-radius:20px 20px 0 0;
       transform:translateY(100%);
-      transition:transform .22s ease;
+      transition:transform .22s ease, left .22s ease, right .22s ease, bottom .22s ease, border-radius .22s ease, box-shadow .22s ease;
     }
     #detail-panel.open{transform:translateY(0);}
     /* .full covers the whole map area (top:0 inside #main, which is already clear of the
        header) rather than a fixed vh guess — simpler and correct at any viewport height. */
-    #detail-panel.full{top:0;border-radius:0;border-top:none;}
+    #detail-panel.full{top:0;border-radius:0;border-top:none;box-shadow:none;}
+    /* The mini preview floats as its own card off all four edges, like a map-app search
+       result — only the .full fiche underneath is a flush edge-to-edge sheet. */
+    #detail-panel.open:not(.full){
+      left:10px;right:10px;bottom:10px;
+      border:none;border-radius:20px;
+      box-shadow:0 10px 34px rgba(20,20,20,.2);
+    }
 
     #dp-mini{
-      display:flex;flex-direction:column;padding:16px 16px calc(16px + env(safe-area-inset-bottom));gap:10px;
+      display:flex;flex-direction:column;padding:8px 8px calc(10px + env(safe-area-inset-bottom));gap:8px;
     }
     #detail-panel.full #dp-mini{display:none;}
     #dp-mini-photo{
@@ -444,13 +467,14 @@
       display:flex;align-items:center;justify-content:center;
     }
     #dp-mini-photo img{display:block;width:100%;height:100%;object-fit:contain;}
-    #dp-mini-title{font-size:17px;font-weight:700;line-height:1.3;color:var(--ink);}
+    #dp-mini-title{font-size:17px;font-weight:700;line-height:1.3;color:var(--ink);padding:0 4px;}
     #dp-mini-cta{
-      display:block;width:100%;text-align:center;padding:13px;font-size:11.5px;font-weight:700;border-radius:999px;
-      text-transform:uppercase;letter-spacing:.5px;border:none;background:var(--ink);color:#fff;cursor:pointer;
-      font-family:inherit;transition:background .15s;
+      display:inline-flex;align-self:flex-start;align-items:center;margin:0 4px;
+      padding:9px 16px;font-size:11px;font-weight:700;border-radius:999px;
+      text-transform:uppercase;letter-spacing:.4px;border:none;background:var(--chip-bg);color:var(--ink);cursor:pointer;
+      font-family:inherit;transition:background .15s,color .15s;
     }
-    #dp-mini-cta:hover{background:var(--accent);}
+    #dp-mini-cta:hover{background:var(--ink);color:#fff;}
 
     /* The full fiche's own scroll/footer only render in .full — the mini card is the only
        thing visible otherwise. */
@@ -461,6 +485,7 @@
        the mini card instead — so the two never show at the same time. */
     #detail-panel.full #dp-close{display:none;}
     #detail-panel.full #dp-back{display:block;}
+    #detail-panel.full #dp-sticky-title{display:flex;}
 
     /* Pinch-to-zoom is the expected gesture on a phone — on-screen +/- buttons aren't part of
        normal mobile map usage, so drop them there and keep them for desktop/mouse users. */
@@ -621,6 +646,10 @@
     <div id="detail-panel">
       <button id="dp-back" aria-label="Retour">←</button>
       <button id="dp-close">✕</button>
+      <!-- Mobile-only: appears once the title has scrolled out of view in the full fiche,
+           pairing the name with the back arrow so orientation/navigation stay visible while
+           reading further down. Hidden until JS adds .visible on scroll. -->
+      <div id="dp-sticky-title"></div>
       <!-- Mobile-only mini preview: photo + name + a single "En savoir plus" button, shown
            over the still-browsable map instead of the full sheet — tapping it (or the mini
            card itself) reveals the full fiche below. Desktop never shows this, it goes
@@ -1138,6 +1167,7 @@ function selectPlace(d, flyToPlace){
   // while browsing between places you've already opened once.
   if(isMobile && !hadSelection){
     panel.classList.remove('full');
+    document.getElementById('app').classList.remove('detail-full');
   }
   if(flyToPlace){
     isProgrammaticMove = true;
@@ -1222,9 +1252,26 @@ function updateScrollFade(){
   const scrollable = scrollEl.scrollHeight > scrollEl.clientHeight + 4;
   const atBottom = scrollEl.scrollTop + scrollEl.clientHeight >= scrollEl.scrollHeight - 4;
   fade.classList.toggle('hidden', !scrollable || atBottom);
+  updateStickyTitle();
 }
 document.getElementById('dp-scroll').addEventListener('scroll', updateScrollFade);
 window.addEventListener('resize', updateScrollFade);
+
+// Mobile full-fiche only: once the real <h2> has scrolled out from under the sticky bar,
+// swap it in with the same text so the place name + back arrow stay reachable while reading on.
+function updateStickyTitle(){
+  const sticky = document.getElementById('dp-sticky-title');
+  if(window.innerWidth > 720 || !document.getElementById('detail-panel').classList.contains('full')){
+    sticky.classList.remove('visible');
+    return;
+  }
+  const titleEl = document.querySelector('#dp-content h2');
+  if(!titleEl) return;
+  const scrollTop = document.getElementById('dp-scroll').getBoundingClientRect().top;
+  const pastTitle = titleEl.getBoundingClientRect().bottom < scrollTop + 8;
+  sticky.classList.toggle('visible', pastTitle);
+  sticky.textContent = titleEl.textContent;
+}
 
 // MH status tooltip: hover works on desktop via CSS alone (see @media (hover:hover)), but
 // touch devices need an explicit tap-to-toggle. Delegated on the scroll container since
@@ -1254,7 +1301,7 @@ document.getElementById('dp-close').onclick = () => {
   // the next place opened starts on the mini card again rather than remembering it was left on
   // the full fiche last time.
   document.getElementById('detail-panel').classList.remove('open', 'full');
-  document.getElementById('app').classList.remove('detail-open');
+  document.getElementById('app').classList.remove('detail-open', 'detail-full');
   selectedRef = null;
   render();
 };
@@ -1359,18 +1406,16 @@ map.on('moveend', () => {
   render();
 });
 
-// Dragging the map already closed the open sheet; a plain tap/click on the map (no drag,
-// e.g. tapping empty space to get back to the map on mobile) now does the same.
+// Used when opening Filtres (mutually exclusive with the detail card) — panning/clicking
+// the map no longer closes the preview card, only the close button or picking another pin does.
 function closeDetailIfOpen(){
   if(selectedRef){
     document.getElementById('detail-panel').classList.remove('open', 'full');
-    document.getElementById('app').classList.remove('detail-open');
+    document.getElementById('app').classList.remove('detail-open', 'detail-full');
     selectedRef = null;
     render();
   }
 }
-map.on('dragstart', closeDetailIfOpen);
-map.on('click', closeDetailIfOpen);
 
 // Mobile mini card -> full fiche, and back. Two plain states, no drag/resize gesture: tapping
 // the mini card (or its "En savoir plus" button, which is inside it) reveals the full fiche
@@ -1378,10 +1423,14 @@ map.on('click', closeDetailIfOpen);
 // place, so the pin stays highlighted and the map position doesn't jump.
 document.getElementById('dp-mini').addEventListener('click', () => {
   document.getElementById('detail-panel').classList.add('full');
+  document.getElementById('app').classList.add('detail-full');
+  updateStickyTitle();
 });
 document.getElementById('dp-back').onclick = (e) => {
   e.stopPropagation();
   document.getElementById('detail-panel').classList.remove('full');
+  document.getElementById('app').classList.remove('detail-full');
+  updateStickyTitle();
 };
 
 // no-cache: always revalidate with the server instead of trusting a stale disk-cached copy —

@@ -37,22 +37,41 @@ Site 100% statique, aucun backend, aucune dépendance à installer. `index.html`
 ### Mobile
 - Le menu burger / la liste latérale sur mobile ont été **retirés entièrement** — sur mobile, la carte + les fiches au clic suffisent, pas besoin d'un listing dédié.
 - Cliquer sur la carte (sans glisser) ferme la fiche ouverte.
-- **Remplacé le 2026-08-05** : la fiche n'est plus à hauteur fixe. C'est maintenant une bottom
-  sheet façon Google Maps (deux hauteurs — repliée ~46vh / étendue 88vh — avec une poignée à
-  glisser, plus tap sur le titre/la photo pour déplier), calée sur une vidéo de référence
-  Google Maps que Paul a envoyée. **Ne pas revenir à une hauteur fixe sans demande explicite.**
-  Détails :
-  - Repliée par défaut : eyebrow/titre/badges de style/statut de visite/CTA visibles sans
-    scroll, la photo est en dessous et seulement entraperçue (coupée en bas du panneau) — pas
-    l'inverse (une version antérieure mettait la photo en premier, ce qui poussait le titre
-    hors champ ; corrigé après retour de Paul).
-  - Cliquer sur un autre pin/une autre fiche pendant qu'une fiche est déjà ouverte swap juste le
-    contenu et **garde la même hauteur** (repliée ou étendue) — jamais de reset auto. Fermer (✕,
-    glisser vers le bas, ou taper sur la carte) remet à zéro : la prochaine fiche ouverte
-    redémarre repliée.
+- **Remplacé le 2026-08-05, deux fois de suite** (essayé puis annulé) : une première version
+  a copié une bottom sheet façon Google Maps (deux hauteurs, poignée à glisser) — rejetée par
+  Paul après une vidéo de référence Google Maps montrant que ce n'était pas fidèle. Une deuxième
+  tentative a corrigé l'ordre du contenu pour coller à cette vidéo — également rejetée : Paul a
+  alors envoyé deux captures d'une autre app (fiche "Sancerre") et demandé explicitement de
+  revenir au design de fiche d'origine, précédé d'une étape plus légère. **Ne pas réintroduire
+  une bottom sheet à glisser/redimensionner sans demande explicite — les deux tentatives ont été
+  essayées et jugées éloignées de ce que Paul voulait.**
+  Design retenu (mobile uniquement, desktop inchangé — toujours le panneau latéral d'origine) :
+  deux états discrets, pas de geste de drag :
+  - **Mini-carte flottante** (état par défaut à l'ouverture) : juste la photo, le nom, et un
+    bouton "En savoir plus" — une carte avec marge sur les 4 côtés (façon résultat de recherche
+    Google Maps), pas une sheet plein-largeur collée au bord. Marge très fine entre la photo et
+    le contour de la carte. Le CTA est volontairement discret (pilule grise, pas noire pleine,
+    pas pleine largeur) pour ne pas concurrencer visuellement le titre.
+  - **Fiche complète** ("full"), ouverte en tapant la mini-carte : reprend exactement le design
+    de fiche d'origine (photo en premier, bloc continu, mêmes labels), plein écran sous le
+    header, avec une flèche de retour (←) qui ramène à la mini-carte sans désélectionner le lieu
+    (le pin reste actif, la position de la carte ne bouge pas).
+  - Se balader sur la carte (drag ou tap simple) **ne ferme plus** la mini-carte — seul le ✕ (qui
+    désélectionne complètement) ou le choix d'un autre pin (qui swap juste le contenu) la ferme/
+    change. Avant le 2026-08-05, un tap/drag sur la carte fermait la fiche ; **changé sur
+    demande explicite de Paul** ("se balader sur la carte ne ferme pas l'aperçu").
+  - Dans l'état "full", la recherche et "Autour de moi" du header disparaissent (ce sont des
+    actions de navigation sur la carte, pas pertinentes en train de lire une fiche) — seul le
+    logo reste visible en haut.
+  - Au scroll dans la fiche "full", une fois le `<h2>` du titre sorti du cadre, une barre sticky
+    apparaît avec le nom du lieu + la flèche de retour, pour garder l'orientation/navigation
+    accessible sans remonter tout en haut.
+  - Cliquer sur un autre pin pendant qu'une fiche est déjà ouverte swap juste le contenu et
+    **garde le même état** (mini ou full) — jamais de reset auto. Fermer (✕ ou tap sur la carte
+    en dehors) remet à zéro : la prochaine fiche ouverte redémarre en mini-carte.
   - Le zoom de la carte ne change **jamais** en ouvrant/changeant/fermant une fiche — seul le
     panoramique (pan) recentre le point sélectionné dans la zone de carte encore visible. C'était
-    aussi cassé avant (un `Math.max(zoom, 14)` forçait un zoom avant sur les vues très dézoomées).
+    cassé avant (un `Math.max(zoom, 14)` forçait un zoom avant sur les vues très dézoomées).
 
 ### Refonte visuelle "Rains" (dernier gros round)
 Paul a fourni deux captures d'écran puis une vidéo de Rains.com (site e-commerce) comme référence directe. Éléments retenus :
