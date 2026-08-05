@@ -238,17 +238,22 @@
   #dp-close:hover{background:var(--ink);color:#fff;}
   /* Back arrow: the mobile full-fiche's way back to the mini card (mirrors #dp-close visually,
      same corner treatment) — hidden everywhere except mobile's .full state, see the media
-     query below. Desktop has no mini card to go "back" to, so it never shows this. */
+     query below. Desktop has no mini card to go "back" to, so it never shows this. Vertically
+     centered on the 56px-tall sticky title band below (13 + 30/2 = 28 = 56/2) so the two never
+     drift out of alignment once the sticky bar fades in on scroll. An SVG chevron, not a text
+     arrow glyph — a Unicode "←" sits off-centre and at the wrong weight for a small button. */
   #dp-back{
-    display:none;position:absolute;top:18px;left:18px;background:rgba(255,255,255,.9);border:none;border-radius:50%;font-size:16px;cursor:pointer;color:var(--ink);
-    width:30px;height:30px;line-height:30px;text-align:center;z-index:5;transition:background .15s,color .15s;
+    display:none;position:absolute;top:13px;left:14px;background:rgba(255,255,255,.9);border:none;border-radius:50%;cursor:pointer;color:var(--ink);
+    width:30px;height:30px;align-items:center;justify-content:center;z-index:6;transition:background .15s,color .15s;
   }
   #dp-back:hover{background:var(--ink);color:#fff;}
   /* Sticky title bar: mobile-only, only ever shown in the full fiche once scrolled past the
-     real <h2> — see the media query for display + the scroll listener for the .visible toggle. */
+     real <h2> — see the media query for display + the scroll listener for the .visible toggle.
+     Padding-left clears the back button (14 left + 30 wide + 14 gap = 58) with matching
+     padding-right so the name still reads centered, not squeezed against the arrow. */
   #dp-sticky-title{
     display:none;position:absolute;top:0;left:0;right:0;height:56px;z-index:4;
-    align-items:center;justify-content:center;padding:0 54px;
+    align-items:center;justify-content:center;padding:0 58px;
     font-size:15px;font-weight:700;color:var(--ink);text-align:center;
     background:rgba(251,250,247,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
     border-bottom:1px solid rgba(231,225,211,.85);
@@ -453,7 +458,7 @@
     /* The mini preview floats as its own card off all four edges, like a map-app search
        result — only the .full fiche underneath is a flush edge-to-edge sheet. */
     #detail-panel.open:not(.full){
-      left:10px;right:10px;bottom:10px;
+      left:10px;right:10px;bottom:10px;width:auto;max-width:none;
       border:none;border-radius:20px;
       box-shadow:0 10px 34px rgba(20,20,20,.2);
     }
@@ -484,7 +489,7 @@
     /* ✕ closes the mini card outright (back to a plain map); ← (only in .full) goes back to
        the mini card instead — so the two never show at the same time. */
     #detail-panel.full #dp-close{display:none;}
-    #detail-panel.full #dp-back{display:block;}
+    #detail-panel.full #dp-back{display:flex;}
     #detail-panel.full #dp-sticky-title{display:flex;}
 
     /* Pinch-to-zoom is the expected gesture on a phone — on-screen +/- buttons aren't part of
@@ -644,7 +649,7 @@
     </div>
     <div id="map"></div>
     <div id="detail-panel">
-      <button id="dp-back" aria-label="Retour">←</button>
+      <button id="dp-back" aria-label="Retour"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 5 8 12 15 19"/></svg></button>
       <button id="dp-close">✕</button>
       <!-- Mobile-only: appears once the title has scrolled out of view in the full fiche,
            pairing the name with the back arrow so orientation/navigation stay visible while
@@ -1191,8 +1196,11 @@ function selectPlace(d, flyToPlace){
   // Mobile-only mini preview — just the photo and the name, per Paul's reference (a minimal
   // teaser card, not a shrunk version of the full fiche). Tapping it (or "En savoir plus")
   // reveals the full fiche underneath, unchanged from how it always looked.
+  // No-photo fallback: a plain generic building glyph on the style colour, rather than an
+  // empty colour block — most ACR/Wikidata places don't have a photo yet, this is the common case.
+  const noPhotoIcon = `<svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="1.5"/><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="14" x2="20" y2="14"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="14.5" y1="3" x2="14.5" y2="21"/></svg>`;
   document.getElementById('dp-mini-photo').style.background = STYLE_COLORS[d.styles[0]] || '#746f67';
-  document.getElementById('dp-mini-photo').innerHTML = d.image ? `<img src="${d.image}" alt="${escapeHtml(d.nom)}">` : '';
+  document.getElementById('dp-mini-photo').innerHTML = d.image ? `<img src="${d.image}" alt="${escapeHtml(d.nom)}">` : noPhotoIcon;
   document.getElementById('dp-mini-title').textContent = d.nom;
 
   const verdict = visitVerdict(d);
