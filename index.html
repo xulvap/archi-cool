@@ -231,6 +231,9 @@
     opacity:1;transition:opacity .15s ease;
   }
   #dp-fade.hidden{opacity:0;}
+  /* Only meaningful on the mobile bottom sheet (see its drag logic) — desktop's side panel
+     doesn't peek/expand, so no handle there. */
+  #dp-handle{display:none;}
   #dp-close{
     position:absolute;top:18px;right:18px;background:rgba(255,255,255,.9);border:none;border-radius:50%;font-size:14px;cursor:pointer;color:var(--ink);
     width:30px;height:30px;line-height:30px;text-align:center;z-index:5;transition:background .15s,color .15s;
@@ -403,14 +406,34 @@
     #sidebar{display:none;}
     #main{position:relative;}
 
+    /* Google-Maps-style bottom sheet: opens "peeked" (photo + title + the two CTA buttons,
+       still leaving most of the map visible and pannable above it) and only grows to the
+       taller "expanded" height once the person actually drags/taps to see more — instead of
+       always jumping straight to a nearly-full-screen sheet. clamp() keeps the peek tall
+       enough to fit the hero photo + title + footer without clipping on short phones (a plain
+       vh value clipped the footer around ~650px-tall viewports) while still tracking screen
+       height proportionally on taller ones. */
     #detail-panel{
       top:auto;bottom:0;left:0;right:0;width:100%;max-width:100%;
-      height:70vh;
+      /* Measured against real content, not guessed: 360px/46vh clipped the title against the
+         footer by ~42px on a 375×812 viewport (title is 2 lines on longer place names) — this
+         clamp leaves enough room for the handle + hero photo + a 2-line title + footer with no
+         overlap, confirmed in the browser at that size. */
+      height:clamp(440px, 54vh, 520px);
       border-left:none;border-right:none;border-bottom:none;border-top:1px solid rgba(231,225,211,.85);
       border-radius:20px 20px 0 0;
       transform:translateY(100%);
+      transition:transform .22s ease, height .28s cubic-bezier(.32,.72,0,1);
     }
     #detail-panel.open{transform:translateY(0);}
+    #detail-panel.expanded{height:88vh;}
+    /* Small pill handle — the standard "this sheet drags" affordance, and the drag/tap target
+       for expanding or dismissing it. */
+    #dp-handle{
+      display:block;flex-shrink:0;width:36px;height:4px;border-radius:999px;background:rgba(20,20,20,.18);
+      margin:10px auto 2px;cursor:grab;touch-action:none;
+    }
+    #dp-handle:active{cursor:grabbing;}
 
     /* Pinch-to-zoom is the expected gesture on a phone — on-screen +/- buttons aren't part of
        normal mobile map usage, so drop them there and keep them for desktop/mouse users. */
@@ -569,6 +592,7 @@
     </div>
     <div id="map"></div>
     <div id="detail-panel">
+      <div id="dp-handle"></div>
       <button id="dp-close">✕</button>
       <div id="dp-scroll-wrap">
         <div id="dp-scroll">
@@ -1066,32 +1090,31 @@ function render(){
 }
 
 function selectPlace(d, flyToPlace){
+  const hadSelection = !!selectedRef;
   selectedRef = d.ref;
   render();
+  const panel = document.getElementById('detail-panel');
+  const isMobile = window.innerWidth <= 720;
+  // Opening a fresh sheet (nothing was selected yet) always starts "peeked". Tapping straight
+  // from one pin to another while a sheet is already open keeps whatever height it was already
+  // at (peek or expanded) instead of resetting — same as tapping a different marker on Google
+  // Maps while a place card is showing.
+  if(isMobile && !hadSelection){
+    panel.classList.remove('expanded');
+  }
   if(flyToPlace){
     isProgrammaticMove = true;
-    // Center the point in whatever map area stays visible once the detail sheet opens:
-    // a right-hand panel on desktop, a bottom sheet on mobile. Zoom only ever goes up to at
-    // least 14, never down — flyToBounds's own maxZoom used to recompute a fixed zoom on
-    // every selection, which meant clicking a place while already zoomed in past 14 (easy to
-    // be, in a dense cluster like Pessac or central Bordeaux) would zoom back OUT, scattering
-    // the very pins you were trying to tell apart and pick between next.
-    const isMobile = window.innerWidth <= 720;
-    const padBottomRight = L.point(isMobile ? [0, window.innerHeight * 0.7] : [380, 0]);
-    const currentZoom = map.getZoom();
-    const targetZoom = Math.max(currentZoom, 14);
-    const centerPoint = map.project([d.lat, d.lon], targetZoom).add(padBottomRight.divideBy(2));
-    const center = map.unproject(centerPoint, targetZoom);
-    // flyTo's cinematic curve dips the zoom out mid-flight to "fly across" even when the
-    // start and end zoom are identical — barely visible zoomed out, but a real wobble between
-    // two nearby places in a dense cluster (Pessac, central Bordeaux) at a close zoom. Use a
-    // plain linear pan whenever no real zoom change is needed, and save the cinematic flyTo
-    // for when we're actually zooming in from a wider view.
-    if(Math.abs(targetZoom - currentZoom) < 0.1){
-      map.panTo(center, {duration: 0.6});
-    } else {
-      map.flyTo(center, targetZoom, {duration: 0.6});
-    }
+    // Pan only — never change zoom. Whatever zoom level someone chose stays exactly the same
+    // before, during and after opening/switching/closing a sheet; this used to force zoom up
+    // to at least 14, which meant clicking a place from a wide-out view suddenly zoomed the
+    // map in on its own. Centering still accounts for whatever map area stays visible once the
+    // sheet opens — a right-hand panel on desktop, the bottom sheet's current height on mobile.
+    const coveredHeight = isMobile ? panel.getBoundingClientRect().height : 0;
+    const padBottomRight = L.point(isMobile ? [0, coveredHeight] : [380, 0]);
+    const zoom = map.getZoom();
+    const centerPoint = map.project([d.lat, d.lon], zoom).add(padBottomRight.divideBy(2));
+    const center = map.unproject(centerPoint, zoom);
+    map.panTo(center, {duration: 0.6});
   }
   const gmapsQuery = encodeURIComponent(`${d.nom}, ${d.commune}, France`);
   document.getElementById('dp-link-pop').href = d.lien_pop;
@@ -1141,7 +1164,7 @@ function selectPlace(d, flyToPlace){
     ${d.precision_coord === 'approx_commune' ? '<div class="dp-row"><div class="dp-label">⚠️ Localisation</div><div class="dp-value">Position approximative (au niveau de la commune) — coordonnées précises pas encore disponibles dans la base officielle.</div></div>' : ''}
     ${d.adresse ? `<div class="dp-row"><div class="dp-label">Adresse</div><div class="dp-value">${escapeHtml(abbreviateAddress(d.adresse))}, ${d.code_postal ? d.code_postal+' ' : ''}${escapeHtml(d.code_postal ? communeForAddress(d.commune) : d.commune)}</div></div>` : ''}
   `;
-  document.getElementById('detail-panel').classList.add('open');
+  panel.classList.add('open');
   document.getElementById('app').classList.add('detail-open');
   const scrollEl = document.getElementById('dp-scroll');
   scrollEl.scrollTop = 0;
@@ -1182,7 +1205,10 @@ document.getElementById('dp-scroll').addEventListener('click', (e) => {
 });
 
 document.getElementById('dp-close').onclick = () => {
-  document.getElementById('detail-panel').classList.remove('open');
+  // Also drop 'expanded' here (not just 'open') — closing should always hand back a clean
+  // map, so the next place opened starts peeked again rather than remembering how tall the
+  // sheet was last time.
+  document.getElementById('detail-panel').classList.remove('open', 'expanded');
   document.getElementById('app').classList.remove('detail-open');
   selectedRef = null;
   render();
@@ -1292,7 +1318,7 @@ map.on('moveend', () => {
 // e.g. tapping empty space to get back to the map on mobile) now does the same.
 function closeDetailIfOpen(){
   if(selectedRef){
-    document.getElementById('detail-panel').classList.remove('open');
+    document.getElementById('detail-panel').classList.remove('open', 'expanded');
     document.getElementById('app').classList.remove('detail-open');
     selectedRef = null;
     render();
@@ -1300,6 +1326,75 @@ function closeDetailIfOpen(){
 }
 map.on('dragstart', closeDetailIfOpen);
 map.on('click', closeDetailIfOpen);
+
+// Mobile bottom sheet: drag the handle to peek/expand/dismiss, Google-Maps-place-card style.
+// The handle drives a live pixel height during the drag (overriding the CSS clamp/.expanded
+// values just for the gesture) and snaps back to one of the two real states — or closes
+// outright — once released, so the sheet always ends up at a value the rest of the code
+// (the pan-offset calculation in selectPlace, in particular) can rely on again.
+(function(){
+  const panel = document.getElementById('detail-panel');
+  const handle = document.getElementById('dp-handle');
+  let dragging = false, startY = 0, startHeight = 0;
+
+  function isMobileSheet(){ return window.innerWidth <= 720; }
+  function peekPx(){
+    // Mirrors the CSS clamp(440px, 54vh, 520px) for #detail-panel — kept in sync by hand
+    // since there's no clean way to read a clamp() back out of computed style mid-gesture.
+    return Math.min(520, Math.max(440, window.innerHeight * 0.54));
+  }
+  function expandedPx(){ return window.innerHeight * 0.88; }
+
+  function dragStart(y){
+    if(!isMobileSheet() || !selectedRef) return;
+    dragging = true;
+    startY = y;
+    startHeight = panel.getBoundingClientRect().height;
+    panel.style.transition = 'none';
+  }
+  function dragMove(y){
+    if(!dragging) return;
+    const delta = startY - y; // up = positive = taller
+    const minH = window.innerHeight * 0.16; // lets it drag down close to fully closed
+    const h = Math.max(minH, Math.min(expandedPx(), startHeight + delta));
+    panel.style.height = h + 'px';
+  }
+  function dragEnd(){
+    if(!dragging) return;
+    dragging = false;
+    const finalHeight = panel.getBoundingClientRect().height;
+    panel.style.transition = '';
+    panel.style.height = '';
+    const peek = peekPx();
+    if(finalHeight < peek * 0.6){
+      closeDetailIfOpen();
+    } else if(finalHeight > (peek + expandedPx()) / 2){
+      panel.classList.add('expanded');
+    } else {
+      panel.classList.remove('expanded');
+    }
+  }
+
+  handle.addEventListener('touchstart', e => dragStart(e.touches[0].clientY), {passive:true});
+  handle.addEventListener('touchmove', e => dragMove(e.touches[0].clientY), {passive:true});
+  handle.addEventListener('touchend', dragEnd);
+  handle.addEventListener('mousedown', e => {
+    e.preventDefault();
+    dragStart(e.clientY);
+    const move = e2 => dragMove(e2.clientY);
+    const up = () => { dragEnd(); document.removeEventListener('mousemove', move); document.removeEventListener('mouseup', up); };
+    document.addEventListener('mousemove', move);
+    document.addEventListener('mouseup', up);
+  });
+
+  // Tapping the photo/title area while peeked also expands — the handle is the "real" drag
+  // affordance, but a plain tap is an easier target and matches "starting to interact with it
+  // pulls it up" without needing to land precisely on a 36px bar.
+  document.getElementById('dp-content').addEventListener('click', (e) => {
+    if(!isMobileSheet() || panel.classList.contains('expanded')) return;
+    if(e.target.closest('.dp-hero, .dp-eyebrow, h2')) panel.classList.add('expanded');
+  });
+})();
 
 // no-cache: always revalidate with the server instead of trusting a stale disk-cached copy —
 // the static host sends no Cache-Control/ETag on data.json, so browsers can otherwise serve
