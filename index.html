@@ -1441,7 +1441,17 @@ document.getElementById('locate-btn').onclick = () => {
       .sort((a, b) => a[2] - b[2])
       .slice(0, 5)
       .map(x => [x[0], x[1]]);
-    const bounds = L.latLngBounds([[userLoc.lat, userLoc.lng], ...nearest]);
+    // flyToBounds centers on the bounding box's own centroid, not on any one point inside it —
+    // if the nearest places happen to cluster to one side of the user, that pulls the fitted
+    // view (and the user's own dot) off to the other side instead of keeping "me" centered.
+    // Mirroring each nearest point through the user's location before computing bounds forces
+    // the box to be symmetric around the user in both lat and lng, so its centroid is always
+    // exactly the user's position — the zoom still widens to fit whichever place is farthest.
+    const mirrored = nearest.map(([lat, lon]) => [
+      userLoc.lat - (lat - userLoc.lat),
+      userLoc.lng - (lon - userLoc.lng)
+    ]);
+    const bounds = L.latLngBounds([[userLoc.lat, userLoc.lng], ...nearest, ...mirrored]);
     map.flyToBounds(bounds, {padding: [60, 60], maxZoom: 13, duration: 0.8});
     const dotIcon = L.divIcon({
       className: '',
