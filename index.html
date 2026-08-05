@@ -217,14 +217,17 @@
   #dp-scroll-wrap{position:relative;flex:1;min-height:0;}
   #dp-scroll{height:100%;overflow-y:auto;overflow-x:hidden;padding:26px 26px 10px;}
   #dp-content{display:block;}
-  /* Google-Maps-style preview banner: full-bleed at the very top of the sheet (negative
-     margin cancels #dp-scroll's own padding), rounded to match the panel's own corners since
-     overflow:hidden on #detail-panel would otherwise square them off mid-scroll. */
-  .dp-hero{margin:-26px -26px 20px;}
+  /* Full-bleed sideways only (negative left/right margin cancels #dp-scroll's own padding) —
+     the photo now sits *after* the title/badges/status block, not before it (see selectPlace):
+     on the mobile peek, title/badges/status/CTA need to be visible without scrolling, same as
+     Google Maps' own place card, and a photo bled all the way to the panel's top edge (an
+     earlier version of this) pushed the title itself below the fold. Rounded on all sides now
+     that it's not flush against the panel's own top corner. */
+  .dp-hero{margin:4px -26px 20px;}
   /* contain, not cover — a wide/low elevation (Maison Lods) and a tall/narrow one shouldn't
      zoom to different degrees; every building sits fully in frame at the same scale logic,
      letterboxed in the style color rather than cropped unpredictably. */
-  .dp-hero img{display:block;width:100%;height:180px;object-fit:contain;border-radius:20px 20px 0 0;}
+  .dp-hero img{display:block;width:100%;height:180px;object-fit:contain;border-radius:14px;}
   #dp-fade{
     position:absolute;left:0;right:0;bottom:0;height:44px;pointer-events:none;
     background:linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,.92));
@@ -1129,9 +1132,13 @@ function selectPlace(d, flyToPlace){
   // used to have its own pill up next to the style badge; it's now folded into the
   // "Monument protégé" row below (the date is right there, and the info icon still explains
   // classé vs. inscrit on hover/tap) instead of competing for space at the top.
+  // Order matters on mobile: title/badges/status/CTA come BEFORE the photo (not after), same
+  // as Google Maps' own place card — the peeked sheet needs to show the identity + "can I
+  // visit" answer + the two action buttons without any scrolling, with the photo only teased
+  // (cut off) below. Putting a tall hero image first, like an earlier version of this did,
+  // pushed the title itself below the peek's fold.
   const dp = document.getElementById('dp-content');
   dp.innerHTML = `
-    ${d.image ? `<div class="dp-hero" style="background:${STYLE_COLORS[d.styles[0]]||'#746f67'}"><img src="${d.image}" alt="${escapeHtml(d.nom)}"></div>` : ''}
     <div class="dp-eyebrow">${d.dept} — ${d.region}</div>
     <h2>${d.nom}</h2>
     <div class="dp-badges">
@@ -1140,6 +1147,7 @@ function selectPlace(d, flyToPlace){
     <div class="dp-visit-highlight ${verdict.tone}">
       <span class="vi-icon">${verdict.icon}</span>${verdict.label}
     </div>
+    ${d.image ? `<div class="dp-hero" style="background:${STYLE_COLORS[d.styles[0]]||'#746f67'}"><img src="${d.image}" alt="${escapeHtml(d.nom)}"></div>` : ''}
     <div class="dp-row">
       <div class="dp-label">${architecteLabel}</div>
       <div class="dp-value">${architecteFmt || 'Non renseigné'}</div>

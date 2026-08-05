@@ -37,7 +37,22 @@ Site 100% statique, aucun backend, aucune dépendance à installer. `index.html`
 ### Mobile
 - Le menu burger / la liste latérale sur mobile ont été **retirés entièrement** — sur mobile, la carte + les fiches au clic suffisent, pas besoin d'un listing dédié.
 - Cliquer sur la carte (sans glisser) ferme la fiche ouverte.
-- Fiche à hauteur fixe (70vh) avec scroll interne, **pas de hauteur automatique** — décision explicite de Paul pour garder un rendu homogène entre les fiches et garder un aperçu de la carte visible sous la fiche.
+- **Remplacé le 2026-08-05** : la fiche n'est plus à hauteur fixe. C'est maintenant une bottom
+  sheet façon Google Maps (deux hauteurs — repliée ~46vh / étendue 88vh — avec une poignée à
+  glisser, plus tap sur le titre/la photo pour déplier), calée sur une vidéo de référence
+  Google Maps que Paul a envoyée. **Ne pas revenir à une hauteur fixe sans demande explicite.**
+  Détails :
+  - Repliée par défaut : eyebrow/titre/badges de style/statut de visite/CTA visibles sans
+    scroll, la photo est en dessous et seulement entraperçue (coupée en bas du panneau) — pas
+    l'inverse (une version antérieure mettait la photo en premier, ce qui poussait le titre
+    hors champ ; corrigé après retour de Paul).
+  - Cliquer sur un autre pin/une autre fiche pendant qu'une fiche est déjà ouverte swap juste le
+    contenu et **garde la même hauteur** (repliée ou étendue) — jamais de reset auto. Fermer (✕,
+    glisser vers le bas, ou taper sur la carte) remet à zéro : la prochaine fiche ouverte
+    redémarre repliée.
+  - Le zoom de la carte ne change **jamais** en ouvrant/changeant/fermant une fiche — seul le
+    panoramique (pan) recentre le point sélectionné dans la zone de carte encore visible. C'était
+    aussi cassé avant (un `Math.max(zoom, 14)` forçait un zoom avant sur les vues très dézoomées).
 
 ### Refonte visuelle "Rains" (dernier gros round)
 Paul a fourni deux captures d'écran puis une vidéo de Rains.com (site e-commerce) comme référence directe. Éléments retenus :
