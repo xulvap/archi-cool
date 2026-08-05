@@ -217,31 +217,37 @@
   #dp-scroll-wrap{position:relative;flex:1;min-height:0;}
   #dp-scroll{height:100%;overflow-y:auto;overflow-x:hidden;padding:26px 26px 10px;}
   #dp-content{display:block;}
-  /* Full-bleed sideways only (negative left/right margin cancels #dp-scroll's own padding) —
-     the photo now sits *after* the title/badges/status block, not before it (see selectPlace):
-     on the mobile peek, title/badges/status/CTA need to be visible without scrolling, same as
-     Google Maps' own place card, and a photo bled all the way to the panel's top edge (an
-     earlier version of this) pushed the title itself below the fold. Rounded on all sides now
-     that it's not flush against the panel's own top corner. */
-  .dp-hero{margin:4px -26px 20px;}
+  /* Google-Maps-style preview banner: full-bleed at the very top of the sheet (negative
+     margin cancels #dp-scroll's own padding), rounded to match the panel's own corners since
+     overflow:hidden on #detail-panel would otherwise square them off mid-scroll. */
+  .dp-hero{margin:-26px -26px 20px;}
   /* contain, not cover — a wide/low elevation (Maison Lods) and a tall/narrow one shouldn't
      zoom to different degrees; every building sits fully in frame at the same scale logic,
      letterboxed in the style color rather than cropped unpredictably. */
-  .dp-hero img{display:block;width:100%;height:180px;object-fit:contain;border-radius:14px;}
+  .dp-hero img{display:block;width:100%;height:180px;object-fit:contain;border-radius:20px 20px 0 0;}
   #dp-fade{
     position:absolute;left:0;right:0;bottom:0;height:44px;pointer-events:none;
     background:linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,.92));
     opacity:1;transition:opacity .15s ease;
   }
   #dp-fade.hidden{opacity:0;}
-  /* Only meaningful on the mobile bottom sheet (see its drag logic) — desktop's side panel
-     doesn't peek/expand, so no handle there. */
-  #dp-handle{display:none;}
   #dp-close{
     position:absolute;top:18px;right:18px;background:rgba(255,255,255,.9);border:none;border-radius:50%;font-size:14px;cursor:pointer;color:var(--ink);
     width:30px;height:30px;line-height:30px;text-align:center;z-index:5;transition:background .15s,color .15s;
   }
   #dp-close:hover{background:var(--ink);color:#fff;}
+  /* Back arrow: the mobile full-fiche's way back to the mini card (mirrors #dp-close visually,
+     same corner treatment) — hidden everywhere except mobile's .full state, see the media
+     query below. Desktop has no mini card to go "back" to, so it never shows this. */
+  #dp-back{
+    display:none;position:absolute;top:18px;left:18px;background:rgba(255,255,255,.9);border:none;border-radius:50%;font-size:16px;cursor:pointer;color:var(--ink);
+    width:30px;height:30px;line-height:30px;text-align:center;z-index:5;transition:background .15s,color .15s;
+  }
+  #dp-back:hover{background:var(--ink);color:#fff;}
+  /* Mini preview card (mobile only — see the media query for how it actually shows/positions
+     itself; hidden by default so desktop, which goes straight to the full side panel, never
+     renders it). */
+  #dp-mini{display:none;}
   .dp-eyebrow{font-size:10.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--ink-soft);margin:4px 30px 8px 0;}
   #detail-panel h2{font-size:21px;margin:0 30px 8px 0;font-weight:700;line-height:1.25;letter-spacing:-.1px;}
 
@@ -409,34 +415,52 @@
     #sidebar{display:none;}
     #main{position:relative;}
 
-    /* Google-Maps-style bottom sheet: opens "peeked" (photo + title + the two CTA buttons,
-       still leaving most of the map visible and pannable above it) and only grows to the
-       taller "expanded" height once the person actually drags/taps to see more — instead of
-       always jumping straight to a nearly-full-screen sheet. clamp() keeps the peek tall
-       enough to fit the hero photo + title + footer without clipping on short phones (a plain
-       vh value clipped the footer around ~650px-tall viewports) while still tracking screen
-       height proportionally on taller ones. */
+    /* Two discrete states instead of a continuously-draggable sheet: a small "mini" card
+       (photo + name + a single "En savoir plus" button) that shrinks to fit its own content —
+       still leaving most of the map visible and pannable above/around it, like a map-app
+       search-result preview — and a ".full" state that takes over the whole map area to show
+       the fiche exactly as it always looked, dismissed with a back arrow rather than dragging.
+       (An earlier version of this used a Google-Maps-style drag-to-expand sheet; Paul preferred
+       going back to something closer to the original fiche, reached through a lighter preview
+       step instead of resizing that same fiche.) */
     #detail-panel{
       top:auto;bottom:0;left:0;right:0;width:100%;max-width:100%;
-      /* Measured against real content, not guessed: 360px/46vh clipped the title against the
-         footer by ~42px on a 375×812 viewport (title is 2 lines on longer place names) — this
-         clamp leaves enough room for the handle + hero photo + a 2-line title + footer with no
-         overlap, confirmed in the browser at that size. */
-      height:clamp(440px, 54vh, 520px);
       border-left:none;border-right:none;border-bottom:none;border-top:1px solid rgba(231,225,211,.85);
       border-radius:20px 20px 0 0;
       transform:translateY(100%);
-      transition:transform .22s ease, height .28s cubic-bezier(.32,.72,0,1);
+      transition:transform .22s ease;
     }
     #detail-panel.open{transform:translateY(0);}
-    #detail-panel.expanded{height:88vh;}
-    /* Small pill handle — the standard "this sheet drags" affordance, and the drag/tap target
-       for expanding or dismissing it. */
-    #dp-handle{
-      display:block;flex-shrink:0;width:36px;height:4px;border-radius:999px;background:rgba(20,20,20,.18);
-      margin:10px auto 2px;cursor:grab;touch-action:none;
+    /* .full covers the whole map area (top:0 inside #main, which is already clear of the
+       header) rather than a fixed vh guess — simpler and correct at any viewport height. */
+    #detail-panel.full{top:0;border-radius:0;border-top:none;}
+
+    #dp-mini{
+      display:flex;flex-direction:column;padding:16px 16px calc(16px + env(safe-area-inset-bottom));gap:10px;
     }
-    #dp-handle:active{cursor:grabbing;}
+    #detail-panel.full #dp-mini{display:none;}
+    #dp-mini-photo{
+      width:100%;height:150px;border-radius:14px;overflow:hidden;background:var(--chip-bg);
+      display:flex;align-items:center;justify-content:center;
+    }
+    #dp-mini-photo img{display:block;width:100%;height:100%;object-fit:contain;}
+    #dp-mini-title{font-size:17px;font-weight:700;line-height:1.3;color:var(--ink);}
+    #dp-mini-cta{
+      display:block;width:100%;text-align:center;padding:13px;font-size:11.5px;font-weight:700;border-radius:999px;
+      text-transform:uppercase;letter-spacing:.5px;border:none;background:var(--ink);color:#fff;cursor:pointer;
+      font-family:inherit;transition:background .15s;
+    }
+    #dp-mini-cta:hover{background:var(--accent);}
+
+    /* The full fiche's own scroll/footer only render in .full — the mini card is the only
+       thing visible otherwise. */
+    #dp-scroll-wrap, #dp-footer{display:none;}
+    #detail-panel.full #dp-scroll-wrap, #detail-panel.full #dp-footer{display:flex;}
+    #detail-panel.full #dp-scroll-wrap{display:block;}
+    /* ✕ closes the mini card outright (back to a plain map); ← (only in .full) goes back to
+       the mini card instead — so the two never show at the same time. */
+    #detail-panel.full #dp-close{display:none;}
+    #detail-panel.full #dp-back{display:block;}
 
     /* Pinch-to-zoom is the expected gesture on a phone — on-screen +/- buttons aren't part of
        normal mobile map usage, so drop them there and keep them for desktop/mouse users. */
@@ -595,8 +619,18 @@
     </div>
     <div id="map"></div>
     <div id="detail-panel">
-      <div id="dp-handle"></div>
+      <button id="dp-back" aria-label="Retour">←</button>
       <button id="dp-close">✕</button>
+      <!-- Mobile-only mini preview: photo + name + a single "En savoir plus" button, shown
+           over the still-browsable map instead of the full sheet — tapping it (or the mini
+           card itself) reveals the full fiche below. Desktop never shows this, it goes
+           straight to the full side panel (see #dp-mini{display:none} default / mobile
+           override). -->
+      <div id="dp-mini">
+        <div id="dp-mini-photo"></div>
+        <div id="dp-mini-title"></div>
+        <button id="dp-mini-cta" type="button">En savoir plus</button>
+      </div>
       <div id="dp-scroll-wrap">
         <div id="dp-scroll">
           <div id="dp-content"></div>
@@ -1098,12 +1132,12 @@ function selectPlace(d, flyToPlace){
   render();
   const panel = document.getElementById('detail-panel');
   const isMobile = window.innerWidth <= 720;
-  // Opening a fresh sheet (nothing was selected yet) always starts "peeked". Tapping straight
-  // from one pin to another while a sheet is already open keeps whatever height it was already
-  // at (peek or expanded) instead of resetting — same as tapping a different marker on Google
-  // Maps while a place card is showing.
+  // Opening a fresh sheet (nothing was selected yet) always starts as the small mini card.
+  // Tapping straight from one pin to another while a card is already open keeps whatever state
+  // it was already in (mini or full) instead of resetting — e.g. staying on the full fiche
+  // while browsing between places you've already opened once.
   if(isMobile && !hadSelection){
-    panel.classList.remove('expanded');
+    panel.classList.remove('full');
   }
   if(flyToPlace){
     isProgrammaticMove = true;
@@ -1111,7 +1145,8 @@ function selectPlace(d, flyToPlace){
     // before, during and after opening/switching/closing a sheet; this used to force zoom up
     // to at least 14, which meant clicking a place from a wide-out view suddenly zoomed the
     // map in on its own. Centering still accounts for whatever map area stays visible once the
-    // sheet opens — a right-hand panel on desktop, the bottom sheet's current height on mobile.
+    // sheet opens — a right-hand panel on desktop, the mini card's own height on mobile (it
+    // shrinks to fit its content, so this is measured live rather than a fixed guess).
     const coveredHeight = isMobile ? panel.getBoundingClientRect().height : 0;
     const padBottomRight = L.point(isMobile ? [0, coveredHeight] : [380, 0]);
     const zoom = map.getZoom();
@@ -1123,6 +1158,13 @@ function selectPlace(d, flyToPlace){
   document.getElementById('dp-link-pop').href = d.lien_pop;
   document.getElementById('dp-link-gmaps').href = `https://www.google.com/maps/search/?api=1&query=${gmapsQuery}`;
 
+  // Mobile-only mini preview — just the photo and the name, per Paul's reference (a minimal
+  // teaser card, not a shrunk version of the full fiche). Tapping it (or "En savoir plus")
+  // reveals the full fiche underneath, unchanged from how it always looked.
+  document.getElementById('dp-mini-photo').style.background = STYLE_COLORS[d.styles[0]] || '#746f67';
+  document.getElementById('dp-mini-photo').innerHTML = d.image ? `<img src="${d.image}" alt="${escapeHtml(d.nom)}">` : '';
+  document.getElementById('dp-mini-title').textContent = d.nom;
+
   const verdict = visitVerdict(d);
   const architecteFmt = formatArchitecte(d.architecte);
   const architecteCount = d.architecte ? d.architecte.split(',').filter(s => s.trim()).length : 0;
@@ -1132,13 +1174,9 @@ function selectPlace(d, flyToPlace){
   // used to have its own pill up next to the style badge; it's now folded into the
   // "Monument protégé" row below (the date is right there, and the info icon still explains
   // classé vs. inscrit on hover/tap) instead of competing for space at the top.
-  // Order matters on mobile: title/badges/status/CTA come BEFORE the photo (not after), same
-  // as Google Maps' own place card — the peeked sheet needs to show the identity + "can I
-  // visit" answer + the two action buttons without any scrolling, with the photo only teased
-  // (cut off) below. Putting a tall hero image first, like an earlier version of this did,
-  // pushed the title itself below the peek's fold.
   const dp = document.getElementById('dp-content');
   dp.innerHTML = `
+    ${d.image ? `<div class="dp-hero" style="background:${STYLE_COLORS[d.styles[0]]||'#746f67'}"><img src="${d.image}" alt="${escapeHtml(d.nom)}"></div>` : ''}
     <div class="dp-eyebrow">${d.dept} — ${d.region}</div>
     <h2>${d.nom}</h2>
     <div class="dp-badges">
@@ -1147,7 +1185,6 @@ function selectPlace(d, flyToPlace){
     <div class="dp-visit-highlight ${verdict.tone}">
       <span class="vi-icon">${verdict.icon}</span>${verdict.label}
     </div>
-    ${d.image ? `<div class="dp-hero" style="background:${STYLE_COLORS[d.styles[0]]||'#746f67'}"><img src="${d.image}" alt="${escapeHtml(d.nom)}"></div>` : ''}
     <div class="dp-row">
       <div class="dp-label">${architecteLabel}</div>
       <div class="dp-value">${architecteFmt || 'Non renseigné'}</div>
@@ -1213,10 +1250,10 @@ document.getElementById('dp-scroll').addEventListener('click', (e) => {
 });
 
 document.getElementById('dp-close').onclick = () => {
-  // Also drop 'expanded' here (not just 'open') — closing should always hand back a clean
-  // map, so the next place opened starts peeked again rather than remembering how tall the
-  // sheet was last time.
-  document.getElementById('detail-panel').classList.remove('open', 'expanded');
+  // Also drop 'full' here (not just 'open') — closing should always hand back a clean map, so
+  // the next place opened starts on the mini card again rather than remembering it was left on
+  // the full fiche last time.
+  document.getElementById('detail-panel').classList.remove('open', 'full');
   document.getElementById('app').classList.remove('detail-open');
   selectedRef = null;
   render();
@@ -1326,7 +1363,7 @@ map.on('moveend', () => {
 // e.g. tapping empty space to get back to the map on mobile) now does the same.
 function closeDetailIfOpen(){
   if(selectedRef){
-    document.getElementById('detail-panel').classList.remove('open', 'expanded');
+    document.getElementById('detail-panel').classList.remove('open', 'full');
     document.getElementById('app').classList.remove('detail-open');
     selectedRef = null;
     render();
@@ -1335,74 +1372,17 @@ function closeDetailIfOpen(){
 map.on('dragstart', closeDetailIfOpen);
 map.on('click', closeDetailIfOpen);
 
-// Mobile bottom sheet: drag the handle to peek/expand/dismiss, Google-Maps-place-card style.
-// The handle drives a live pixel height during the drag (overriding the CSS clamp/.expanded
-// values just for the gesture) and snaps back to one of the two real states — or closes
-// outright — once released, so the sheet always ends up at a value the rest of the code
-// (the pan-offset calculation in selectPlace, in particular) can rely on again.
-(function(){
-  const panel = document.getElementById('detail-panel');
-  const handle = document.getElementById('dp-handle');
-  let dragging = false, startY = 0, startHeight = 0;
-
-  function isMobileSheet(){ return window.innerWidth <= 720; }
-  function peekPx(){
-    // Mirrors the CSS clamp(440px, 54vh, 520px) for #detail-panel — kept in sync by hand
-    // since there's no clean way to read a clamp() back out of computed style mid-gesture.
-    return Math.min(520, Math.max(440, window.innerHeight * 0.54));
-  }
-  function expandedPx(){ return window.innerHeight * 0.88; }
-
-  function dragStart(y){
-    if(!isMobileSheet() || !selectedRef) return;
-    dragging = true;
-    startY = y;
-    startHeight = panel.getBoundingClientRect().height;
-    panel.style.transition = 'none';
-  }
-  function dragMove(y){
-    if(!dragging) return;
-    const delta = startY - y; // up = positive = taller
-    const minH = window.innerHeight * 0.16; // lets it drag down close to fully closed
-    const h = Math.max(minH, Math.min(expandedPx(), startHeight + delta));
-    panel.style.height = h + 'px';
-  }
-  function dragEnd(){
-    if(!dragging) return;
-    dragging = false;
-    const finalHeight = panel.getBoundingClientRect().height;
-    panel.style.transition = '';
-    panel.style.height = '';
-    const peek = peekPx();
-    if(finalHeight < peek * 0.6){
-      closeDetailIfOpen();
-    } else if(finalHeight > (peek + expandedPx()) / 2){
-      panel.classList.add('expanded');
-    } else {
-      panel.classList.remove('expanded');
-    }
-  }
-
-  handle.addEventListener('touchstart', e => dragStart(e.touches[0].clientY), {passive:true});
-  handle.addEventListener('touchmove', e => dragMove(e.touches[0].clientY), {passive:true});
-  handle.addEventListener('touchend', dragEnd);
-  handle.addEventListener('mousedown', e => {
-    e.preventDefault();
-    dragStart(e.clientY);
-    const move = e2 => dragMove(e2.clientY);
-    const up = () => { dragEnd(); document.removeEventListener('mousemove', move); document.removeEventListener('mouseup', up); };
-    document.addEventListener('mousemove', move);
-    document.addEventListener('mouseup', up);
-  });
-
-  // Tapping the photo/title area while peeked also expands — the handle is the "real" drag
-  // affordance, but a plain tap is an easier target and matches "starting to interact with it
-  // pulls it up" without needing to land precisely on a 36px bar.
-  document.getElementById('dp-content').addEventListener('click', (e) => {
-    if(!isMobileSheet() || panel.classList.contains('expanded')) return;
-    if(e.target.closest('.dp-hero, .dp-eyebrow, h2')) panel.classList.add('expanded');
-  });
-})();
+// Mobile mini card -> full fiche, and back. Two plain states, no drag/resize gesture: tapping
+// the mini card (or its "En savoir plus" button, which is inside it) reveals the full fiche
+// exactly as it always looked; the back arrow returns to the mini card without deselecting the
+// place, so the pin stays highlighted and the map position doesn't jump.
+document.getElementById('dp-mini').addEventListener('click', () => {
+  document.getElementById('detail-panel').classList.add('full');
+});
+document.getElementById('dp-back').onclick = (e) => {
+  e.stopPropagation();
+  document.getElementById('detail-panel').classList.remove('full');
+};
 
 // no-cache: always revalidate with the server instead of trusting a stale disk-cached copy —
 // the static host sends no Cache-Control/ETag on data.json, so browsers can otherwise serve
