@@ -122,6 +122,7 @@
      sidebar list, an always-visible search box and a text "Autour de moi" button, so it has no
      use for these. Restyled into an icon-only tab bar inside the mobile media query below. */
   .mobile-nav-item{display:none;}
+  #pills-row-bg{display:none;}
   #nav-catalogue-toast{
     display:none;position:fixed;left:50%;bottom:0;transform:translate(-50%,0);
     background:var(--ink);color:#fff;font-size:12.5px;font-weight:600;padding:10px 18px;
@@ -488,15 +489,16 @@
       position:fixed !important;left:10px;right:10px;top:auto;
       bottom:calc(10px + env(safe-area-inset-bottom));
       height:58px;border-radius:var(--float-radius);gap:0;align-items:stretch;
-      z-index:900;
+      overflow:hidden;z-index:900;
     }
-    /* Background + blur on a pseudo, not #pills-row itself — same reason as header::before:
-       #filters-panel lives inside #pills-row and is position:fixed, so backdrop-filter directly
-       on #pills-row would wrongly containing-block it to this ~58px bar instead of the
-       viewport (its "bottom:76px" would then resolve against the bar's own height, not the
-       screen's). */
-    #pills-row::before{
-      content:'';position:absolute;inset:0;border-radius:inherit;z-index:-1;
+    /* Background + blur on a real child, not #pills-row itself — same reason as header::before
+       used to be a pseudo: #filters-panel lives inside #pills-row and is position:fixed, so
+       backdrop-filter directly on #pills-row would wrongly containing-block it to this ~58px
+       bar instead of the viewport. A real element rather than ::before because some Safari
+       versions don't apply backdrop-filter to generated content reliably — overflow:hidden
+       above is belt-and-suspenders for the same class of corner-clipping bug. */
+    #pills-row-bg{
+      display:block;position:absolute;inset:0;z-index:-1;
       background:rgba(251,250,247,.72);backdrop-filter:blur(14px) saturate(1.35);-webkit-backdrop-filter:blur(14px) saturate(1.35);
       border:1px solid rgba(218,220,217,.75);box-shadow:0 10px 30px rgba(20,20,20,.16);
     }
@@ -603,6 +605,13 @@
        lived in this same corner container but is hidden on mobile (just above), so nothing else
        is affected by shifting the whole corner up. */
     .leaflet-bottom{bottom:var(--bar-clearance) !important;}
+    /* Lifting it clear of the bar isn't enough on its own — filters/search/the place card all
+       float in that exact same band when open, so the credits would sit on top of THEM instead.
+       The only state where there's nothing else there to collide with is the plain map, so it
+       only shows then. */
+    #app.nav-panel-open .leaflet-control-attribution, #app.detail-open .leaflet-control-attribution{
+      display:none;
+    }
 
     .mobile-nav-item{display:flex;}
     #nav-catalogue-toast{display:block;bottom:var(--bar-clearance);}
@@ -703,6 +712,10 @@
 
   <div id="main">
     <div id="pills-row">
+      <!-- Real element, not a ::before — some Safari versions don't apply backdrop-filter to
+           generated content reliably, which was silently leaving this bar square-cornered
+           despite border-radius being set correctly. A real child avoids that entirely. -->
+      <div id="pills-row-bg"></div>
       <div class="filter-group">
         <button id="filters-btn" class="pill">
           <svg class="pill-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -989,6 +1002,9 @@ function updateNavActiveState(){
   const searchOpen = document.getElementById('search-box').classList.contains('mobile-open');
   document.getElementById('nav-search').classList.toggle('active', searchOpen);
   document.getElementById('nav-map').classList.toggle('active', !filtersOpen && !searchOpen);
+  // Also drives hiding the map attribution while either panel is open (see .nav-panel-open in
+  // CSS) — it would otherwise sit on top of whichever one floats above the bar.
+  document.getElementById('app').classList.toggle('nav-panel-open', filtersOpen || searchOpen);
 }
 
 function closeFiltersPanel(){
