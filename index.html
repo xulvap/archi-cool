@@ -40,8 +40,15 @@
      opaque bar just for the header. */
   header{
     padding:14px 24px;border-bottom:1px solid rgba(218,220,217,.7);
-    background:rgba(251,250,247,.52);backdrop-filter:blur(12px) saturate(1.35);-webkit-backdrop-filter:blur(12px) saturate(1.35);
     display:flex;align-items:center;gap:14px;flex-wrap:wrap;position:relative;z-index:900;
+  }
+  /* Background + blur live on a pseudo-element, not the header itself: backdrop-filter on an
+     element creates a new containing block for any position:fixed descendant — which "Autour
+     de moi" and the mobile search bar both now are. Keeping it off header directly means those
+     stay correctly anchored to the viewport instead of to the header's own small box. */
+  header::before{
+    content:'';position:absolute;inset:0;z-index:-1;
+    background:rgba(251,250,247,.52);backdrop-filter:blur(12px) saturate(1.35);-webkit-backdrop-filter:blur(12px) saturate(1.35);
   }
   .header-controls{display:flex;align-items:center;gap:10px;}
   /* Lowercase bold wordmark, Rains-style ("RAINS" as a plain logotype, no tagline baked in) —
@@ -111,6 +118,17 @@
     display:none;align-items:center;justify-content:center;font-weight:700;
   }
   .filter-count.show{display:flex;}
+  /* The bottom nav (Carte/Recherche/Annuaire) only exists on mobile — desktop already has the
+     sidebar list, an always-visible search box and a text "Autour de moi" button, so it has no
+     use for these. Restyled into an icon-only tab bar inside the mobile media query below. */
+  .mobile-nav-item{display:none;}
+  #nav-catalogue-toast{
+    display:none;position:fixed;left:50%;bottom:0;transform:translate(-50%,0);
+    background:var(--ink);color:#fff;font-size:12.5px;font-weight:600;padding:10px 18px;
+    border-radius:999px;box-shadow:0 10px 28px rgba(20,20,20,.3);z-index:1400;
+    opacity:0;transition:opacity .2s ease,transform .2s ease;pointer-events:none;white-space:nowrap;
+  }
+  #nav-catalogue-toast.show{opacity:1;}
 
   #filters-panel{
     position:absolute;top:calc(100% + 8px);left:0;width:280px;
@@ -418,23 +436,76 @@
     header h1 .brand-dot{width:9px;height:9px;}
     header h1 .sub{display:none;}
     .spacer{flex-basis:100%;height:0;order:1;}
-    .header-controls{width:100%;order:2;gap:8px;}
-    #search-box, #search-box.expanded{flex:1;width:auto;min-width:0;}
-    .icon-btn{padding:10px 13px;font-size:11px;}
-    #pills-row{left:14px;top:10px;}
-    /* Filtres and the place sheet both compete for the same bottom-of-screen real estate on
-       a phone (the filter panel is itself a fixed bottom sheet) — showing Filtres while a
-       sheet is open would let one fixed sheet cover the other. Simplest fix: hide the trigger
-       entirely while a place is open, it reappears once the sheet closes. */
-    #app.detail-open #pills-row{display:none;}
-    /* The full fiche takes over the screen below the header — search and "Autour de moi"
-       are map actions that don't apply while reading a place, so they step aside too. */
-    #app.detail-full .header-controls{display:none;}
-    /* A panel anchored under its pill can run off a narrow screen. Detach it from the pill
-       and pin it to the viewport instead, as a small floating sheet near the bottom —
-       always fully on-screen. */
+    /* Search and "Autour de moi" used to live here as a second header row. Search now opens as
+       its own floating bar above the bottom nav (see #search-box below) and "Autour de moi"
+       becomes a standalone top-right icon — display:contents drops this wrapper's own box so
+       both children can be positioned independently instead of inheriting a hidden/flowed
+       parent. */
+    .header-controls{display:contents;}
+    /* A shared "float above the persistent bottom bar" offset — bar's own bottom margin (10px)
+       + its height (58px) + a small gap (8px) — reused by the search bar, the filters panel and
+       the mini card so all three sit consistently clear of it instead of each guessing its own
+       number. */
+    #app{--bar-clearance: calc(76px + env(safe-area-inset-bottom));}
+
+    #search-box{
+      position:fixed !important;left:10px;right:10px;top:auto;bottom:var(--bar-clearance);
+      width:auto;display:none;padding:6px;
+      background:rgba(251,250,247,.92);backdrop-filter:blur(12px) saturate(1.35);-webkit-backdrop-filter:blur(12px) saturate(1.35);
+      border:1px solid rgba(218,220,217,.7);border-radius:16px;box-shadow:0 10px 30px rgba(20,20,20,.18);
+      z-index:900;
+    }
+    #search-box.mobile-open{display:block;}
+    /* The focus-expand micro-interaction (.expanded, 220px -> 300px) is a desktop-only nicety
+       for the inline pill — irrelevant now that mobile's version is already a full-width
+       floating bar, and .expanded's higher specificity would otherwise override the width:auto
+       above the moment the input is focused. */
+    #search-box.expanded{width:auto;}
+
+    /* "Autour de moi" collapses to an icon-only circle pinned to the header's top-right corner
+       — kept persistently reachable (not hidden while reading a fiche like before) since it's
+       a standalone floating control now, not tucked inside a header row that used to disappear. */
+    #locate-btn{
+      position:fixed !important;top:14px;right:14px;z-index:950;
+      width:44px;height:44px;padding:0;border-radius:50%;justify-content:center;
+      background:rgba(251,250,247,.72);backdrop-filter:blur(12px) saturate(1.35);-webkit-backdrop-filter:blur(12px) saturate(1.35);
+      border:1px solid rgba(218,220,217,.7);box-shadow:0 6px 18px rgba(20,20,20,.14);
+    }
+    #locate-btn .pill-label{display:none;}
+
+    /* --- Bottom nav: Filtres / Carte / Recherche / Annuaire, floating like the mini card and
+       filters panel (same margin, same glass), Instagram-style icon-only tabs instead of the
+       old top-left "Filtres" pill. Crucially NOT hidden while the mini card is open — see the
+       mini-card rule instead of a #app.detail-open selector, which used to hide this whole row. --- */
+    #pills-row{
+      position:fixed !important;left:10px;right:10px;top:auto;
+      bottom:calc(10px + env(safe-area-inset-bottom));
+      height:58px;border-radius:20px;gap:0;align-items:stretch;
+      z-index:900;
+    }
+    /* Background + blur on a pseudo, not #pills-row itself — same reason as header::before:
+       #filters-panel lives inside #pills-row and is position:fixed, so backdrop-filter directly
+       on #pills-row would wrongly containing-block it to this ~58px bar instead of the
+       viewport (its "bottom:76px" would then resolve against the bar's own height, not the
+       screen's). */
+    #pills-row::before{
+      content:'';position:absolute;inset:0;border-radius:inherit;z-index:-1;
+      background:rgba(251,250,247,.72);backdrop-filter:blur(14px) saturate(1.35);-webkit-backdrop-filter:blur(14px) saturate(1.35);
+      border:1px solid rgba(218,220,217,.75);box-shadow:0 10px 30px rgba(20,20,20,.16);
+    }
+    .filter-group{flex:1;display:flex;}
+    #pills-row .pill{
+      flex:1;height:100%;padding:0;margin:0;border:none;background:none;box-shadow:none;
+      border-radius:0;justify-content:center;color:var(--ink-soft);
+    }
+    #pills-row .pill.active, #pills-row .pill.open{color:var(--ink);}
+    #pills-row .pill-label{display:none;}
+    #filters-btn{position:relative;}
+    #pills-row .filter-count{position:absolute;top:9px;right:calc(50% - 23px);width:15px;height:15px;font-size:9px;}
+    /* Filtres and the place sheet are two different modes — opening one still closes the other
+       (see the filters-btn click handler), the bar itself just no longer disappears either way. */
     #filters-panel{
-      position:fixed !important;left:14px;right:14px;top:auto;bottom:14px;
+      position:fixed !important;left:10px;right:10px;top:auto;bottom:var(--bar-clearance);
       width:auto;max-width:none;max-height:55vh;
     }
 
@@ -463,9 +534,11 @@
        header) rather than a fixed vh guess — simpler and correct at any viewport height. */
     #detail-panel.full{top:0;border-radius:0;border-top:none;box-shadow:none;}
     /* The mini preview floats as its own card off all four edges, like a map-app search
-       result — only the .full fiche underneath is a flush edge-to-edge sheet. */
+       result — only the .full fiche underneath is a flush edge-to-edge sheet. Sits above the
+       persistent bottom nav (--bar-clearance) with a small gap, rather than covering it — the
+       bar stays visible and usable the whole time the mini card is open. */
     #detail-panel.open:not(.full){
-      left:10px;right:10px;bottom:10px;width:auto;max-width:none;
+      left:10px;right:10px;bottom:var(--bar-clearance);width:auto;max-width:none;
       border:none;border-radius:20px;
       box-shadow:0 10px 34px rgba(20,20,20,.2);
     }
@@ -510,6 +583,9 @@
     /* Pinch-to-zoom is the expected gesture on a phone — on-screen +/- buttons aren't part of
        normal mobile map usage, so drop them there and keep them for desktop/mouse users. */
     .leaflet-control-zoom{display:none;}
+
+    .mobile-nav-item{display:flex;}
+    #nav-catalogue-toast{display:block;bottom:var(--bar-clearance);}
   }
 
   /* Access gate: a lightweight client-side password screen for the pre-launch/testing period
@@ -598,7 +674,10 @@
           <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
         </button>
       </div>
-      <button id="locate-btn" class="icon-btn">Autour de moi</button>
+      <button id="locate-btn" class="icon-btn">
+        <svg class="pill-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/><line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/></svg>
+        <span class="pill-label" id="locate-btn-label">Autour de moi</span>
+      </button>
     </div>
   </header>
 
@@ -611,7 +690,7 @@
             <line x1="4" y1="12" x2="20" y2="12"/><circle cx="15" cy="12" r="2.2" fill="currentColor" stroke="none"/>
             <line x1="4" y1="18" x2="20" y2="18"/><circle cx="11" cy="18" r="2.2" fill="currentColor" stroke="none"/>
           </svg>
-          Filtres <span id="filter-count-total" class="filter-count">0</span>
+          <span class="pill-label">Filtres</span> <span id="filter-count-total" class="filter-count">0</span>
         </button>
         <div id="filters-panel">
           <div class="fp-header">
@@ -657,7 +736,22 @@
           </div>
         </div>
       </div>
+      <!-- Mobile-only bottom nav: hidden on desktop (see .mobile-nav-item in CSS), where
+           Filtres above is the only one of these four that has a desktop equivalent. -->
+      <button id="nav-map" class="pill mobile-nav-item" type="button" aria-label="Carte">
+        <svg class="pill-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+        <span class="pill-label">Carte</span>
+      </button>
+      <button id="nav-search" class="pill mobile-nav-item" type="button" aria-label="Recherche">
+        <svg class="pill-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="16.2" y1="16.2" x2="21" y2="21"/></svg>
+        <span class="pill-label">Recherche</span>
+      </button>
+      <button id="nav-catalogue" class="pill mobile-nav-item" type="button" aria-label="Annuaire des architectes">
+        <svg class="pill-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        <span class="pill-label">Annuaire</span>
+      </button>
     </div>
+    <div id="nav-catalogue-toast">Annuaire des architectes — bientôt disponible</div>
     <div id="sidebar">
       <div id="results-meta"></div>
       <div id="list"></div>
@@ -872,9 +966,10 @@ function closeFiltersPanel(){
 }
 document.getElementById('filters-btn').addEventListener('click', (e) => {
   e.stopPropagation();
-  // Filtres and the place sheet are two different modes (browse vs. inspect one point) —
-  // opening one closes the other, same as clicking the map already does.
+  // Filtres, the mobile search bar and the place sheet are three different modes — opening
+  // one closes the other two, same as clicking the map already does for the place sheet.
   closeDetailIfOpen();
+  closeMobileSearch();
   const panel = document.getElementById('filters-panel');
   if(panel.classList.contains('open')){ closeFiltersPanel(); }
   else{ panel.classList.add('open'); document.getElementById('filters-btn').classList.add('open'); }
@@ -892,6 +987,49 @@ document.getElementById('reset-filters').onclick = () => {
   updateFilterCounts();
   render();
 };
+
+// --- Mobile bottom nav: Filtres (above), Carte, Recherche, Annuaire ---
+function closeMobileSearch(){
+  document.getElementById('search-box').classList.remove('mobile-open');
+  document.getElementById('nav-search').classList.remove('active');
+}
+document.getElementById('nav-search').addEventListener('click', (e) => {
+  e.stopPropagation();
+  const box = document.getElementById('search-box');
+  if(box.classList.contains('mobile-open')){
+    closeMobileSearch();
+    return;
+  }
+  closeDetailIfOpen();
+  closeFiltersPanel();
+  box.classList.add('mobile-open');
+  document.getElementById('nav-search').classList.add('active');
+  document.getElementById('search').focus();
+});
+// A tap outside the floating search bar closes it, same "click outside" convention as Filtres —
+// but not a tap on the Recherche icon itself, which has its own open/close toggle above.
+document.addEventListener('click', (e) => {
+  if(!e.target.closest('#search-box') && !e.target.closest('#nav-search')) closeMobileSearch();
+});
+
+// "Carte": back to a plain, uncluttered map — closes whatever else is open, same idea as
+// tapping an empty part of the map itself.
+document.getElementById('nav-map').addEventListener('click', (e) => {
+  e.stopPropagation();
+  closeDetailIfOpen();
+  closeFiltersPanel();
+  closeMobileSearch();
+});
+
+// Annuaire des architectes isn't built yet — a brief toast instead of a dead-feeling button.
+let catalogueToastTimer = null;
+document.getElementById('nav-catalogue').addEventListener('click', (e) => {
+  e.stopPropagation();
+  const toast = document.getElementById('nav-catalogue-toast');
+  toast.classList.add('show');
+  clearTimeout(catalogueToastTimer);
+  catalogueToastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+});
 
 // Accordion: each category collapses independently: clicking a header toggles just its own
 // section, so several can be open at once if the user wants — only Style starts pre-opened
@@ -1225,6 +1363,7 @@ function render(){
 function selectPlace(d, flyToPlace){
   const hadSelection = !!selectedRef;
   selectedRef = d.ref;
+  closeMobileSearch();
   render();
   const panel = document.getElementById('detail-panel');
   const isMobile = window.innerWidth <= 720;
@@ -1243,8 +1382,14 @@ function selectPlace(d, flyToPlace){
     // to at least 14, which meant clicking a place from a wide-out view suddenly zoomed the
     // map in on its own. Centering still accounts for whatever map area stays visible once the
     // sheet opens — a right-hand panel on desktop, the mini card's own height on mobile (it
-    // shrinks to fit its content, so this is measured live rather than a fixed guess).
-    const coveredHeight = isMobile ? panel.getBoundingClientRect().height : 0;
+    // shrinks to fit its content, so this is measured live rather than a fixed guess) — plus,
+    // on mobile, the persistent bottom nav bar the mini card now floats above rather than
+    // covering. #pills-row's own rect is used (not --bar-clearance's own math) since it stays
+    // correct even before the panel's .open class has applied its floating position.
+    const navbarFootprint = isMobile
+      ? window.innerHeight - document.getElementById('pills-row').getBoundingClientRect().top
+      : 0;
+    const coveredHeight = isMobile ? panel.getBoundingClientRect().height + 8 + navbarFootprint : 0;
     const padBottomRight = L.point(isMobile ? [0, coveredHeight] : [380, 0]);
     const zoom = map.getZoom();
     const centerPoint = map.project([d.lat, d.lon], zoom).add(padBottomRight.divideBy(2));
@@ -1435,15 +1580,18 @@ document.getElementById('search').addEventListener('keydown', (e) => {
 
 document.getElementById('locate-btn').onclick = () => {
   const btn = document.getElementById('locate-btn');
+  const btnLabel = document.getElementById('locate-btn-label');
   if(!navigator.geolocation){ alert("La géolocalisation n'est pas disponible sur ce navigateur."); return; }
   // Same mutual-exclusivity as opening Filtres (see that handler) — "around me" moves/refits
   // the map, so any open place card (mini or full) should close rather than sit there pointing
   // at a spot the view just flew away from.
   closeDetailIfOpen();
-  btn.textContent = "Localisation…";
+  closeFiltersPanel();
+  closeMobileSearch();
+  btnLabel.textContent = "Localisation…";
   navigator.geolocation.getCurrentPosition(pos => {
     userLoc = {lat: pos.coords.latitude, lng: pos.coords.longitude};
-    btn.textContent = "Autour de moi ✓";
+    btnLabel.textContent = "Autour de moi ✓";
     btn.classList.add('active');
     isProgrammaticMove = true;
     // Fit the user's position together with the nearest few places instead of a single fixed
@@ -1476,7 +1624,7 @@ document.getElementById('locate-btn').onclick = () => {
     else { userLocMarker = L.marker([userLoc.lat, userLoc.lng], {icon: dotIcon, interactive: false, zIndexOffset: -1000}).addTo(map); }
     render();
   }, err => {
-    btn.textContent = "Autour de moi";
+    btnLabel.textContent = "Autour de moi";
     alert("Impossible de te géolocaliser : " + err.message);
   });
 };

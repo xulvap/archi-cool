@@ -36,7 +36,6 @@ Site 100% statique, aucun backend, aucune dépendance à installer. `index.html`
 
 ### Mobile
 - Le menu burger / la liste latérale sur mobile ont été **retirés entièrement** — sur mobile, la carte + les fiches au clic suffisent, pas besoin d'un listing dédié.
-- Cliquer sur la carte (sans glisser) ferme la fiche ouverte.
 - **Remplacé le 2026-08-05, deux fois de suite** (essayé puis annulé) : une première version
   a copié une bottom sheet façon Google Maps (deux hauteurs, poignée à glisser) — rejetée par
   Paul après une vidéo de référence Google Maps montrant que ce n'était pas fidèle. Une deuxième
@@ -60,9 +59,9 @@ Site 100% statique, aucun backend, aucune dépendance à installer. `index.html`
     désélectionne complètement) ou le choix d'un autre pin (qui swap juste le contenu) la ferme/
     change. Avant le 2026-08-05, un tap/drag sur la carte fermait la fiche ; **changé sur
     demande explicite de Paul** ("se balader sur la carte ne ferme pas l'aperçu").
-  - Dans l'état "full", la recherche et "Autour de moi" du header disparaissent (ce sont des
-    actions de navigation sur la carte, pas pertinentes en train de lire une fiche) — seul le
-    logo reste visible en haut.
+  - Dans l'état "full", la recherche et le bandeau du bas disparaissent (couverts par la fiche
+    plein écran, en z-index, pas de règle CSS dédiée) — seul le logo en haut reste visible.
+    "Autour de moi" (voir plus bas) reste lui accessible en permanence.
   - Au scroll dans la fiche "full", une fois le `<h2>` du titre sorti du cadre, une barre sticky
     apparaît avec le nom du lieu + la flèche de retour, pour garder l'orientation/navigation
     accessible sans remonter tout en haut.
@@ -72,6 +71,28 @@ Site 100% statique, aucun backend, aucune dépendance à installer. `index.html`
   - Le zoom de la carte ne change **jamais** en ouvrant/changeant/fermant une fiche — seul le
     panoramique (pan) recentre le point sélectionné dans la zone de carte encore visible. C'était
     cassé avant (un `Math.max(zoom, 14)` forçait un zoom avant sur les vues très dézoomées).
+- **Barre de navigation flottante en bas (2026-08-07)**, remplace l'ancienne pastille "Filtres"
+  seule en haut à gauche — même verre translucide que le reste, 4 icônes façon Instagram (pas de
+  texte) : **Filtres** (ouvre le même panneau qu'avant, juste déplacé), **Carte** (ferme tout —
+  filtres/recherche/fiche — retour à une carte propre), **Recherche** (loupe : ouvre la barre de
+  recherche, qui flotte au-dessus de la barre nav plutôt que dans le header), **Annuaire** (futur
+  répertoire d'architectes, pas encore construit — affiche juste un toast "bientôt disponible"
+  pour l'instant, **ne pas construire une vraie page sans qu'on le redemande explicitement**).
+  - **Contrairement à l'ancienne pastille Filtres, cette barre reste visible quand la mini-carte
+    est ouverte** — changement demandé explicitement par Paul. La mini-carte flotte au-dessus
+    avec un petit espace (`--bar-clearance`, ~8px de marge), elle ne la recouvre plus.
+  - "Autour de moi" est sorti du header : c'est maintenant une icône ronde flottante seule, en
+    haut à droite, permanente (contrairement à avant, elle ne se cache plus dans la fiche "full").
+  - **Piège CSS rencontré et à connaître** : `backdrop-filter` sur un ancêtre crée un nouveau
+    containing block pour ses descendants `position:fixed` — le header (`backdrop-filter` déjà
+    présent avant ce round) et la nouvelle barre du bas cassaient donc le positionnement fixed de
+    leurs enfants (recherche, localisation, panneau filtres) une fois ceux-ci passés en
+    `position:fixed` pour flotter indépendamment. Fixé en déplaçant le `background`+
+    `backdrop-filter` sur un pseudo-élément `::before` (`position:absolute;inset:0;z-index:-1`)
+    plutôt que sur l'élément lui-même — le verre reste identique visuellement, mais l'élément réel
+    ne crée plus ce containing block. **Si un futur élément flottant (position:fixed) mal
+    positionné apparaît sur mobile, vérifier en premier si un ancêtre a un `backdrop-filter` ou
+    `filter` direct — c'est très probablement la cause.**
 
 ### Refonte visuelle "Rains" (dernier gros round)
 Paul a fourni deux captures d'écran puis une vidéo de Rains.com (site e-commerce) comme référence directe. Éléments retenus :
