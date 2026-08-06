@@ -443,16 +443,20 @@
        parent. */
     .header-controls{display:contents;}
     /* A shared "float above the persistent bottom bar" offset — bar's own bottom margin (10px)
-       + its height (58px) + a small gap (8px) — reused by the search bar, the filters panel and
+       + its height (58px) + a thin gap (4px) — reused by the search bar, the filters panel and
        the mini card so all three sit consistently clear of it instead of each guessing its own
-       number. */
-    #app{--bar-clearance: calc(76px + env(safe-area-inset-bottom));}
+       number. Also a shared corner radius for that same group of floating blocks (nav bar,
+       filters panel, search bar, mini card) so they read as one consistent rounding language. */
+    #app{
+      --bar-clearance: calc(72px + env(safe-area-inset-bottom));
+      --float-radius: 22px;
+    }
 
     #search-box{
       position:fixed !important;left:10px;right:10px;top:auto;bottom:var(--bar-clearance);
       width:auto;display:none;padding:6px;
       background:rgba(251,250,247,.92);backdrop-filter:blur(12px) saturate(1.35);-webkit-backdrop-filter:blur(12px) saturate(1.35);
-      border:1px solid rgba(218,220,217,.7);border-radius:16px;box-shadow:0 10px 30px rgba(20,20,20,.18);
+      border:1px solid rgba(218,220,217,.7);border-radius:var(--float-radius);box-shadow:0 10px 30px rgba(20,20,20,.18);
       z-index:900;
     }
     #search-box.mobile-open{display:block;}
@@ -462,11 +466,14 @@
        above the moment the input is focused. */
     #search-box.expanded{width:auto;}
 
-    /* "Autour de moi" collapses to an icon-only circle pinned to the header's top-right corner
-       — kept persistently reachable (not hidden while reading a fiche like before) since it's
-       a standalone floating control now, not tucked inside a header row that used to disappear. */
+    /* "Autour de moi" collapses to an icon-only circle floating over the MAP, top-right — at
+       the same level the old top-left "Filtres" pill used to sit, not inside the header row
+       itself. --header-h (set from JS, actual measured header height) keeps it correctly
+       clear of the header regardless of exact header height. Persistently reachable (not
+       hidden while reading a fiche like before) since it's a standalone floating control now,
+       not tucked inside a header row that used to disappear. */
     #locate-btn{
-      position:fixed !important;top:14px;right:14px;z-index:950;
+      position:fixed !important;top:calc(var(--header-h, 70px) + 10px);right:14px;z-index:850;
       width:44px;height:44px;padding:0;border-radius:50%;justify-content:center;
       background:rgba(251,250,247,.72);backdrop-filter:blur(12px) saturate(1.35);-webkit-backdrop-filter:blur(12px) saturate(1.35);
       border:1px solid rgba(218,220,217,.7);box-shadow:0 6px 18px rgba(20,20,20,.14);
@@ -480,7 +487,7 @@
     #pills-row{
       position:fixed !important;left:10px;right:10px;top:auto;
       bottom:calc(10px + env(safe-area-inset-bottom));
-      height:58px;border-radius:20px;gap:0;align-items:stretch;
+      height:58px;border-radius:var(--float-radius);gap:0;align-items:stretch;
       z-index:900;
     }
     /* Background + blur on a pseudo, not #pills-row itself — same reason as header::before:
@@ -498,15 +505,23 @@
       flex:1;height:100%;padding:0;margin:0;border:none;background:none;box-shadow:none;
       border-radius:0;justify-content:center;color:var(--ink-soft);
     }
-    #pills-row .pill.active, #pills-row .pill.open{color:var(--ink);}
     #pills-row .pill-label{display:none;}
+    /* Icons sized up (Instagram-scale, not the small 14-15px desktop pill icons) with their own
+       padded, rounded highlight — filled in only for whichever tab reflects where you currently
+       are (Carte by default; Filtres/Recherche while their panel is open) — see setActiveNav(). */
+    #pills-row .pill-icon{
+      width:23px;height:23px;padding:9px;border-radius:14px;box-sizing:content-box;
+      transition:background .15s,color .15s;
+    }
+    #pills-row .pill.active, #pills-row .pill.open{color:var(--ink);}
+    #pills-row .pill.active .pill-icon, #pills-row .pill.open .pill-icon{background:var(--chip-bg);}
     #filters-btn{position:relative;}
-    #pills-row .filter-count{position:absolute;top:9px;right:calc(50% - 23px);width:15px;height:15px;font-size:9px;}
+    #pills-row .filter-count{position:absolute;top:6px;right:calc(50% - 21px);width:15px;height:15px;font-size:9px;}
     /* Filtres and the place sheet are two different modes — opening one still closes the other
        (see the filters-btn click handler), the bar itself just no longer disappears either way. */
     #filters-panel{
       position:fixed !important;left:10px;right:10px;top:auto;bottom:var(--bar-clearance);
-      width:auto;max-width:none;max-height:55vh;
+      width:auto;max-width:none;max-height:55vh;border-radius:var(--float-radius);
     }
 
     /* The place-list sidebar is a desktop concept — on a phone the map itself, plus tapping
@@ -525,7 +540,7 @@
     #detail-panel{
       top:auto;bottom:0;left:0;right:0;width:100%;max-width:100%;
       border-left:none;border-right:none;border-bottom:none;border-top:1px solid rgba(231,225,211,.85);
-      border-radius:20px 20px 0 0;
+      border-radius:var(--float-radius) var(--float-radius) 0 0;
       transform:translateY(100%);
       transition:transform .22s ease, left .22s ease, right .22s ease, bottom .22s ease, border-radius .22s ease, box-shadow .22s ease;
     }
@@ -539,7 +554,7 @@
        bar stays visible and usable the whole time the mini card is open. */
     #detail-panel.open:not(.full){
       left:10px;right:10px;bottom:var(--bar-clearance);width:auto;max-width:none;
-      border:none;border-radius:20px;
+      border:none;border-radius:var(--float-radius);
       box-shadow:0 10px 34px rgba(20,20,20,.2);
     }
 
@@ -583,6 +598,11 @@
     /* Pinch-to-zoom is the expected gesture on a phone — on-screen +/- buttons aren't part of
        normal mobile map usage, so drop them there and keep them for desktop/mouse users. */
     .leaflet-control-zoom{display:none;}
+    /* The OSM/CARTO attribution (bottom-right by default) otherwise sits right under the nav
+       bar — lifted clear of it by the same amount everything else floats above it. Zoom control
+       lived in this same corner container but is hidden on mobile (just above), so nothing else
+       is affected by shifting the whole corner up. */
+    .leaflet-bottom{bottom:var(--bar-clearance) !important;}
 
     .mobile-nav-item{display:flex;}
     #nav-catalogue-toast{display:block;bottom:var(--bar-clearance);}
@@ -960,9 +980,21 @@ function buildVisiteOptions(){
     ({value:k, label:VISITE_FILTER_LABELS[k], count:counts[k]})), activeVisite);
 }
 
+// Which of the 4 bottom-nav icons reads as "current": Recherche while its bar is open, Filtres
+// while its panel is open (via its own pre-existing .open class), Carte the rest of the time —
+// recomputed from actual panel state after every open/close rather than tracked by hand, so it
+// can never drift out of sync with what's really on screen.
+function updateNavActiveState(){
+  const filtersOpen = document.getElementById('filters-panel').classList.contains('open');
+  const searchOpen = document.getElementById('search-box').classList.contains('mobile-open');
+  document.getElementById('nav-search').classList.toggle('active', searchOpen);
+  document.getElementById('nav-map').classList.toggle('active', !filtersOpen && !searchOpen);
+}
+
 function closeFiltersPanel(){
   document.getElementById('filters-panel').classList.remove('open');
   document.getElementById('filters-btn').classList.remove('open');
+  updateNavActiveState();
 }
 document.getElementById('filters-btn').addEventListener('click', (e) => {
   e.stopPropagation();
@@ -972,7 +1004,7 @@ document.getElementById('filters-btn').addEventListener('click', (e) => {
   closeMobileSearch();
   const panel = document.getElementById('filters-panel');
   if(panel.classList.contains('open')){ closeFiltersPanel(); }
-  else{ panel.classList.add('open'); document.getElementById('filters-btn').classList.add('open'); }
+  else{ panel.classList.add('open'); document.getElementById('filters-btn').classList.add('open'); updateNavActiveState(); }
 });
 document.addEventListener('click', (e) => {
   if(!e.target.closest('.filter-group')) closeFiltersPanel();
@@ -991,7 +1023,7 @@ document.getElementById('reset-filters').onclick = () => {
 // --- Mobile bottom nav: Filtres (above), Carte, Recherche, Annuaire ---
 function closeMobileSearch(){
   document.getElementById('search-box').classList.remove('mobile-open');
-  document.getElementById('nav-search').classList.remove('active');
+  updateNavActiveState();
 }
 document.getElementById('nav-search').addEventListener('click', (e) => {
   e.stopPropagation();
@@ -1003,14 +1035,15 @@ document.getElementById('nav-search').addEventListener('click', (e) => {
   closeDetailIfOpen();
   closeFiltersPanel();
   box.classList.add('mobile-open');
-  document.getElementById('nav-search').classList.add('active');
   document.getElementById('search').focus();
+  updateNavActiveState();
 });
 // A tap outside the floating search bar closes it, same "click outside" convention as Filtres —
 // but not a tap on the Recherche icon itself, which has its own open/close toggle above.
 document.addEventListener('click', (e) => {
   if(!e.target.closest('#search-box') && !e.target.closest('#nav-search')) closeMobileSearch();
 });
+updateNavActiveState();
 
 // "Carte": back to a plain, uncluttered map — closes whatever else is open, same idea as
 // tapping an empty part of the map itself.
@@ -1363,6 +1396,11 @@ function render(){
 function selectPlace(d, flyToPlace){
   const hadSelection = !!selectedRef;
   selectedRef = d.ref;
+  // A marker click doesn't bubble to document (Leaflet stops it internally), so the "click
+  // outside" listeners that normally close Filtres/search never fire for it — close both
+  // explicitly here instead, otherwise picking a place from the map while either is open left
+  // it sitting open, overlapping the newly-opened mini card.
+  closeFiltersPanel();
   closeMobileSearch();
   render();
   const panel = document.getElementById('detail-panel');
@@ -1475,6 +1513,15 @@ function updateScrollFade(){
 }
 document.getElementById('dp-scroll').addEventListener('scroll', updateScrollFade);
 window.addEventListener('resize', updateScrollFade);
+
+// Mobile "Autour de moi" floats over the map, just below the header (not inside it) — the
+// header's real rendered height feeds --header-h so it clears it correctly regardless of exact
+// height (font rendering, wrapped wordmark, etc.) rather than a guessed pixel value.
+function updateHeaderHeightVar(){
+  document.documentElement.style.setProperty('--header-h', document.querySelector('header').getBoundingClientRect().height + 'px');
+}
+updateHeaderHeightVar();
+window.addEventListener('resize', updateHeaderHeightVar);
 
 // Mobile full-fiche only: once the real <h2> has scrolled out from under the sticky bar,
 // swap it in with the same text so the place name + back arrow stay reachable while reading on.
