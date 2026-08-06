@@ -427,6 +427,32 @@
   .leaflet-control-zoom a:first-child{border-bottom:1px solid rgba(218,220,217,.9) !important;}
   .leaflet-control-zoom a:hover{background:rgba(251,250,247,.85) !important;color:var(--accent) !important;}
 
+  /* --- Map credits, collapsed to a small "i" chip (same visual convention as .mh-info-btn —
+     italic serif "i" in a thin circle) rather than sitting on screen as plain legible text.
+     OSM's own attribution guidelines explicitly allow this: attribution doesn't need to be
+     permanently visible, only findable if someone looks for it — tapping the chip reveals the
+     real text (still the exact "© contributeurs OpenStreetMap © CARTO" Leaflet already injects,
+     just hidden at font-size:0 until expanded, not replaced). */
+  .leaflet-control-attribution{
+    width:22px;height:22px;padding:0 !important;margin:0 !important;overflow:hidden;
+    border-radius:50%;border:1px solid rgba(218,220,217,.85) !important;
+    background:rgba(251,250,247,.72) !important;
+    backdrop-filter:blur(12px) saturate(1.35);-webkit-backdrop-filter:blur(12px) saturate(1.35);
+    box-shadow:0 4px 14px rgba(20,20,20,.10);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;white-space:nowrap;font-size:0;line-height:1;
+    transition:width .2s ease,border-radius .2s ease,padding .2s ease;
+  }
+  .leaflet-control-attribution::before{
+    content:'i';font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:11px;
+    color:var(--ink-soft);
+  }
+  .leaflet-control-attribution.expanded{
+    width:auto;border-radius:12px;padding:4px 10px !important;font-size:10px;
+  }
+  .leaflet-control-attribution.expanded::before{display:none;}
+  .leaflet-control-attribution a{color:var(--ink-soft);}
+
   #empty-state{padding:36px 18px;color:var(--ink-soft);font-size:12.5px;text-align:center;line-height:1.6;}
 
   @media (max-width:720px){
@@ -858,6 +884,20 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
   attribution: '&copy; contributeurs <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions" target="_blank">CARTO</a>'
 }).addTo(map);
 
+// Collapsed-to-"i" attribution (see .leaflet-control-attribution in CSS): a click anywhere on
+// the chip except directly on one of the credit links toggles the real text visible. Links
+// themselves open in a new tab (target="_blank" is already on them from the tile layer's
+// attribution string above) so letting the toggle also fire on them is harmless.
+const attributionEl = document.querySelector('.leaflet-control-attribution');
+attributionEl.addEventListener('click', (e) => {
+  if(e.target.tagName === 'A') return;
+  e.stopPropagation();
+  attributionEl.classList.toggle('expanded');
+});
+document.addEventListener('click', (e) => {
+  if(!e.target.closest('.leaflet-control-attribution')) attributionEl.classList.remove('expanded');
+});
+
 let userLoc = null;
 let userLocMarker = null;
 let mapCenterRef = null;
@@ -1003,8 +1043,10 @@ function updateNavActiveState(){
   document.getElementById('nav-search').classList.toggle('active', searchOpen);
   document.getElementById('nav-map').classList.toggle('active', !filtersOpen && !searchOpen);
   // Also drives hiding the map attribution while either panel is open (see .nav-panel-open in
-  // CSS) — it would otherwise sit on top of whichever one floats above the bar.
+  // CSS) — it would otherwise sit on top of whichever one floats above the bar. Collapsed back
+  // to just the "i" chip too, so it doesn't resurface already expanded next time it's visible.
   document.getElementById('app').classList.toggle('nav-panel-open', filtersOpen || searchOpen);
+  document.querySelector('.leaflet-control-attribution').classList.remove('expanded');
 }
 
 function closeFiltersPanel(){
