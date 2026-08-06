@@ -367,16 +367,19 @@
      blob instead of a shared soft lift. The white stroke already baked into each pin's SVG
      gives it enough definition against the map without needing an external shadow. */
   .map-pin{display:block;}
+  /* Only ever one pin at a time carries this, so it doesn't have the dense-cluster
+     shadow-merging problem the comment above rules a drop-shadow out for on every pin. */
+  .map-pin.selected{filter:drop-shadow(0 3px 7px rgba(20,20,20,.45));}
 
   /* --- "You are here" dot, Google-Maps style: a soft pulsing halo behind a solid blue dot,
      distinct from the style-colored place pins so it always reads as "me", not a place. --- */
-  .user-dot-wrap{width:22px;height:22px;position:relative;}
+  .user-dot-wrap{width:26px;height:26px;position:relative;}
   .user-dot-halo{
-    position:absolute;inset:0;margin:auto;width:22px;height:22px;border-radius:50%;
+    position:absolute;inset:0;margin:auto;width:26px;height:26px;border-radius:50%;
     background:rgba(66,133,244,.25);animation:user-dot-pulse 2.2s ease-out infinite;
   }
   .user-dot{
-    position:absolute;inset:0;margin:auto;width:14px;height:14px;border-radius:50%;
+    position:absolute;inset:0;margin:auto;width:17px;height:17px;border-radius:50%;
     background:#4285F4;border:2.5px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.4);
     /* A slower, separate cycle from the halo's — blinking in sync with it would just read as
        one effect; the offset timing makes the dot itself unmistakably "alive". */
@@ -755,12 +758,16 @@ const markers = {};
 // white outline (like the old badge's white border) keeps the pin legible against map colors
 // close to its own, right down to the tip.
 const PIN_PATH = "M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z";
-function makeIcon(style){
+// isSelected: a size bump (not just a colour ring) so the active pin is findable at a glance
+// in a dense cluster (e.g. the ~20 Le Corbusier houses at Pessac, all the same green) — plus a
+// drop-shadow, safe here (unlike on every pin) since only ever one marker carries it at a time.
+function makeIcon(style, isSelected){
   const color = STYLE_COLORS[style] || '#746f67';
+  const size = isSelected ? 40 : 32;
   return L.divIcon({
     className: '',
-    html: `<svg class="map-pin" width="32" height="32" viewBox="0 0 24 24"><path d="${PIN_PATH}" fill="${color}" stroke="#fff" stroke-width="0.8"/><circle cx="12" cy="9" r="3.2" fill="#fff"/></svg>`,
-    iconSize:[32,32], iconAnchor:[16,29]
+    html: `<svg class="map-pin${isSelected ? ' selected' : ''}" width="${size}" height="${size}" viewBox="0 0 24 24"><path d="${PIN_PATH}" fill="${color}" stroke="#fff" stroke-width="0.8"/><circle cx="12" cy="9" r="3.2" fill="#fff"/></svg>`,
+    iconSize:[size,size], iconAnchor:[size/2, size*29/32]
   });
 }
 // A handful of places carry two styles (e.g. Villa Majorelle: Modernisme + Art Déco). Pins
@@ -1198,15 +1205,21 @@ function render(){
   });
   filtered.forEach(d => {
     const style = pinStyleFor(d);
+    const isSelected = d.ref === selectedRef;
     if(!markers[d.ref]){
-      const marker = L.marker([d.lat, d.lon], {icon: makeIcon(style)}).addTo(map);
+      const marker = L.marker([d.lat, d.lon], {icon: makeIcon(style, isSelected)}).addTo(map);
       marker.on('click', () => selectPlace(d, true));
+      if(isSelected) marker.setZIndexOffset(1000);
       markers[d.ref] = marker;
     } else {
       // Existing markers are otherwise left untouched (see comment above) — but a marker that
-      // survives a filter change still needs its colour re-checked, in case pinStyleFor's
-      // answer for it just changed (e.g. a second style got checked/unchecked).
-      markers[d.ref].setIcon(makeIcon(style));
+      // survives a filter change still needs its colour/selected state re-checked, in case
+      // pinStyleFor's answer changed (e.g. a second style got checked/unchecked) or a different
+      // place just got selected.
+      markers[d.ref].setIcon(makeIcon(style, isSelected));
+      // Bumped above its siblings so a bigger selected pin never gets partly covered by a
+      // same-size neighbour that happens to sit lower on screen (Leaflet's default z-order).
+      markers[d.ref].setZIndexOffset(isSelected ? 1000 : 0);
     }
   });
   prefetchVisibleImages(filtered);
@@ -1426,6 +1439,10 @@ document.getElementById('search').addEventListener('keydown', (e) => {
 document.getElementById('locate-btn').onclick = () => {
   const btn = document.getElementById('locate-btn');
   if(!navigator.geolocation){ alert("La géolocalisation n'est pas disponible sur ce navigateur."); return; }
+  // Same mutual-exclusivity as opening Filtres (see that handler) — "around me" moves/refits
+  // the map, so any open place card (mini or full) should close rather than sit there pointing
+  // at a spot the view just flew away from.
+  closeDetailIfOpen();
   btn.textContent = "Localisation…";
   navigator.geolocation.getCurrentPosition(pos => {
     userLoc = {lat: pos.coords.latitude, lng: pos.coords.longitude};
@@ -1456,7 +1473,7 @@ document.getElementById('locate-btn').onclick = () => {
     const dotIcon = L.divIcon({
       className: '',
       html: '<div class="user-dot-wrap"><div class="user-dot-halo"></div><div class="user-dot"></div></div>',
-      iconSize: [22, 22], iconAnchor: [11, 11]
+      iconSize: [26, 26], iconAnchor: [13, 13]
     });
     if (userLocMarker) { userLocMarker.setLatLng([userLoc.lat, userLoc.lng]); }
     else { userLocMarker = L.marker([userLoc.lat, userLoc.lng], {icon: dotIcon, interactive: false, zIndexOffset: -1000}).addTo(map); }
