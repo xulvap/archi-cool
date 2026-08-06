@@ -367,9 +367,6 @@
      blob instead of a shared soft lift. The white stroke already baked into each pin's SVG
      gives it enough definition against the map without needing an external shadow. */
   .map-pin{display:block;}
-  /* Only ever one pin at a time carries this, so it doesn't have the dense-cluster
-     shadow-merging problem the comment above rules a drop-shadow out for on every pin. */
-  .map-pin.selected{filter:drop-shadow(0 3px 7px rgba(20,20,20,.45));}
 
   /* --- "You are here" dot, Google-Maps style: a soft pulsing halo behind a solid blue dot,
      distinct from the style-colored place pins so it always reads as "me", not a place. --- */
