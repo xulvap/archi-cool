@@ -342,7 +342,9 @@
      than the earlier lighter/grayer eyebrow treatment. */
   .dp-label{font-size:11px;text-transform:uppercase;letter-spacing:.7px;color:var(--ink);margin-bottom:5px;font-weight:800;}
   .dp-value{font-size:13.5px;line-height:1.45;}
-  .visit-note{font-size:11.5px;color:var(--ink-soft);line-height:1.55;margin-top:6px;font-style:italic;}
+  /* Same size/weight/line-height as .dp-value now (was 11.5px italic) — every field's actual
+     content reads as one consistent body style; only labels/tags/title stay differentiated. */
+  .visit-note{font-size:13.5px;color:var(--ink-soft);line-height:1.45;margin-top:6px;}
 
 
   /* --- "Intérêt": a short sourced excerpt from the official Mérimée historical note, shown
@@ -351,7 +353,8 @@
      omitted entirely when the source has no historique text, rather than inventing one. --- */
   .dp-interet{margin-top:12px;padding-top:12px;border-top:1px solid var(--line);}
   .dp-interet-label{font-size:11px;text-transform:uppercase;letter-spacing:.7px;color:var(--ink);margin-bottom:5px;font-weight:800;}
-  .dp-interet-text{font-size:12.5px;line-height:1.6;color:var(--ink);}
+  /* Same size/line-height as .dp-value (was 12.5px/1.6) — see the .visit-note comment above. */
+  .dp-interet-text{font-size:13.5px;line-height:1.45;color:var(--ink);}
   .dp-interet-full{display:none;}
   .dp-interet.expanded .dp-interet-short{display:none;}
   .dp-interet.expanded .dp-interet-full{display:inline;}
@@ -1731,16 +1734,22 @@ async function geocodeAndCenter(query){
 
 document.getElementById('search').addEventListener('keydown', (e) => {
   if(e.key !== 'Enter') return;
-  e.target.blur(); // dismiss the mobile keyboard on validate
+  e.target.blur(); // dismiss the mobile keyboard on validate — see the blur listener below for
+                    // what happens next if the field was left empty.
   const q = e.target.value.trim();
-  if(!q){
-    // Validating an empty search on mobile used to just dismiss the keyboard, leaving the
-    // floating search bar sitting open and empty — closing it (back to the "Carte" tab
-    // highlighted) is the more useful outcome of "I opened this and changed my mind".
-    closeMobileSearch();
-    return;
-  }
-  geocodeAndCenter(q);
+  if(q) geocodeAndCenter(q);
+});
+
+// Mobile: closes the floating search bar whenever the field is both empty and no longer
+// focused — not just on a literal Enter keydown, which several mobile keyboards' own "Go"/
+// checkmark action key doesn't reliably fire, and which doesn't cover just tapping away to
+// dismiss the keyboard either. Deferred a tick so a same-click refocus (the ✕ button calls
+// input.focus() right after clearing it) isn't mistaken for a real dismissal.
+document.getElementById('search').addEventListener('blur', () => {
+  setTimeout(() => {
+    const input = document.getElementById('search');
+    if(document.activeElement !== input && !input.value.trim()) closeMobileSearch();
+  }, 0);
 });
 
 document.getElementById('locate-btn').onclick = () => {
