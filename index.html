@@ -487,6 +487,13 @@
       z-index:900;
     }
     #search-box.mobile-open{display:block;}
+    /* .search-icon/.search-clear are position:absolute, so they ignore #search-box's own
+       padding (6px, added above for the floating-card look) and sit relative to its outer
+       edge — same as before padding existed. The #search input itself is a normal-flow child
+       though, so IT does get pushed in by that padding, leaving the ✕ sitting outside the
+       input's real right edge ("too far right"). Both nudged in by the same 6px to match. */
+    #search-box .search-icon{left:19px;}
+    #search-box .search-clear{right:11px;}
     /* The focus-expand micro-interaction (.expanded, 220px -> 300px) is a desktop-only nicety
        for the inline pill — irrelevant now that mobile's version is already a full-width
        floating bar, and .expanded's higher specificity would otherwise override the width:auto
@@ -532,6 +539,12 @@
     #pills-row .pill{
       flex:1;height:100%;padding:0;margin:0;border:none;background:none;box-shadow:none;
       border-radius:0;justify-content:center;color:var(--ink-soft);
+      /* Real <button>s keep a faint native control background/outline on iOS Safari even with
+         background:none set — appearance:none is the only thing that fully strips it. Without
+         it, each button's own rectangle showed through faintly against the blurred bar behind
+         it, most visible while panning the map underneath. tap-highlight-color kills the grey
+         flash Android/iOS Chrome briefly shows on tap for the same reason. */
+      -webkit-appearance:none;appearance:none;-webkit-tap-highlight-color:transparent;
     }
     #pills-row .pill-label{display:none;}
     /* Icons sized up (Instagram-scale, not the small 14-15px desktop pill icons) with their own
@@ -791,7 +804,7 @@
           </div>
           <div class="fp-footer">
             <button id="reset-filters" class="fp-btn fp-btn-ghost" type="button" disabled>Réinitialiser</button>
-            <button id="filters-apply" class="fp-btn fp-btn-primary" type="button" disabled>Voir les résultats</button>
+            <button id="filters-apply" class="fp-btn fp-btn-primary" type="button">Voir les résultats</button>
           </div>
         </div>
       </div>
@@ -870,7 +883,10 @@ const STYLE_COLORS = {
 // zoomControl/attributionControl:false because Leaflet's built-in controls default to
 // English text ("Zoom in"/"Zoom out", the "Leaflet" credit tooltip) — both are re-added
 // just below with French labels / no English tooltip.
-const map = L.map('map', {zoomControl:false, attributionControl:false}).setView([46.6, 2.3], 6);
+// minZoom:3 — below that, a full world-width tile row becomes shorter than most viewports,
+// leaving blank margins above/below as if you'd scrolled off the edge of the map. Every place
+// here is in France anyway, so there's no real reason to zoom out further than "most of Europe".
+const map = L.map('map', {zoomControl:false, attributionControl:false, minZoom:3}).setView([46.6, 2.3], 6);
 // bottomleft: topleft used to sit directly under the floating filter pills and overlap them.
 L.control.zoom({position:'bottomleft', zoomInTitle:'Zoomer avant', zoomOutTitle:'Zoomer arrière'}).addTo(map);
 L.control.attribution({prefix:false}).addTo(map);
@@ -962,12 +978,14 @@ function setBadge(id, n){
 function updateFilterCounts(){
   const total = activeStyles.size + activePeriods.size + activeProprietes.size + activeVisite.size;
   setBadge('filter-count-total', total);
-  // Both footer CTAs are disabled until at least one filter is picked — nothing to reset,
-  // and "voir les résultats" (already live-updated behind the panel) is just how you leave.
+  // "Voir les résultats" is always clickable — it's just "confirm and close", valid at any
+  // filter state including zero (0 filters = show everything). Only "Réinitialiser" is disabled
+  // at zero, since there's nothing left to reset. It used to also disable "Voir les résultats"
+  // at zero, which meant deselecting your way back down to no filters left it stuck disabled —
+  // the only way out was the ✕, even though something had genuinely changed.
   const resetBtn = document.getElementById('reset-filters');
   const applyBtn = document.getElementById('filters-apply');
   resetBtn.disabled = total === 0;
-  applyBtn.disabled = total === 0;
   applyBtn.textContent = total === 0 ? 'Voir les résultats' : `Voir les résultats (${getBaseFiltered().length})`;
 }
 function onFilterChange(){
@@ -1113,9 +1131,13 @@ document.getElementById('nav-map').addEventListener('click', (e) => {
 });
 
 // Annuaire des architectes isn't built yet — a brief toast instead of a dead-feeling button.
+// Still a nav destination like the other three though, so it closes whatever else is open.
 let catalogueToastTimer = null;
 document.getElementById('nav-catalogue').addEventListener('click', (e) => {
   e.stopPropagation();
+  closeDetailIfOpen();
+  closeFiltersPanel();
+  closeMobileSearch();
   const toast = document.getElementById('nav-catalogue-toast');
   toast.classList.add('show');
   clearTimeout(catalogueToastTimer);
@@ -1508,8 +1530,13 @@ function selectPlace(d, flyToPlace){
   // empty colour block — most ACR/Wikidata places don't have one yet, this is the common case.
   const miniEl = document.getElementById('dp-mini');
   miniEl.classList.toggle('no-photo', !d.image);
+  // Same style pinStyleFor() picked for this place's marker — a place with several styles
+  // (e.g. Modernisme + Art Déco) always led with styles[0] here regardless of which style was
+  // actually being filtered on, so the pin and card could show two different colours for the
+  // same place (spotted on Église du Saint-Esprit, Art Déco + Industriel et rationaliste).
+  const cardStyleColor = STYLE_COLORS[pinStyleFor(d)] || '#746f67';
   const miniPhoto = document.getElementById('dp-mini-photo');
-  miniPhoto.style.background = d.image ? (STYLE_COLORS[d.styles[0]] || '#746f67') : '';
+  miniPhoto.style.background = d.image ? cardStyleColor : '';
   miniPhoto.innerHTML = d.image ? `<img loading="eager" decoding="async" src="${d.image}" alt="${escapeHtml(d.nom)}">` : '';
   document.getElementById('dp-mini-title').textContent = d.nom;
   document.getElementById('dp-mini-architect').textContent = architecteFmt;
@@ -1520,7 +1547,7 @@ function selectPlace(d, flyToPlace){
   // classé vs. inscrit on hover/tap) instead of competing for space at the top.
   const dp = document.getElementById('dp-content');
   dp.innerHTML = `
-    ${d.image ? `<div class="dp-hero" style="background:${STYLE_COLORS[d.styles[0]]||'#746f67'}"><img src="${d.image}" alt="${escapeHtml(d.nom)}"></div>` : ''}
+    ${d.image ? `<div class="dp-hero" style="background:${cardStyleColor}"><img src="${d.image}" alt="${escapeHtml(d.nom)}"></div>` : ''}
     <div class="dp-eyebrow">${d.dept} — ${d.region}</div>
     <h2>${d.nom}</h2>
     <div class="dp-badges">
@@ -1679,7 +1706,13 @@ document.getElementById('search').addEventListener('keydown', (e) => {
   if(e.key !== 'Enter') return;
   e.target.blur(); // dismiss the mobile keyboard on validate
   const q = e.target.value.trim();
-  if(!q) return;
+  if(!q){
+    // Validating an empty search on mobile used to just dismiss the keyboard, leaving the
+    // floating search bar sitting open and empty — closing it (back to the "Carte" tab
+    // highlighted) is the more useful outcome of "I opened this and changed my mind".
+    closeMobileSearch();
+    return;
+  }
   geocodeAndCenter(q);
 });
 
