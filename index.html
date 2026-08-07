@@ -434,7 +434,7 @@
      real text (still the exact "© contributeurs OpenStreetMap © CARTO" Leaflet already injects,
      just hidden at font-size:0 until expanded, not replaced). */
   .leaflet-control-attribution{
-    width:22px;height:22px;padding:0 !important;margin:0 !important;overflow:hidden;
+    width:22px;height:22px;padding:0 !important;margin:10px !important;overflow:hidden;
     border-radius:50%;border:1px solid rgba(218,220,217,.85) !important;
     background:rgba(251,250,247,.72) !important;
     backdrop-filter:blur(12px) saturate(1.35);-webkit-backdrop-filter:blur(12px) saturate(1.35);
@@ -448,10 +448,33 @@
     color:var(--ink-soft);
   }
   .leaflet-control-attribution.expanded{
-    width:auto;border-radius:12px;padding:4px 10px !important;font-size:10px;
+    width:auto;border-radius:12px;padding:4px 8px 4px 10px !important;font-size:10px;
   }
   .leaflet-control-attribution.expanded::before{display:none;}
   .leaflet-control-attribution a{color:var(--ink-soft);}
+  /* An explicit ✕ once expanded — without it, the only way to tell "tap to close" from "these
+     are just two links" is trial and error, and the wrong tap opens OpenStreetMap/CARTO in a
+     new tab instead. Not its own click handler: it's not an <a>, so the container's existing
+     "anything except a link toggles .expanded" listener already closes it when tapped. */
+  .leaflet-control-attribution .attribution-close{
+    display:none;margin-left:7px;font-weight:700;font-style:normal;color:var(--ink-soft);
+  }
+  .leaflet-control-attribution.expanded .attribution-close{display:inline;}
+  .leaflet-control-attribution:hover .attribution-close{color:var(--ink);}
+  /* Desktop's top-left is already the Filtres pill's spot (sidebar + top:14/left:354) — moving
+     the credits there too would collide with it. Pulled back out to its own absolute position,
+     bottom-right, clear of everything else on that layout (the mobile-only bottom nav bar and
+     the collision this is avoiding don't exist there). */
+  @media (min-width:721px){
+    .leaflet-control-attribution{
+      /* fixed, not absolute: it's still structurally inside Leaflet's tiny top-left corner
+         container (never moved, just restyled) — position:absolute would stay contained by
+         that small box instead of the viewport, resolving bottom/right against ITS few square
+         pixels rather than the screen's, landing back up near top-left. */
+      position:fixed !important;top:auto !important;left:auto !important;
+      bottom:14px !important;right:14px !important;
+    }
+  }
 
   #empty-state{padding:36px 18px;color:var(--ink-soft);font-size:12.5px;text-align:center;line-height:1.6;}
 
@@ -639,15 +662,9 @@
     /* Pinch-to-zoom is the expected gesture on a phone — on-screen +/- buttons aren't part of
        normal mobile map usage, so drop them there and keep them for desktop/mouse users. */
     .leaflet-control-zoom{display:none;}
-    /* The OSM/CARTO attribution (bottom-right by default) otherwise sits right under the nav
-       bar — lifted clear of it by the same amount everything else floats above it. Zoom control
-       lived in this same corner container but is hidden on mobile (just above), so nothing else
-       is affected by shifting the whole corner up. */
-    .leaflet-bottom{bottom:var(--bar-clearance) !important;}
-    /* Lifting it clear of the bar isn't enough on its own — filters/search/the place card all
-       float in that exact same band when open, so the credits would sit on top of THEM instead.
-       The only state where there's nothing else there to collide with is the plain map, so it
-       only shows then. */
+    /* Credits now live top-left (see L.control.attribution's position option), clear of the
+       bottom nav bar entirely — still hidden whenever a panel is open, since the full fiche
+       covers that corner too and there's no reason to show it mid-filter/search either. */
     #app.nav-panel-open .leaflet-control-attribution, #app.detail-open .leaflet-control-attribution{
       display:none;
     }
@@ -889,7 +906,10 @@ const STYLE_COLORS = {
 const map = L.map('map', {zoomControl:false, attributionControl:false, minZoom:3}).setView([46.6, 2.3], 6);
 // bottomleft: topleft used to sit directly under the floating filter pills and overlap them.
 L.control.zoom({position:'bottomleft', zoomInTitle:'Zoomer avant', zoomOutTitle:'Zoomer arrière'}).addTo(map);
-L.control.attribution({prefix:false}).addTo(map);
+// topleft: an empty corner now that Filtres moved to the bottom nav — the old top-left spot is
+// free, and it's well clear of the header (Leaflet's corner containers sit inside the map div,
+// which already starts below the header).
+L.control.attribution({prefix:false, position:'topleft'}).addTo(map);
 // CartoDB Positron: a light, minimal basemap — muted greys, restrained labels, no dense
 // colored land-use fill — so the map stays calm at a wide zoom and only reveals street-level
 // detail as you zoom in, rather than dumping every road and POI label on screen at once.
@@ -905,6 +925,13 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
 // themselves open in a new tab (target="_blank" is already on them from the tile layer's
 // attribution string above) so letting the toggle also fire on them is harmless.
 const attributionEl = document.querySelector('.leaflet-control-attribution');
+// A visible ✕ once expanded, appended after the injected credit links — a plain <span>, not an
+// <a>, so the click handler below (which already skips real links) still closes it on tap.
+const attributionClose = document.createElement('span');
+attributionClose.className = 'attribution-close';
+attributionClose.textContent = '✕';
+attributionClose.setAttribute('aria-hidden', 'true');
+attributionEl.appendChild(attributionClose);
 attributionEl.addEventListener('click', (e) => {
   if(e.target.tagName === 'A') return;
   e.stopPropagation();
